@@ -1,0 +1,13 @@
+<resources>
+    <!-- COMMON -->
+    <string name="app_name">LearningAndroid</string>
+
+    <!-- MAIN -->
+    <string-array name="main_items">
+        <item>jsoup</item>
+        <item>Rx</item>
+    </string-array>
+
+    <!-- JSOUP -->
+    <string name="actionbar_title">jsoup</string>
+</resources>
