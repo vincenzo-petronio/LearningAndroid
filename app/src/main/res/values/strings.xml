@@ -6,6 +6,8 @@
     <string-array name="main_items">
         <item>jsoup</item>
         <item>Rx</item>
+        <item>AsyncTask Loader</item>
+        <item>NestedScrollView</item>
     </string-array>
 
     <!-- JSOUP -->
