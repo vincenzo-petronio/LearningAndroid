@@ -66,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
             case 2:
                 break;
             case 3:
+                i = new Intent(MainActivity.this, NestedScrollActivity.class);
+                startActivity(i);
                 break;
             case 4:
                 break;

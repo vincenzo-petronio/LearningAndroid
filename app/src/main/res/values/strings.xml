@@ -1,6 +1,7 @@
 <resources>
     <!-- COMMON -->
     <string name="app_name">LearningAndroid</string>
+    <string name="lorem">Lorem ipsum dolor sit amet, has dicant saperet voluptatibus ad. Eu cum libris interesset, duo ne zril tollit malorum, pro ei quas civibus. Disputando dissentiunt ei his. Vim ei exerci deleniti. Cu graeci scripserit vim, iusto deseruisse ei sit.</string>
 
     <!-- MAIN -->
     <string-array name="main_items">
@@ -11,5 +12,8 @@
     </string-array>
 
     <!-- JSOUP -->
-    <string name="actionbar_title">jsoup</string>
+    <string name="jsoup_actionbar_title">jsoup</string>
+
+    <!-- NESTED SCROLL VIEW -->
+    <string name="nestedscroll_actionbar_title">NestedScrollView</string>
 </resources>

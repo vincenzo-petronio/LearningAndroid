@@ -54,7 +54,7 @@ public class JsoupActivity extends AppCompatActivity implements JsoupTask.JsoupT
     private void initUi() {
         ButterKnife.bind(this);
 
-        getSupportActionBar().setTitle(R.string.actionbar_title);
+        getSupportActionBar().setTitle(R.string.jsoup_actionbar_title);
     }
 
     private void initData() {
