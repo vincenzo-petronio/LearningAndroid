@@ -1,13 +1,19 @@
 package it.localhost.app.mobile.learningandroid.ui.activity;
 
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.util.TimeUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import java.util.Timer;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -63,6 +69,24 @@ public class JsoupActivity extends AppCompatActivity implements JsoupTask.JsoupT
         sb.append(document.baseUri());
         sb.append("\n");
         sb.append(document.title());
+        sb.append("\n");
+
+        // Ho 3 div con questa classe
+        Elements divElements = document.getElementsByClass("destination-list");
+
+        // Per ogni Element (div) trovato ...
+        for(Element divElement : divElements){
+
+            // ... prendo il parente, cioè il div superiore, e ne estraggo il text
+            String titolo = divElement.parent().select("div.section-title").text();
+            sb.append("\n").append(titolo).append("\n");
+
+            // Poi prendo tutti i figli con tag <a>
+            Elements aElements = divElement.select("a");
+            for (Element aElement : aElements) {
+                sb.append(aElement.text() + "\n");
+            }
+        }
 
         return sb;
     }
@@ -70,7 +94,7 @@ public class JsoupActivity extends AppCompatActivity implements JsoupTask.JsoupT
     private void setData(StringBuffer stringBuffer) {
         tv.setText(stringBuffer.toString());
     }
-    
+
     // CALLBACK
 
     @Override

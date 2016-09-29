@@ -24,8 +24,6 @@ public class JsoupTask extends AsyncTask<String, Void, Document> {
     protected void onPreExecute() {
         Log.v(TAG, "onPreExecute");
         super.onPreExecute();
-
-        callback.showProgress(true);
     }
 
     @Override
