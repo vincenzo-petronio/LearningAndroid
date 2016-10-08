@@ -9,6 +9,7 @@
         <item>Rx</item>
         <item>AsyncTask Loader</item>
         <item>NestedScrollView</item>
+        <item>RecyclerView</item>
     </string-array>
 
     <!-- JSOUP -->
@@ -16,4 +17,7 @@
 
     <!-- NESTED SCROLL VIEW -->
     <string name="nestedscroll_actionbar_title">NestedScrollView</string>
+
+    <!-- RECYCLER VIEW -->
+    <string name="recyclerview_actionbar_title">RecyclerView</string>
 </resources>

@@ -19,7 +19,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.activity.JsoupActivity" />
-        <activity android:name=".ui.activity.NestedScrollActivity"></activity>
+        <activity android:name=".ui.activity.NestedScrollActivity" />
+        <activity android:name=".ui.activity.RecyclerViewActivity" />
+        <activity android:name=".ui.activity.RecyclerActivity" />
+        <activity android:name=".ui.activity.RecyclerCardActivity" />
+        <activity android:name=".ui.activity.RecyclerPhotoActivity" />
     </application>
 
 </manifest>

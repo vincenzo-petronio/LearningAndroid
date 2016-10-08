@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
     tools:context="it.localhost.app.mobile.learningandroid.ui.activity.NestedScrollActivity">
 
     <LinearLayout
@@ -15,7 +14,7 @@
         <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.4"
+            android:layout_weight="0.3"
             android:background="@android:color/holo_red_light">
 
             <TextView
@@ -25,13 +24,17 @@
                 android:textSize="40sp" />
         </android.support.v4.widget.NestedScrollView>
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginTop="@dimen/activity_padding"
+            android:background="@android:color/holo_green_light" />
+
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_padding"
-            android:layout_weight="1"
-            android:background="@android:color/holo_green_light"
-            android:text="@string/nestedscroll_actionbar_title"
-            android:textSize="48sp" />
+            android:text="@string/lorem"
+            android:textSize="60sp" />
     </LinearLayout>
 </ScrollView>

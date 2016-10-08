@@ -56,6 +56,14 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "OnItemSelected: " + lvItems.getItemAtPosition(position));
 
         Intent i;
+
+        /*
+        <item>jsoup</item>
+        <item>Rx</item>
+        <item>AsyncTask Loader</item>
+        <item>NestedScrollView</item>
+        <item>RecyclerView</item>
+        */
         switch (position) {
             case 0:
                 i = new Intent(MainActivity.this, JsoupActivity.class);
@@ -70,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
                 break;
             case 4:
+                i = new Intent(MainActivity.this, RecyclerViewActivity.class);
+                startActivity(i);
                 break;
             //...
             default:
