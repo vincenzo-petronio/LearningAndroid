@@ -15,6 +15,8 @@ public class RecyclerViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // VIEW
         setContentView(R.layout.activity_recycler_view);
 
         Button btnRecyclerLinear = (Button) findViewById(R.id.btnRecyclerLinear);
@@ -36,6 +38,13 @@ public class RecyclerViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(RecyclerViewActivity.this, RecyclerCardActivity.class));
+            }
+        });
+        Button btnRecyclerDrag = (Button) findViewById(R.id.btnRecyclerDrag);
+        btnRecyclerDrag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(RecyclerViewActivity.this, RecyclerDragActivity.class));
             }
         });
     }

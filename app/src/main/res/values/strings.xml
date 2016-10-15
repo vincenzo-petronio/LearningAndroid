@@ -10,6 +10,9 @@
         <item>AsyncTask Loader</item>
         <item>NestedScrollView</item>
         <item>RecyclerView</item>
+        <item>PercentRelativeLayout</item>
+        <item>CollapsingToolbarLayout</item>
+        <item>Retrofit</item>
     </string-array>
 
     <!-- JSOUP -->
@@ -20,4 +23,5 @@
 
     <!-- RECYCLER VIEW -->
     <string name="recyclerview_actionbar_title">RecyclerView</string>
+    <string name="drag">drag</string>
 </resources>
