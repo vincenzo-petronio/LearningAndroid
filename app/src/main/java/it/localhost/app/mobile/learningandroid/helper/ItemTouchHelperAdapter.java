@@ -1,7 +1,7 @@
 package it.localhost.app.mobile.learningandroid.helper;
 
 /**
- * Interface per notificare i movimenti degli elementi della lista.
+ * Interface per notificare all'adapter i movimenti degli elementi della lista.
  */
 public interface ItemTouchHelperAdapter {
 

@@ -1,9 +1,11 @@
 package it.localhost.app.mobile.learningandroid.ui.adapter;
 
 import android.content.Context;
+import android.support.v4.view.MotionEventCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -17,9 +19,8 @@ import butterknife.ButterKnife;
 import it.localhost.app.mobile.learningandroid.R;
 import it.localhost.app.mobile.learningandroid.data.model.Todo;
 import it.localhost.app.mobile.learningandroid.helper.ItemTouchHelperAdapter;
-
-import static android.media.CamcorderProfile.get;
-import static it.localhost.app.mobile.learningandroid.R.id.tvTitle;
+import it.localhost.app.mobile.learningandroid.helper.ItemTouchHelperViewHolder;
+import it.localhost.app.mobile.learningandroid.helper.OnStartDragListener;
 
 /**
  * Adapter per CardView con supporto al Drag & Swipe
@@ -28,11 +29,31 @@ public class TodosDragAdapter extends RecyclerView.Adapter<TodosDragAdapter.Item
 
     private static final String TAG = TodosDragAdapter.class.getSimpleName();
     private static final int WIP = 1, DONE = 2;
+    private final OnStartDragListener mDragStartListener;
     private Context ctx;
     private List<Todo> mTodos;
 
+    /**
+     * Costruttore
+     *
+     * @param ctx Context
+     * @deprecated
+     */
     public TodosDragAdapter(Context ctx) {
         this.ctx = ctx;
+        this.mTodos = Collections.emptyList();
+        this.mDragStartListener = null;
+    }
+
+    /**
+     * Costruttore
+     *
+     * @param ctx                 Context
+     * @param onStartDragListener OnStartDragListener
+     */
+    public TodosDragAdapter(Context ctx, OnStartDragListener onStartDragListener) {
+        this.ctx = ctx;
+        this.mDragStartListener = onStartDragListener;
         this.mTodos = Collections.emptyList();
     }
 
@@ -52,6 +73,26 @@ public class TodosDragAdapter extends RecyclerView.Adapter<TodosDragAdapter.Item
         notifyDataSetChanged();
     }
 
+    /**
+     * Effettua il clear della collection
+     */
+    private void deleteCollection() {
+        Log.v(TAG, "deleteCollection");
+        mTodos.clear();
+    }
+
+    /**
+     * Aggiunge un elemento alla collection nella posizione indicata
+     *
+     * @param item     Todo
+     * @param position int index 0-based
+     */
+    private void addItem(Todo item, int position) {
+        Log.v(TAG, "addItem");
+        mTodos.add(position, item);
+        notifyItemInserted(position);
+    }
+
 
     // EXTENDS
 
@@ -69,15 +110,29 @@ public class TodosDragAdapter extends RecyclerView.Adapter<TodosDragAdapter.Item
     }
 
     @Override
-    public void onBindViewHolder(TodosDragAdapter.ItemViewHolder holder, int position) {
+    public void onBindViewHolder(final TodosDragAdapter.ItemViewHolder holder, int position) {
         Todo todo = mTodos.get(position);
 
         //GUARD-CLAUSE
         if (todo == null) {
+            Log.e(TAG, "onBindViewHolder item NULL!");
             return;
         }
 
         holder.tvTitle.setText(todo.getTitle());
+        holder.tvId.setText(Integer.toString(todo.getId()));
+
+        // OnTouchListener per catturare il drag
+        holder.ivDrag.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (MotionEventCompat.getActionMasked(event) ==
+                        MotionEvent.ACTION_DOWN) {
+                    mDragStartListener.onStartDrag(holder);
+                }
+                return false;
+            }
+        });
     }
 
     @Override
@@ -96,7 +151,8 @@ public class TodosDragAdapter extends RecyclerView.Adapter<TodosDragAdapter.Item
 
     @Override
     public void onItemMove(int fromPosition, int toPosition) {
-
+        Collections.swap(mTodos, fromPosition, toPosition);
+        notifyItemMoved(fromPosition, toPosition);
     }
 
     @Override
@@ -107,16 +163,31 @@ public class TodosDragAdapter extends RecyclerView.Adapter<TodosDragAdapter.Item
 
     // INNER-CLASS
 
-    public class ItemViewHolder extends RecyclerView.ViewHolder {
+    public class ItemViewHolder extends RecyclerView.ViewHolder implements ItemTouchHelperViewHolder {
 
         @BindView(R.id.tvTitle)
         TextView tvTitle;
+        @BindView(R.id.tvId)
+        TextView tvId;
         @BindView(R.id.ivDrag)
         ImageView ivDrag;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+        }
+
+
+        // CALLBACK ItemTouchHelperViewHolder
+
+        @Override
+        public void onItemSelected() {
+
+        }
+
+        @Override
+        public void onItemClear() {
+
         }
     }
 }

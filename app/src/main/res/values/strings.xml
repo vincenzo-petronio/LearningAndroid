@@ -13,6 +13,8 @@
         <item>PercentRelativeLayout</item>
         <item>CollapsingToolbarLayout</item>
         <item>Retrofit</item>
+        <item>Android Annotations</item>
+        <item>Realm</item>
     </string-array>
 
     <!-- JSOUP -->

@@ -14,21 +14,35 @@
         android:orientation="horizontal"
         android:padding="@dimen/activity_padding_half">
 
-        <TextView
-            android:id="@+id/tvTitle"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/activity_padding"
+            android:layout_marginRight="@dimen/activity_padding"
             android:layout_weight="0.7"
-            tools:text="@string/lorem" />
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                tools:text="123" />
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="@string/lorem" />
+
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/ivDrag"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_weight="0.3"
             android:contentDescription="@string/drag"
-            android:scaleType="fitEnd"
             android:src="@drawable/drag_arrow" />
 
     </LinearLayout>

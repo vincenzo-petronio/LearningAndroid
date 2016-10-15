@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 
 import java.io.IOException;
@@ -18,16 +19,19 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import it.localhost.app.mobile.learningandroid.R;
 import it.localhost.app.mobile.learningandroid.data.model.Todo;
+import it.localhost.app.mobile.learningandroid.helper.OnStartDragListener;
+import it.localhost.app.mobile.learningandroid.helper.SimpleItemTouchHelperCallback;
 import it.localhost.app.mobile.learningandroid.ui.adapter.TodosDragAdapter;
 import it.localhost.app.mobile.learningandroid.util.Constants;
 import it.localhost.app.mobile.learningandroid.util.DataManager;
 
-public class RecyclerDragActivity extends AppCompatActivity {
+public class RecyclerDragActivity extends AppCompatActivity implements OnStartDragListener {
 
     private static final String TAG = RecyclerDragActivity.class.getSimpleName();
     private Context myCtx;
     private TodosDragAdapter mTodosDragAdapter;
     private List<Todo> mTodos;
+    private ItemTouchHelper mItemTouchHelper;
 
     @BindView(R.id.rvItems)
     RecyclerView rvItems;
@@ -53,9 +57,13 @@ public class RecyclerDragActivity extends AppCompatActivity {
         setContentView(R.layout.activity_recycler_drag);
         ButterKnife.bind(this);
 
-        mTodosDragAdapter = new TodosDragAdapter(myCtx);
+        mTodosDragAdapter = new TodosDragAdapter(myCtx, this);
         rvItems.setAdapter(mTodosDragAdapter);
         rvItems.setLayoutManager(new LinearLayoutManager(myCtx));
+
+        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mTodosDragAdapter);
+        mItemTouchHelper = new ItemTouchHelper(callback);
+        mItemTouchHelper.attachToRecyclerView(rvItems);
     }
 
     private void initPresenter() {
@@ -78,5 +86,13 @@ public class RecyclerDragActivity extends AppCompatActivity {
         }
 
         mTodosDragAdapter.updateCollection(mTodos);
+    }
+
+
+    // CALLBACK OnStartDragListener
+
+    @Override
+    public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
+        mItemTouchHelper.startDrag(viewHolder);
     }
 }
