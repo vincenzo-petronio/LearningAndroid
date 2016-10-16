@@ -79,9 +79,19 @@ public class TodosDragAdapter extends RecyclerView.Adapter<TodosDragAdapter.Item
     /**
      * Effettua il clear della collection
      */
-    private void deleteCollection() {
+    public void deleteCollection() {
         Log.v(TAG, "deleteCollection");
         mTodos.clear();
+    }
+
+    /**
+     * Rimuove un elemento dalla collection nella posizione indicata.
+     *
+     * @param position int
+     */
+    public void deleteItem(int position) {
+        mTodos.remove(position);
+        notifyItemRemoved(position);
     }
 
     /**
@@ -90,7 +100,7 @@ public class TodosDragAdapter extends RecyclerView.Adapter<TodosDragAdapter.Item
      * @param item     Todo
      * @param position int index 0-based
      */
-    private void addItem(Todo item, int position) {
+    public void addItem(Todo item, int position) {
         Log.v(TAG, "addItem");
         mTodos.add(position, item);
         notifyItemInserted(position);
@@ -154,6 +164,16 @@ public class TodosDragAdapter extends RecyclerView.Adapter<TodosDragAdapter.Item
 
     @Override
     public boolean onItemMove(int fromPosition, int toPosition) {
+//        if (fromPosition < toPosition) {
+//            for (int i = fromPosition; i < toPosition; i++) {
+//                Collections.swap(mTodos, i, i + 1);
+//            }
+//        } else {
+//            for (int i = fromPosition; i > toPosition; i--) {
+//                Collections.swap(mTodos, i, i - 1);
+//            }
+//        }
+
         Collections.swap(mTodos, fromPosition, toPosition);
         notifyItemMoved(fromPosition, toPosition);
         return true;

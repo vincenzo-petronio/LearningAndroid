@@ -18,6 +18,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
 
         // VIEW
         setContentView(R.layout.activity_recycler_view);
+        getSupportActionBar().setTitle(R.string.recyclerview_actionbar_title);
 
         Button btnRecyclerLinear = (Button) findViewById(R.id.btnRecyclerLinear);
         btnRecyclerLinear.setOnClickListener(new View.OnClickListener() {

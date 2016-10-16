@@ -40,6 +40,7 @@ public class RecyclerActivity extends AppCompatActivity {
 
         // VIEW
         setContentView(R.layout.activity_recycler);
+        getSupportActionBar().setTitle(R.string.recyclerview_actionbar_title);
         rvItems = (RecyclerView) findViewById(R.id.rvItems);
 
         // REST API

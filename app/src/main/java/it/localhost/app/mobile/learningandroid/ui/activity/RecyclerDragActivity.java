@@ -11,6 +11,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import java.io.IOException;
 import java.util.List;
@@ -57,8 +59,11 @@ public class RecyclerDragActivity extends AppCompatActivity implements OnStartDr
         setContentView(R.layout.activity_recycler_drag);
         ButterKnife.bind(this);
 
+        getSupportActionBar().setTitle(R.string.recyclerview_actionbar_title);
+
         // Preparo l'Adapter per la RecyclerView
         mTodosDragAdapter = new TodosDragAdapter(myCtx, this);
+        rvItems.setHasFixedSize(true);
         rvItems.setAdapter(mTodosDragAdapter);
         rvItems.setLayoutManager(new LinearLayoutManager(myCtx));
 
@@ -98,5 +103,34 @@ public class RecyclerDragActivity extends AppCompatActivity implements OnStartDr
     @Override
     public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
         mItemTouchHelper.startDrag(viewHolder);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_recycler_drag, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menuAdd: {
+                Todo t = new Todo();
+                t.setCompleted(true);
+                t.setId(mTodos.size()+1);
+                t.setTitle("A new One");
+                t.setUserId(0);
+                mTodosDragAdapter.addItem(t, 0);
+                // Effettuo lo scroll del RecyclerView per vedere l'elemento inserito al top
+                rvItems.smoothScrollToPosition(0);
+                return true;
+            }
+            case R.id.menuRemove: {
+                mTodosDragAdapter.deleteItem(0);
+                return true;
+            }
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

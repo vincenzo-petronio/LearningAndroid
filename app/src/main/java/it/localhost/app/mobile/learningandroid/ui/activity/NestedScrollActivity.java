@@ -15,9 +15,6 @@ public class NestedScrollActivity extends AppCompatActivity {
         Log.v(TAG, "onCreate");
         super.onCreate(savedInstanceState);
 
-        // VIEW
-        setContentView(R.layout.activity_nestedscroll);
-
         initUi();
     }
 
@@ -28,6 +25,7 @@ public class NestedScrollActivity extends AppCompatActivity {
     }
 
     private void initUi() {
+        setContentView(R.layout.activity_nestedscroll);
         getSupportActionBar().setTitle(R.string.nestedscroll_actionbar_title);
     }
 }
