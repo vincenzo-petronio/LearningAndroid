@@ -57,10 +57,14 @@ public class RecyclerDragActivity extends AppCompatActivity implements OnStartDr
         setContentView(R.layout.activity_recycler_drag);
         ButterKnife.bind(this);
 
+        // Preparo l'Adapter per la RecyclerView
         mTodosDragAdapter = new TodosDragAdapter(myCtx, this);
         rvItems.setAdapter(mTodosDragAdapter);
         rvItems.setLayoutManager(new LinearLayoutManager(myCtx));
 
+        // Creo la callback per ascoltare gli eventi swipe e move.
+        // Invece di usare il wrapper fornito da Android (ItemTouchHelper.SimpleCallback), ne creo
+        // uno custom.
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mTodosDragAdapter);
         mItemTouchHelper = new ItemTouchHelper(callback);
         mItemTouchHelper.attachToRecyclerView(rvItems);

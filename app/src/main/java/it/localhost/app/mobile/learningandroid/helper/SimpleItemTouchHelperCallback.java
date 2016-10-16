@@ -5,7 +5,11 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 
 /**
- * @see <a href="https://github.com/iPaulPro/Android-ItemTouchHelper-Demo/blob/master/app/src/main/java/co/paulburke/android/itemtouchhelperdemo/helper/SimpleItemTouchHelperCallback.java"></a>
+ * Custom wrapper di ItemTouchHelper.Callback per gestire gli eventi swipe e move.<br>
+ *
+ * @see <a href="https://developer.android.com/reference/android/support/v7/widget/helper/ItemTouchHelper.SimpleCallback.html">Semplice
+ * wrapper fornito da Android</a>
+ * @see <a href="https://github.com/iPaulPro/Android-ItemTouchHelper-Demo/blob/master/app/src/main/java/co/paulburke/android/itemtouchhelperdemo/helper/SimpleItemTouchHelperCallback.java">Documentazione</a>
  */
 public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
 
@@ -14,6 +18,7 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
 
     /**
      * Costruttore
+     *
      * @param adapter ItemTouchHelperAdapter
      */
     public SimpleItemTouchHelperCallback(ItemTouchHelperAdapter adapter) {
@@ -30,9 +35,9 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
     @Override
     public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder source, RecyclerView.ViewHolder target) {
         // Permette il drag solo tra itemViewType dello stesso tipo.
-        if (source.getItemViewType() != target.getItemViewType()) {
-            return false;
-        }
+//        if (source.getItemViewType() != target.getItemViewType()) {
+//            return true;
+//        }
 
         // Notify the adapter of the move
         mAdapter.onItemMove(source.getAdapterPosition(), target.getAdapterPosition());
@@ -45,9 +50,14 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
         mAdapter.onItemDismiss(viewHolder.getAdapterPosition());
     }
 
+    /**
+     * true per abilitare il move su tutta la view.
+     *
+     * @return boolean
+     */
     @Override
     public boolean isLongPressDragEnabled() {
-        return true;
+        return false;
     }
 
     @Override

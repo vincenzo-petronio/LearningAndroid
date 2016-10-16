@@ -1,7 +1,9 @@
 package it.localhost.app.mobile.learningandroid.ui.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v4.view.MotionEventCompat;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -120,7 +123,7 @@ public class TodosDragAdapter extends RecyclerView.Adapter<TodosDragAdapter.Item
         }
 
         holder.tvTitle.setText(todo.getTitle());
-        holder.tvId.setText(Integer.toString(todo.getId()));
+        holder.tvId.setText(String.format(Locale.ITALY, "%1$d", todo.getId()));
 
         // OnTouchListener per catturare il drag
         holder.ivDrag.setOnTouchListener(new View.OnTouchListener() {
@@ -150,14 +153,16 @@ public class TodosDragAdapter extends RecyclerView.Adapter<TodosDragAdapter.Item
     // CALLBACK ItemTouchHelperAdapter
 
     @Override
-    public void onItemMove(int fromPosition, int toPosition) {
+    public boolean onItemMove(int fromPosition, int toPosition) {
         Collections.swap(mTodos, fromPosition, toPosition);
         notifyItemMoved(fromPosition, toPosition);
+        return true;
     }
 
     @Override
     public void onItemDismiss(int position) {
-
+        mTodos.remove(position);
+        notifyItemRemoved(position);
     }
 
 
@@ -165,6 +170,8 @@ public class TodosDragAdapter extends RecyclerView.Adapter<TodosDragAdapter.Item
 
     public class ItemViewHolder extends RecyclerView.ViewHolder implements ItemTouchHelperViewHolder {
 
+        @BindView(R.id.cvRoot)
+        CardView cvRoot;
         @BindView(R.id.tvTitle)
         TextView tvTitle;
         @BindView(R.id.tvId)
@@ -182,12 +189,12 @@ public class TodosDragAdapter extends RecyclerView.Adapter<TodosDragAdapter.Item
 
         @Override
         public void onItemSelected() {
-
+            cvRoot.setCardBackgroundColor(Color.LTGRAY);
         }
 
         @Override
         public void onItemClear() {
-
+            cvRoot.setCardBackgroundColor(Color.WHITE);
         }
     }
 }
