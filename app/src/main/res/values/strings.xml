@@ -5,6 +5,7 @@
     <string name="drag">drag</string>
     <string name="add">Add</string>
     <string name="delete">Delete</string>
+    <string name="settings">Settings</string>
 
     <!-- MAIN -->
     <string-array name="main_items">
@@ -28,4 +29,8 @@
 
     <!-- RECYCLER VIEW -->
     <string name="recyclerview_actionbar_title">RecyclerView</string>
+
+    <!-- ANNOTATION -->
+    <string name="annotation_actionbar_title">Annotation</string>
+
 </resources>

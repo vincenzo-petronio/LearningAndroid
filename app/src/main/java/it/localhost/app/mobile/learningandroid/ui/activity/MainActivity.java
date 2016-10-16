@@ -57,13 +57,6 @@ public class MainActivity extends AppCompatActivity {
 
         Intent i;
 
-        /*
-        <item>jsoup</item>
-        <item>Rx</item>
-        <item>AsyncTask Loader</item>
-        <item>NestedScrollView</item>
-        <item>RecyclerView</item>
-        */
         switch (position) {
             case 0:
                 i = new Intent(MainActivity.this, JsoupActivity.class);
@@ -79,6 +72,16 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case 4:
                 i = new Intent(MainActivity.this, RecyclerViewActivity.class);
+                startActivity(i);
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            case 7:
+                break;
+            case 8:
+                i = new Intent(MainActivity.this, AnnotationActivity.class);
                 startActivity(i);
                 break;
             //...
