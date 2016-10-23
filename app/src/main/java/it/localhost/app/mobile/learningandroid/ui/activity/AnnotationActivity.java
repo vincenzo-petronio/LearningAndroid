@@ -1,31 +1,47 @@
 package it.localhost.app.mobile.learningandroid.ui.activity;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
+import android.util.Log;
 
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import it.localhost.app.mobile.learningandroid.R;
 
-public class AnnotationActivity extends AppCompatActivity {
+public class AnnotationActivity extends BaseActivity {
+
+    private static final String TAG = AnnotationActivity.class.getSimpleName();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
+        Log.v(TAG, "onCreate");
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_annotation);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        initUI();
+    }
+
+
+    // EXTENDS
+
+    @Override
+    public int getIdLayout() {
+        return R.layout.activity_annotation;
+    }
+
+    @Override
+    public int getIdToolbar() {
+        return R.id.toolbar;
+    }
+
+
+    // METHODS
+
+    private void initUI() {
+        ButterKnife.bind(this);
+    }
+
+    @OnClick(R.id.fab)
+    protected void OnFabClick() {
+        // TODO new fragment
     }
 
 }

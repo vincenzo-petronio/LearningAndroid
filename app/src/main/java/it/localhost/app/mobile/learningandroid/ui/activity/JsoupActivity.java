@@ -6,6 +6,7 @@ import org.jsoup.select.Elements;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ProgressBar;
@@ -57,7 +58,7 @@ public class JsoupActivity extends AppCompatActivity implements JsoupTask.JsoupT
         new JsoupTask(this).execute(Constants.URL_JSOUP);
     }
 
-    private StringBuffer parseData(Document document) {
+    private StringBuffer parseData(@NonNull Document document) {
         if (sb == null) {
             sb = new StringBuffer();
         }
@@ -87,7 +88,7 @@ public class JsoupActivity extends AppCompatActivity implements JsoupTask.JsoupT
         return sb;
     }
 
-    private void setData(StringBuffer stringBuffer) {
+    private void setData(@NonNull StringBuffer stringBuffer) {
         tv.setText(stringBuffer.toString());
     }
 

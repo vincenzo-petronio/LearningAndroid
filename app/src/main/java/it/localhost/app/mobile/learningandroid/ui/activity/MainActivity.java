@@ -28,8 +28,6 @@ public class MainActivity extends AppCompatActivity {
         Log.v(TAG, "onCreate");
         super.onCreate(savedInstanceState);
 
-        // VIEW
-        setContentView(R.layout.activity_main);
         mContex = this;
 
         initUi();
@@ -42,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initUi() {
+        setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
         ArrayAdapter arrayAdapter = new ArrayAdapter<>(

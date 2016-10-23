@@ -11,9 +11,9 @@ import it.localhost.app.mobile.learningandroid.R;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class AnnotationActivityFragment extends Fragment {
+public class AnnotationFragment extends Fragment {
 
-    public AnnotationActivityFragment() {
+    public AnnotationFragment() {
     }
 
     @Override

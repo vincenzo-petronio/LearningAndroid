@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/activity_padding"
-    tools:context="it.localhost.app.mobile.learningandroid.ui.fragment.AnnotationActivityFragment"
+    tools:context="it.localhost.app.mobile.learningandroid.ui.fragment.AnnotationFragment"
     tools:showIn="@layout/activity_annotation">
 
 
