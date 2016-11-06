@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="fake_person_name">
+        <item>John</item>
+        <item>Christy</item>
+        <item>Tony</item>
+        <item>Chad</item>
+        <item>Alexander</item>
+        <item>Robert</item>
+        <item>Beth</item>
+        <item>Maria</item>
+        <item>Paul</item>
+        <item>Paola</item>
+        <item>Elisabetta</item>
+        <item>Steve</item>
+        <item>Erica</item>
+        <item>Ray</item>
+        <item>Clayton</item>
+        <item>George</item>
+        <item>Stephen</item>
+    </array>
+</resources>

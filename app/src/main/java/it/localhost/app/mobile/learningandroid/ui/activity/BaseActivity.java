@@ -6,6 +6,7 @@ import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -18,7 +19,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     private static final String TAG = BaseActivity.class.getSimpleName();
     private Context mContext;
     private Toolbar mToolbar;
-    private int mIdLayout, mIdToolbar;
+    private FloatingActionButton mFab;
+    private int mIdLayout, mIdToolbar, mIdFab;
 
 
     // EXTENDING
@@ -82,6 +84,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         return mToolbar;
     }
 
+    public FloatingActionButton getFab() {
+        return mFab;
+    }
+
     /**
      * Restituisce il layout da associare all'Activity. <br>
      *
@@ -100,15 +106,24 @@ public abstract class BaseActivity extends AppCompatActivity {
     @IdRes
     public abstract int getIdToolbar();
 
+    /**
+     * FloatingActionButton
+     *
+     * @return int
+     */
+    @IdRes
+    public abstract int getIdFab();
 
     // METHODS
 
     private void initUI() {
         mIdLayout = getIdLayout();
         mIdToolbar = getIdToolbar();
+        mIdFab = getIdFab();
 
         setContentView(mIdLayout);
         mToolbar = (Toolbar) findViewById(mIdToolbar);
+        mFab = (FloatingActionButton) findViewById(mIdFab);
 
         setSupportActionBar(mToolbar);
     }

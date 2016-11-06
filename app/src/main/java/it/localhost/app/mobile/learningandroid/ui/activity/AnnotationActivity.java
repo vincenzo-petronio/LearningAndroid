@@ -6,6 +6,7 @@ import android.util.Log;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import it.localhost.app.mobile.learningandroid.R;
+import it.localhost.app.mobile.learningandroid.ui.fragment.AnnotationFragment_;
 
 public class AnnotationActivity extends BaseActivity {
 
@@ -32,6 +33,10 @@ public class AnnotationActivity extends BaseActivity {
         return R.id.toolbar;
     }
 
+    @Override
+    public int getIdFab() {
+        return R.id.fab;
+    }
 
     // METHODS
 
@@ -41,7 +46,7 @@ public class AnnotationActivity extends BaseActivity {
 
     @OnClick(R.id.fab)
     protected void OnFabClick() {
-        // TODO new fragment
+        getSupportFragmentManager().beginTransaction().add(R.id.container, new AnnotationFragment_()).commit();
     }
 
 }

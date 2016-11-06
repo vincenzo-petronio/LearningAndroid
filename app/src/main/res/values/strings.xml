@@ -32,5 +32,6 @@
 
     <!-- ANNOTATION -->
     <string name="annotation_actionbar_title">Annotation</string>
+    <string name="annotationfragment_actionbar_title">AnnotationFragment</string>
 
 </resources>
