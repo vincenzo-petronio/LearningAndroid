@@ -78,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
                 break;
             case 6:
+                i = new Intent(MainActivity.this, CollapsingActivity.class);
+                startActivity(i);
                 break;
             case 7:
                 break;

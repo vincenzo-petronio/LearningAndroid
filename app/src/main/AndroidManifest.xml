@@ -32,6 +32,10 @@
         <activity
             android:name=".ui.activity.PercentActivity"
             android:label="@string/percent_actionbar_title" />
+        <activity
+            android:name=".ui.activity.CollapsingActivity"
+            android:label="@string/collpasing_actionbar_title"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
