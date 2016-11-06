@@ -122,9 +122,13 @@ public abstract class BaseActivity extends AppCompatActivity {
         mIdFab = getIdFab();
 
         setContentView(mIdLayout);
-        mToolbar = (Toolbar) findViewById(mIdToolbar);
-        mFab = (FloatingActionButton) findViewById(mIdFab);
+        if (mIdToolbar != 0) {
+            mToolbar = (Toolbar) findViewById(mIdToolbar);
+            setSupportActionBar(mToolbar);
+        }
+        if (mIdFab != 0) {
+            mFab = (FloatingActionButton) findViewById(mIdFab);
+        }
 
-        setSupportActionBar(mToolbar);
     }
 }

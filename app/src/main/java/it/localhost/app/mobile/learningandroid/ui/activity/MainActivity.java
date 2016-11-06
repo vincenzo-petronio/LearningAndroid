@@ -74,6 +74,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
                 break;
             case 5:
+                i = new Intent(MainActivity.this, PercentActivity.class);
+                startActivity(i);
                 break;
             case 6:
                 break;

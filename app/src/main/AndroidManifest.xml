@@ -29,6 +29,9 @@
             android:name=".ui.activity.AnnotationActivity"
             android:label="@string/annotation_actionbar_title"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.activity.PercentActivity"
+            android:label="@string/percent_actionbar_title" />
     </application>
 
 </manifest>

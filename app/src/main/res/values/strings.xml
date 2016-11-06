@@ -34,4 +34,7 @@
     <string name="annotation_actionbar_title">Annotation</string>
     <string name="annotationfragment_actionbar_title">AnnotationFragment</string>
 
+    <!-- PERCENT -->
+    <string name="percent_actionbar_title">PercentLayout</string>
+
 </resources>
