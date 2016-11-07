@@ -5,6 +5,7 @@
     <string name="drag">drag</string>
     <string name="add">Add</string>
     <string name="delete">Delete</string>
+    <string name="modify">Modify</string>
     <string name="settings">Settings</string>
 
     <!-- MAIN -->
@@ -19,6 +20,7 @@
         <item>Retrofit</item>
         <item>Android Annotations</item>
         <item>Realm</item>
+        <item>BaseAdapter with different row</item>
     </string-array>
 
     <!-- JSOUP -->
@@ -39,5 +41,8 @@
 
     <!-- COLLAPSING -->
     <string name="collpasing_actionbar_title">CollapsingToolbar and CoordinatorLayout</string>
+
+    <!-- BASEADAPTER DIFFERENT ROW -->
+    <string name="differentrow_actionbar_title">BaseAdapter with different row</string>
 
 </resources>

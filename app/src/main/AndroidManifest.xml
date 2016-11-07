@@ -36,6 +36,10 @@
             android:name=".ui.activity.CollapsingActivity"
             android:label="@string/collpasing_actionbar_title"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.activity.DifferentRowActivity"
+            android:label="@string/differentrow_actionbar_title"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

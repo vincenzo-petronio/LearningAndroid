@@ -87,6 +87,12 @@ public class MainActivity extends AppCompatActivity {
                 i = new Intent(MainActivity.this, AnnotationActivity.class);
                 startActivity(i);
                 break;
+            case 9:
+                 //REALM
+                break;
+            case 10:
+                i = new Intent(MainActivity.this, DifferentRowActivity.class);
+                startActivity(i);
             //...
             default:
                 break;
