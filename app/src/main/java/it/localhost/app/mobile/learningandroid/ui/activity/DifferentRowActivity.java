@@ -5,9 +5,11 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -29,6 +31,8 @@ public class DifferentRowActivity extends BaseActivity {
 
     @BindView(R.id.lvItems)
     protected ListView mLvItems;
+    @BindView(R.id.emptyview)
+    FrameLayout mFlEmptyView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,14 +65,24 @@ public class DifferentRowActivity extends BaseActivity {
         return 0;
     }
 
-    @OnClick(R.id.btModify)
-    void btModifyOnClick() {
-        mAdapter.changeCollection(true);
+    @OnClick({R.id.btModify, R.id.btAddRemove})
+    void btModifyOnClick(View view) {
+        switch (view.getId()) {
+            case R.id.btModify:
+                mAdapter.changeCollection(new Random().nextBoolean());
+                break;
+            case R.id.btAddRemove:
+                if (mAdapter.getCount() > 0) {
+                    clearData();
+                } else {
+                    initData();
+                }
+                break;
+        }
     }
 
     private void initAdapter() {
-        View emptyView = getLayoutInflater().inflate(R.layout.emptyview, null);
-        mLvItems.setEmptyView(emptyView); // FIXME
+        mLvItems.setEmptyView(mFlEmptyView);
         mAdapter = new DifferentRowAdapter(DifferentRowActivity.this);
         mLvItems.setAdapter(mAdapter);
     }
@@ -92,5 +106,9 @@ public class DifferentRowActivity extends BaseActivity {
                 mAdapter.updateCollection(todoList);
             }
         }, 3000);
+    }
+
+    private void clearData() {
+        mAdapter.updateCollection(Collections.<Todo>emptyList());
     }
 }
