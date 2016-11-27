@@ -22,6 +22,11 @@
         <item>Android Annotations</item>
         <item>Realm</item>
         <item>BaseAdapter with different row</item>
+        <item>Reflection</item>
+        <item>CustomView</item>
+        <item>XML Binding</item>
+        <item>ProtocolBuffers - Wire</item>
+        <item>ConstraintLayout</item>
     </string-array>
 
     <!-- JSOUP -->
