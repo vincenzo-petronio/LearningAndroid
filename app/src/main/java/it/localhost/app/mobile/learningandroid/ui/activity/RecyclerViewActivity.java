@@ -48,5 +48,13 @@ public class RecyclerViewActivity extends AppCompatActivity {
                 startActivity(new Intent(RecyclerViewActivity.this, RecyclerDragActivity.class));
             }
         });
+        Button btnRecyclerExpandable = (Button) findViewById(R.id.btnRecyclerExpandable);
+        btnRecyclerExpandable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(RecyclerViewActivity.this, RecyclerExpandActivity.class));
+            }
+        });
+
     }
 }

@@ -27,6 +27,7 @@
         <item>XML Binding</item>
         <item>ProtocolBuffers - Wire</item>
         <item>ConstraintLayout</item>
+        <item>Parcelable with Parceler</item>
     </string-array>
 
     <!-- JSOUP -->

@@ -31,6 +31,10 @@
         <activity android:name=".ui.activity.RecyclerPhotoActivity" />
         <activity android:name=".ui.activity.RecyclerDragActivity" />
         <activity
+            android:name=".ui.activity.RecyclerExpandActivity"
+            android:label="@string/recyclerview_actionbar_title"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".ui.activity.AnnotationActivity"
             android:label="@string/annotation_actionbar_title"
             android:theme="@style/AppTheme.NoActionBar" />

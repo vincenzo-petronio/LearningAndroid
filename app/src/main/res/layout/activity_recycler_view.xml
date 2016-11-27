@@ -38,4 +38,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="RecyclerView with CardView + Drag and Swipe" />
+
+    <Button
+        android:id="@+id/btnRecyclerExpandable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RecyclerView Expandable" />
 </LinearLayout>
