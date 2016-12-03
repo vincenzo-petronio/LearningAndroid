@@ -41,9 +41,13 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.4.0'
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
 
-    // HTML PARSING
+    // PARSING
     compile 'org.jsoup:jsoup:1.10.1'
     compile 'net.sourceforge.htmlcleaner:htmlcleaner:2.18'
+//    compile group: 'com.thoughtworks.xstream', name: 'xstream', version: '1.4.9'
+    compile ('com.thoughtworks.xstream:xstream:1.4.7') {
+        exclude group: 'xmlpull', module: 'xmlpull'
+    }
 
     // NETWORK
     compile 'com.android.volley:volley:1.0.0'

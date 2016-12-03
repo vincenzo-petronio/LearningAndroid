@@ -88,11 +88,33 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
                 break;
             case 9:
-                 //REALM
+                //REALM
                 break;
             case 10:
                 i = new Intent(MainActivity.this, DifferentRowActivity.class);
                 startActivity(i);
+            case 11:
+                // REFLECTION
+                break;
+            case 12:
+                // CUSTOMVIEW
+                break;
+            case 13:
+                // XML BINDING
+                i = new Intent(MainActivity.this, XMLBindingActivity.class);
+                startActivity(i);
+                break;
+            case 14:
+                // WIRE
+                break;
+            case 15:
+                // CONSTRAINT
+                break;
+            case 16:
+                // PARCELER
+                break;
+
+
             //...
             default:
                 break;

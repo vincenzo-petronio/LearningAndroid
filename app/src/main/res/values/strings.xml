@@ -52,4 +52,6 @@
     <!-- BASEADAPTER DIFFERENT ROW -->
     <string name="differentrow_actionbar_title">BaseAdapter with different row</string>
 
+    <!-- XML BINDING -->
+    <string name="xmlbinding_actionbar_title">XML Binding</string>
 </resources>
