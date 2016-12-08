@@ -28,6 +28,7 @@
         <item>ProtocolBuffers - Wire</item>
         <item>ConstraintLayout</item>
         <item>Parcelable with Parceler</item>
+        <item>Pub/Sub Design Pattern</item>
     </string-array>
 
     <!-- JSOUP -->
@@ -57,4 +58,7 @@
 
     <!-- CONSTRAINT -->
     <string name="constraint_actionbar_title">ConstraintLayout</string>
+
+    <!-- PUB/SUB -->
+    <string name="pubsub_actionbar_title">Pub/Sub Design Pattern</string>
 </resources>

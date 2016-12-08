@@ -115,6 +115,11 @@ public class MainActivity extends AppCompatActivity {
             case 16:
                 // PARCELER
                 break;
+            case 17:
+                // EVENTBUS
+                i = new Intent(MainActivity.this, PubSubActivity.class);
+                startActivity(i);
+                break;
 
 
             //...
