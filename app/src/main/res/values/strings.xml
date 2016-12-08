@@ -54,4 +54,7 @@
 
     <!-- XML BINDING -->
     <string name="xmlbinding_actionbar_title">XML Binding</string>
+
+    <!-- CONSTRAINT -->
+    <string name="constraint_actionbar_title">ConstraintLayout</string>
 </resources>

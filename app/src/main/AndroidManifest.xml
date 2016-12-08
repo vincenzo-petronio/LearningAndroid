@@ -53,6 +53,10 @@
             android:name=".ui.activity.XMLBindingActivity"
             android:label="@string/xmlbinding_actionbar_title"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.activity.ConstraintActivity"
+            android:label="@string/constraint_actionbar_title"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

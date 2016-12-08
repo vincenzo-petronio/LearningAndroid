@@ -109,6 +109,8 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case 15:
                 // CONSTRAINT
+                i = new Intent(MainActivity.this, ConstraintActivity.class);
+                startActivity(i);
                 break;
             case 16:
                 // PARCELER
