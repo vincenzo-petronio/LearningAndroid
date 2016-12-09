@@ -61,4 +61,5 @@
 
     <!-- PUB/SUB -->
     <string name="pubsub_actionbar_title">Pub/Sub Design Pattern</string>
+    <string name="pubsub_button_title">Invia Message</string>
 </resources>
