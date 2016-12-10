@@ -1,6 +1,8 @@
 package it.localhost.app.mobile.learningandroid.ui.fragment;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -15,7 +17,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import it.localhost.app.mobile.learningandroid.R;
+import it.localhost.app.mobile.learningandroid.data.model.ComplexEventMessage;
 import it.localhost.app.mobile.learningandroid.data.model.EventMessage;
+import it.localhost.app.mobile.learningandroid.data.model.Movie;
 
 /**
  *
@@ -39,6 +43,7 @@ public class PubSubBottomFragment extends BaseFragment {
         super.onCreateView(inflater, container, savedInstanceState);
 
         mUnbinder = ButterKnife.bind(this, mView);
+        EventBus.getDefault().register(this);
 
         return mView;
     }
@@ -57,6 +62,7 @@ public class PubSubBottomFragment extends BaseFragment {
     public void onDestroyView() {
         super.onDestroyView();
         mUnbinder.unbind();
+        EventBus.getDefault().unregister(this);
     }
 
     @Override
@@ -67,5 +73,16 @@ public class PubSubBottomFragment extends BaseFragment {
     @OnClick(R.id.btSendBottom)
     protected void onBtnSendTopClickListener() {
         EventBus.getDefault().post(new EventMessage("This is a Message from " + TAG));
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(ComplexEventMessage complexEventMessage) {
+
+        Movie m = complexEventMessage.getMovie();
+        if (m == null) {
+            return;
+        }
+
+        mTvBottom.setText(m.getDirector() + ", " + m.getId() + ", " + m.getCountry());
     }
 }

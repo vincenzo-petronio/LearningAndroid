@@ -15,7 +15,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import it.localhost.app.mobile.learningandroid.R;
+import it.localhost.app.mobile.learningandroid.data.model.ComplexEventMessage;
 import it.localhost.app.mobile.learningandroid.data.model.EventMessage;
+import it.localhost.app.mobile.learningandroid.data.model.Movie;
 
 /**
  *
@@ -68,5 +70,19 @@ public class PubSubTopFragment extends BaseFragment {
     @OnClick(R.id.btSendTop)
     protected void onBtnSendTopClickListener() {
         EventBus.getDefault().post(new EventMessage("This is a Message from " + TAG));
+    }
+
+    @OnClick(R.id.btSendObjectTop)
+    protected void onBtSendObjectClickListener() {
+        // E' possibile inviare un qualsiasi oggetto, basta aggiungere un campo all'EventMessage
+        // N.B. Il message non arriva nell'Activity, perché l'onMessageEvent ha come parametro
+        // ComplexEventMessage e non EventMessage!
+
+        Movie movie = new Movie();
+        movie.setCountry("ITA");
+        movie.setId("000");
+        movie.setDirector("Sergio Leone");
+
+        EventBus.getDefault().post(new ComplexEventMessage("This is a Message with Object from " + TAG, movie));
     }
 }
