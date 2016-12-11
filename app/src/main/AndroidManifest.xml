@@ -61,6 +61,10 @@
             android:name=".ui.activity.PubSubActivity"
             android:label="@string/pubsub_actionbar_title"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.activity.RetrofitActivity"
+            android:label="@string/retrofit_actionbar_title"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

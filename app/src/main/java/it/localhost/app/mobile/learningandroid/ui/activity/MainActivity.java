@@ -82,6 +82,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
                 break;
             case 7:
+                // RETROFIT
+                i = new Intent(MainActivity.this, RetrofitActivity.class);
+                startActivity(i);
                 break;
             case 8:
                 i = new Intent(MainActivity.this, AnnotationActivity.class);
