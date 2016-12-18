@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -95,10 +96,10 @@ public class DifferentRowAdapter extends BaseAdapter {
         }
 
         if (type == 0) {
-            viewHolderCompleted.tvId.setText(""+mCollection.get(position).getId());
+            viewHolderCompleted.tvId.setText(String.format(Locale.ITALY, "%d", mCollection.get(position).getId()));
             viewHolderCompleted.tvTitle.setText(mCollection.get(position).getTitle().toUpperCase());
         } else {
-            viewHolderNotCompleted.tvId.setText(""+mCollection.get(position).getId());
+            viewHolderNotCompleted.tvId.setText(String.format(Locale.ITALY, "%d", mCollection.get(position).getId()));
             viewHolderNotCompleted.tvTitle.setText(mCollection.get(position).getTitle().toUpperCase());
             viewHolderNotCompleted.rb.setChecked(!changed);
         }
@@ -119,7 +120,7 @@ public class DifferentRowAdapter extends BaseAdapter {
         return 2;
     }
 
-    protected static class ViewHolderCompleted {
+    static class ViewHolderCompleted {
         @BindView(R.id.tvId)
         TextView tvId;
         @BindView(R.id.tvTitle)
@@ -130,7 +131,7 @@ public class DifferentRowAdapter extends BaseAdapter {
         }
     }
 
-    protected static class ViewHolderNotCompleted {
+    static class ViewHolderNotCompleted {
         @BindView(R.id.tvId)
         TextView tvId;
         @BindView(R.id.tvTitle)

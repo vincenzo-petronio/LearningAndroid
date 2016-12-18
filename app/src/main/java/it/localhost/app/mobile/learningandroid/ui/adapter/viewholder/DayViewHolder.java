@@ -17,7 +17,7 @@ import it.localhost.app.mobile.learningandroid.R;
 public class DayViewHolder extends GroupViewHolder {
 
     @BindView(R.id.tvGroupTitle)
-    protected TextView mTvGroupTitle;
+    TextView mTvGroupTitle;
     @BindView(R.id.ivGroup)
     ImageView mIvGroup;
 

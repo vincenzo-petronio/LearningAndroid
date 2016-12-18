@@ -16,11 +16,11 @@ import it.localhost.app.mobile.learningandroid.R;
 public class HourViewHolder extends ChildViewHolder {
 
     @BindView(R.id.tvChild1)
-    protected TextView mTvChild1;
+    TextView mTvChild1;
     @BindView(R.id.tvChild2)
-    protected TextView mTvChild2;
+    TextView mTvChild2;
     @BindView(R.id.tvChild3)
-    protected TextView mTvChild3;
+    TextView mTvChild3;
 
     public HourViewHolder(View itemView) {
         super(itemView);
