@@ -25,7 +25,7 @@ public class JsoupTask extends AsyncTask<String, Void, Document> {
     }
 
     @Override
-    protected Document doInBackground(String[] url) {
+    protected Document doInBackground(String... url) {
         Log.v(TAG, "doInBackground");
         Document doc = null;
 

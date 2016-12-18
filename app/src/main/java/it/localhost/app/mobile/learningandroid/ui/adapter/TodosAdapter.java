@@ -63,11 +63,11 @@ public class TodosAdapter extends RecyclerView.Adapter<TodosAdapter.ViewHolder> 
     /**
      * ViewHolder for WIP CardView
      */
-    public class WipViewHolder extends ViewHolder {
+    private static class WipViewHolder extends ViewHolder {
         private TextView tvTitle;
         private EditText etNote;
 
-        public WipViewHolder(View itemView) {
+        private WipViewHolder(View itemView) {
             super(itemView);
 
             this.tvTitle = (TextView) itemView.findViewById(R.id.tvTitle);
@@ -78,10 +78,10 @@ public class TodosAdapter extends RecyclerView.Adapter<TodosAdapter.ViewHolder> 
     /**
      * ViewHolder for Done CardView
      */
-    public class DoneViewHolder extends ViewHolder {
+    private static class DoneViewHolder extends ViewHolder {
         private TextView tvTitle;
 
-        public DoneViewHolder(View itemView) {
+        private DoneViewHolder(View itemView) {
             super(itemView);
 
             this.tvTitle = (TextView) itemView.findViewById(R.id.tvTitle);
