@@ -1,6 +1,7 @@
 package it.localhost.app.mobile.learningandroid.ui.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,9 +22,9 @@ import it.localhost.app.mobile.learningandroid.data.model.Comment;
 public class CommentsAdapter extends BaseAdapter {
 
     private static final String TAG = CommentsAdapter.class.getSimpleName();
-    private Context mContext;
+    private final Context mContext;
+    private final LayoutInflater mInflater;
     private List<Comment> mCommentList;
-    private LayoutInflater mInflater;
 
     public CommentsAdapter(Context ctx) {
         mContext = ctx;
@@ -35,6 +36,7 @@ public class CommentsAdapter extends BaseAdapter {
      * @param collection List<Comment>
      */
     public void updateCollection(List<Comment> collection) {
+        Log.v(TAG, "updateCollection");
 
         if (collection == null) {
             throw new IllegalArgumentException("collection NULL!!!");
@@ -82,14 +84,17 @@ public class CommentsAdapter extends BaseAdapter {
         return convertView;
     }
 
-    protected class ViewHolderComments {
+    /**
+     * ViewHolder
+     */
+    static class ViewHolderComments {
 
         @BindView(R.id.tvTitle)
         TextView mTvTitle;
         @BindView(R.id.tvIngredients)
         TextView mTvIngredients;
 
-        protected ViewHolderComments(View view) {
+        ViewHolderComments(View view) {
             ButterKnife.bind(this, view);
         }
     }

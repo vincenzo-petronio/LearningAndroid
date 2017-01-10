@@ -18,9 +18,9 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
     private List<User> users;
     private Context context;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView tvNameSurname, tvEmail, tvPhone, tvWebsite, tvStreet, tvSuite, tvCity, tvZip;
+        private TextView tvNameSurname, tvEmail, tvPhone, tvWebsite, tvStreet, tvSuite, tvCity, tvZip;
 
         public ViewHolder(View itemView) {
             super(itemView);

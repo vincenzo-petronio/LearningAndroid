@@ -24,8 +24,8 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.ViewHolder
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        public TextView tvTitle;
-        public ImageView ivPhoto;
+        private TextView tvTitle;
+        private ImageView ivPhoto;
 
         public ViewHolder(View itemView) {
             super(itemView);

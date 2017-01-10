@@ -85,7 +85,7 @@ public class XMLRecipesAdapter extends BaseAdapter {
     /**
      * ViewHolder per Recipes
      */
-    protected class ViewHolderRecipes {
+    static class ViewHolderRecipes {
 
         @BindView(R.id.tvTitle)
         TextView mTvTitle;
@@ -94,7 +94,7 @@ public class XMLRecipesAdapter extends BaseAdapter {
         @BindView(R.id.tvLink)
         TextView mTvLink;
 
-        protected ViewHolderRecipes(View view) {
+        ViewHolderRecipes(View view) {
             ButterKnife.bind(this, view);
         }
     }

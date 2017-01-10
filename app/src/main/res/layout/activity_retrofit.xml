@@ -14,7 +14,13 @@
             android:id="@+id/btCase1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="CASE 1" />
+            android:text="auth" />
+
+        <Button
+            android:id="@+id/btCase2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="" />
 
     </LinearLayout>
 

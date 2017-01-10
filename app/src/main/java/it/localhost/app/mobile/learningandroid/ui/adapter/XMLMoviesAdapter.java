@@ -96,7 +96,7 @@ public class XMLMoviesAdapter extends BaseAdapter {
     /**
      * ViewHolder per Movies
      */
-    protected class ViewHolderMovies {
+    static class ViewHolderMovies {
 
         @BindView(R.id.tvActors)
         TextView mTvActors;
@@ -119,7 +119,7 @@ public class XMLMoviesAdapter extends BaseAdapter {
         @BindView(R.id.ivPoster)
         ImageView mIvPoster;
 
-        protected ViewHolderMovies(View view) {
+        ViewHolderMovies(View view) {
             ButterKnife.bind(this, view);
         }
     }

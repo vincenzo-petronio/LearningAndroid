@@ -188,7 +188,7 @@ public class TodosDragAdapter extends RecyclerView.Adapter<TodosDragAdapter.Item
 
     // INNER-CLASS
 
-    public class ItemViewHolder extends RecyclerView.ViewHolder implements ItemTouchHelperViewHolder {
+    static class ItemViewHolder extends RecyclerView.ViewHolder implements ItemTouchHelperViewHolder {
 
         @BindView(R.id.cvRoot)
         CardView cvRoot;

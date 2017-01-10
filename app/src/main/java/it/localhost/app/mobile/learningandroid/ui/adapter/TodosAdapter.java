@@ -37,7 +37,7 @@ public class TodosAdapter extends RecyclerView.Adapter<TodosAdapter.ViewHolder> 
      * @param listener OnItemClickListener
      */
     public void setOnItemClickListener(OnItemClickListener listener) {
-        this.sOnItemClickListener = listener;
+        sOnItemClickListener = listener;
     }
 
     /**
@@ -63,7 +63,7 @@ public class TodosAdapter extends RecyclerView.Adapter<TodosAdapter.ViewHolder> 
     /**
      * ViewHolder for WIP CardView
      */
-    private static class WipViewHolder extends ViewHolder {
+    static class WipViewHolder extends ViewHolder {
         private TextView tvTitle;
         private EditText etNote;
 
@@ -78,7 +78,7 @@ public class TodosAdapter extends RecyclerView.Adapter<TodosAdapter.ViewHolder> 
     /**
      * ViewHolder for Done CardView
      */
-    private static class DoneViewHolder extends ViewHolder {
+    static class DoneViewHolder extends ViewHolder {
         private TextView tvTitle;
 
         private DoneViewHolder(View itemView) {

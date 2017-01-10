@@ -75,7 +75,9 @@ public class RetrofitActivity extends BaseActivity {
     protected void onBtCaseClickListener(View view) {
         switch (view.getId()) {
             case R.id.btCase1:
-
+                loadDataFromImgur();
+                break;
+            default:
                 break;
         }
     }
@@ -84,6 +86,14 @@ public class RetrofitActivity extends BaseActivity {
         mCommentList = Collections.emptyList();
         mAdapter = new CommentsAdapter(this);
         mLvItems.setAdapter(mAdapter);
+    }
+
+    private void showProgress(boolean show) {
+        if (show) {
+            mProgressBar.setVisibility(View.VISIBLE);
+        } else {
+            mProgressBar.setVisibility(View.INVISIBLE);
+        }
     }
 
     private void loadData() {
@@ -125,11 +135,7 @@ public class RetrofitActivity extends BaseActivity {
         showProgress(false);
     }
 
-    private void showProgress(boolean show) {
-        if (show) {
-            mProgressBar.setVisibility(View.VISIBLE);
-        } else {
-            mProgressBar.setVisibility(View.INVISIBLE);
-        }
+    private void loadDataFromImgur() {
+
     }
 }
