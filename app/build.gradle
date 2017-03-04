@@ -29,7 +29,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
     // SUPPORT
-    def supportVersion = '25.0.1'
+    def supportVersion = '25.2.0'
     compile 'com.android.support:support-v4:' + supportVersion
     compile 'com.android.support:appcompat-v7:' + supportVersion
     compile 'com.android.support:recyclerview-v7:' + supportVersion
@@ -37,11 +37,11 @@ dependencies {
     compile 'com.android.support:percent:' + supportVersion
     compile 'com.android.support:design:' + supportVersion
     compile 'com.android.support:support-annotations:' + supportVersion
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
+    compile 'com.android.support.constraint:constraint-layout:1.0.1'
 
     // BUTTERKNIFE
-    compile 'com.jakewharton:butterknife:8.4.0'
-    apt 'com.jakewharton:butterknife-compiler:8.4.0'
+    compile 'com.jakewharton:butterknife:8.5.1'
+    apt 'com.jakewharton:butterknife-compiler:8.5.1'
 
     // PARSING
     compile 'org.jsoup:jsoup:1.10.1'

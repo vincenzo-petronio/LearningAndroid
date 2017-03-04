@@ -96,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
             case 10:
                 i = new Intent(MainActivity.this, DifferentRowActivity.class);
                 startActivity(i);
+                break;
             case 11:
                 // REFLECTION
                 break;
