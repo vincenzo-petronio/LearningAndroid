@@ -92,6 +92,8 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case 9:
                 //REALM
+                i = new Intent(MainActivity.this, RealmActivity.class);
+                startActivity(i);
                 break;
             case 10:
                 i = new Intent(MainActivity.this, DifferentRowActivity.class);

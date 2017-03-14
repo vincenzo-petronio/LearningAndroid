@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
 apply plugin: 'net.ltgt.errorprone'
+apply plugin: 'realm-android'
 
 android {
     compileSdkVersion 25
@@ -77,4 +78,7 @@ dependencies {
 
     // BUS
     compile 'org.greenrobot:eventbus:3.0.0'
+
+    // REALM
+    compile 'io.realm:android-adapters:2.0.0'
 }

@@ -11,4 +11,8 @@ public class Constants {
 
     // API
     public static final String API_JSONPLACEHOLDER_URL_BASE = "http://jsonplaceholder.typicode.com/";
+
+    // REALM
+    public static final String DB_NAME = "my.realm";
+    public static final long DB_SCHEMA_VERSION = 1;
 }

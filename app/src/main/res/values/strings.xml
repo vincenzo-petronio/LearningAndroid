@@ -67,4 +67,8 @@
     <!-- RETROFIT -->
     <string name="retrofit_actionbar_title">Retrofit</string>
 
+    <!-- REALM -->
+    <string name="realm_actionbar_title">Realm</string>
+
+
 </resources>
