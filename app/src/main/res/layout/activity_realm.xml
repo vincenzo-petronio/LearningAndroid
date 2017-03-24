@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/activity_padding">
@@ -8,22 +9,26 @@
         android:id="@+id/bt_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:text="ADD User Story" />
+        android:text="@string/add" />
 
-    <TextView
+    <EditText
         android:id="@+id/tv_userstory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@id/bt_add"
         android:layout_alignParentTop="true"
         android:layout_toLeftOf="@id/bt_add"
+        android:layout_toStartOf="@id/bt_add"
+        android:hint="Name of the user story..."
         android:textSize="24sp" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_items"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/bt_add" />
+        android:layout_below="@id/bt_add"
+        android:layout_marginTop="@dimen/activity_padding"
+        tools:listitem="@layout/row_realm_userstory" />
 </RelativeLayout>

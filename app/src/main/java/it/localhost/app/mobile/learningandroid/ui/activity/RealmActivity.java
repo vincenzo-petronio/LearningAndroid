@@ -1,15 +1,19 @@
 package it.localhost.app.mobile.learningandroid.ui.activity;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.EditText;
+
+import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import io.realm.Realm;
 import io.realm.RealmResults;
 import it.localhost.app.mobile.learningandroid.R;
@@ -24,19 +28,19 @@ public class RealmActivity extends BaseActivity {
 
     private static final String TAG = RealmActivity.class.getSimpleName();
     private Realm mRealm;
+    private RealmAdapter mRealmAdapter;
 
     @BindView(R.id.tv_userstory)
-    TextView mTvUserStory;
+    EditText mTvUserStory;
     @BindView(R.id.bt_add)
     Button mBtAdd;
     @BindView(R.id.rv_items)
     RecyclerView mRvItems;
 
-
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         Log.v(TAG, "onCreate");
-        super.onCreate(savedInstanceState, persistentState);
+        super.onCreate(savedInstanceState);
 
         ButterKnife.bind(this);
 
@@ -48,7 +52,10 @@ public class RealmActivity extends BaseActivity {
     protected void onDestroy() {
         Log.v(TAG, "onDestroy");
         super.onDestroy();
-        mRealm.close();
+
+        if (mRealm != null) {
+            mRealm.close();
+        }
     }
 
     @Override
@@ -66,8 +73,20 @@ public class RealmActivity extends BaseActivity {
         return 0;
     }
 
-    private void initData() {
+    @OnClick(R.id.bt_add)
+    void onBtAddClickListener() {
+        if (TextUtils.isEmpty(mTvUserStory.getText())) {
+            return;
+        }
 
+        UserStory userStory = new UserStory();
+        userStory.setCompleted(false);
+        userStory.setName(mTvUserStory.getText().toString());
+        userStory.setId(new Random().nextInt());
+        mRealmAdapter.addItem(userStory);
+    }
+
+    private void initData() {
     }
 
     private void initUI() {
@@ -76,6 +95,8 @@ public class RealmActivity extends BaseActivity {
 
         // RECYCLER
         RealmResults<UserStory> userStories = mRealm.where(UserStory.class).findAll();
-        mRvItems.setAdapter(new RealmAdapter(userStories, true));
+        mRealmAdapter = new RealmAdapter(userStories, true, mRealm);
+        mRvItems.setAdapter(mRealmAdapter);
+        mRvItems.setLayoutManager(new LinearLayoutManager(this));
     }
 }

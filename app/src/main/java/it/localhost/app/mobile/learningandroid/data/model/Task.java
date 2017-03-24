@@ -2,6 +2,7 @@ package it.localhost.app.mobile.learningandroid.data.model;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
+import io.realm.annotations.Required;
 
 /**
  *
@@ -11,6 +12,7 @@ public class Task extends RealmObject {
 
     @PrimaryKey
     private int id;
+    @Required
     private String title;
     private String subtitle;
     private boolean needed;
