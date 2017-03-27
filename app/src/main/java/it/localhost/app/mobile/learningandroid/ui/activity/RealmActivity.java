@@ -9,8 +9,6 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 
-import java.util.Random;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -30,8 +28,10 @@ public class RealmActivity extends BaseActivity {
     private Realm mRealm;
     private RealmAdapter mRealmAdapter;
 
-    @BindView(R.id.tv_userstory)
-    EditText mTvUserStory;
+    @BindView(R.id.et_userstory)
+    EditText mEtUserStory;
+    @BindView(R.id.et_id)
+    EditText mEtId;
     @BindView(R.id.bt_add)
     Button mBtAdd;
     @BindView(R.id.rv_items)
@@ -75,14 +75,19 @@ public class RealmActivity extends BaseActivity {
 
     @OnClick(R.id.bt_add)
     void onBtAddClickListener() {
-        if (TextUtils.isEmpty(mTvUserStory.getText())) {
+        if (TextUtils.isEmpty(mEtUserStory.getText()) || TextUtils.isEmpty(mEtId.getText())) {
             return;
         }
 
         UserStory userStory = new UserStory();
         userStory.setCompleted(false);
-        userStory.setName(mTvUserStory.getText().toString());
-        userStory.setId(new Random().nextInt());
+        userStory.setName(mEtUserStory.getText().toString());
+        try {
+            userStory.setId(Integer.parseInt(mEtId.getText().toString()));
+        } catch (NumberFormatException nfe) {
+            Log.e(TAG, "NumberFormatException", nfe);
+            return;
+        }
         mRealmAdapter.addItem(userStory);
     }
 

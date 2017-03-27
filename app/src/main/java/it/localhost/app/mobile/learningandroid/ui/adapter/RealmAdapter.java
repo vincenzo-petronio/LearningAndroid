@@ -25,7 +25,11 @@ import it.localhost.app.mobile.learningandroid.data.model.UserStory;
 public class RealmAdapter extends RealmRecyclerViewAdapter<UserStory, RealmAdapter.ViewHolder> {
 
     private static final String TAG = RealmAdapter.class.getSimpleName();
+
+    // N.B. Con Realm è inutile gestire la collection, basta avere l'instanza del DB e aggiornare i dati su DB,
+    // perché poi il notify verrà gestito automaticamente da RealmAdapter.
     private OrderedRealmCollection<UserStory> mCollection;
+
     private Realm mRealmInstance;
 
     /**
@@ -45,8 +49,9 @@ public class RealmAdapter extends RealmRecyclerViewAdapter<UserStory, RealmAdapt
      * @param data OrderedRealmCollection
      */
     public void updateCollection(@NonNull OrderedRealmCollection<UserStory> data) {
-        this.mCollection.clear();
-        this.mCollection.addAll(data);
+//        this.mCollection.clear();
+//        this.mCollection.addAll(data);
+
     }
 
     /**
@@ -76,7 +81,9 @@ public class RealmAdapter extends RealmRecyclerViewAdapter<UserStory, RealmAdapt
                 Log.i(TAG, "deleteItem:" + "" + position);
 //                mCollection.get(position).deleteFromRealm();
 //                mCollection.deleteFromRealm(position);
-                getData().deleteFromRealm(position);
+                if (getData() != null) {
+                    getData().deleteFromRealm(position);
+                }
             }
         });
     }
