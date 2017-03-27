@@ -7,14 +7,20 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.CheckedTextView;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+
+import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.realm.Realm;
+import io.realm.RealmList;
 import io.realm.RealmResults;
 import it.localhost.app.mobile.learningandroid.R;
+import it.localhost.app.mobile.learningandroid.data.model.Task;
 import it.localhost.app.mobile.learningandroid.data.model.UserStory;
 import it.localhost.app.mobile.learningandroid.ui.adapter.RealmAdapter;
 
@@ -36,6 +42,8 @@ public class RealmActivity extends BaseActivity {
     Button mBtAdd;
     @BindView(R.id.rv_items)
     RecyclerView mRvItems;
+    @BindView(R.id.ll_container)
+    LinearLayout mLlContainer;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -88,6 +96,17 @@ public class RealmActivity extends BaseActivity {
             Log.e(TAG, "NumberFormatException", nfe);
             return;
         }
+
+        RealmList<Task> taskRealmList = new RealmList<>();
+        for (int i = 0; i < 4; i++) {
+            Task task = new Task();
+            task.setId(new Random().nextInt());
+            task.setNeeded(new Random().nextBoolean());
+            task.setTimestamp(System.currentTimeMillis() / 1000);
+            task.setTitle("Task_" + "" + i);
+            taskRealmList.add(task);
+        }
+        userStory.setTaskRealmCollection(taskRealmList);
         mRealmAdapter.addItem(userStory);
     }
 
@@ -103,5 +122,31 @@ public class RealmActivity extends BaseActivity {
         mRealmAdapter = new RealmAdapter(userStories, true, mRealm);
         mRvItems.setAdapter(mRealmAdapter);
         mRvItems.setLayoutManager(new LinearLayoutManager(this));
+        mRealmAdapter.setIAdapterCallback(mIAdapterCallback);
     }
+
+    RealmAdapter.IAdapterCallback mIAdapterCallback = new RealmAdapter.IAdapterCallback() {
+        @Override
+        public void onItemLongClicked(RealmList<Task> tasks) {
+            if (tasks.isEmpty()) {
+                return;
+            }
+
+            mLlContainer.removeAllViews();
+
+            for (Task task : tasks) {
+                CheckedTextView checkedTextView = new CheckedTextView(RealmActivity.this);
+                if (task.isNeeded()) {
+                    checkedTextView.setCheckMarkDrawable(android.R.drawable.checkbox_on_background);
+                } else {
+                    checkedTextView.setCheckMarkDrawable(0);
+                }
+                checkedTextView.setText(
+                        Integer.toString(task.getId()) + " " +
+                                task.getTitle() + " " +
+                                Long.toString(task.getTimestamp()));
+                mLlContainer.addView(checkedTextView);
+            }
+        }
+    };
 }

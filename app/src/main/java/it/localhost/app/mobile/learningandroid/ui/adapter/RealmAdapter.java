@@ -12,10 +12,13 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnLongClick;
 import io.realm.OrderedRealmCollection;
 import io.realm.Realm;
+import io.realm.RealmList;
 import io.realm.RealmRecyclerViewAdapter;
 import it.localhost.app.mobile.learningandroid.R;
+import it.localhost.app.mobile.learningandroid.data.model.Task;
 import it.localhost.app.mobile.learningandroid.data.model.UserStory;
 
 /**
@@ -125,5 +128,26 @@ public class RealmAdapter extends RealmRecyclerViewAdapter<UserStory, RealmAdapt
         void onBtUsDelClickListener() {
             deleteItem(getAdapterPosition());
         }
+
+        @OnLongClick(R.id.tv_us_title)
+        boolean onTvLongClickListener() {
+            Log.d(TAG, "onTvLongClickListener: " + "" + getAdapterPosition());
+            if (mIAdapterCallback != null) {
+                mIAdapterCallback.onItemLongClicked(getData().get(getAdapterPosition()).getTaskRealmCollection());
+            }
+            return true;
+        }
+    }
+
+
+    // CALLBACK
+    private IAdapterCallback mIAdapterCallback;
+
+    public void setIAdapterCallback(IAdapterCallback IAdapterCallback) {
+        mIAdapterCallback = IAdapterCallback;
+    }
+
+    public interface IAdapterCallback {
+        void onItemLongClicked(RealmList<Task> tasks);
     }
 }

@@ -47,7 +47,22 @@
         android:id="@+id/rv_items"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/sv_container"
         android:layout_below="@id/bt_add"
         android:layout_marginTop="@dimen/activity_padding"
         tools:listitem="@layout/row_realm_userstory" />
+
+    <ScrollView
+        android:id="@+id/sv_container"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="@dimen/activity_padding_half">
+
+        <LinearLayout
+            android:id="@+id/ll_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
 </RelativeLayout>
