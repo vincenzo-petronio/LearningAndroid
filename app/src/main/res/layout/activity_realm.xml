@@ -43,13 +43,20 @@
         android:singleLine="true"
         android:textSize="18sp" />
 
+    <TextView
+        android:id="@+id/tv_results"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_userstory"
+        android:layout_marginTop="@dimen/activity_padding"
+        tools:text="@string/lorem_intro" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_items"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/sv_container"
-        android:layout_below="@id/bt_add"
-        android:layout_marginTop="@dimen/activity_padding"
+        android:layout_below="@id/tv_results"
         tools:listitem="@layout/row_realm_userstory" />
 
     <ScrollView
@@ -57,8 +64,8 @@
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_alignParentBottom="true"
-        android:background="@color/green_4"
-        android:layout_marginTop="@dimen/activity_padding_half">
+        android:layout_marginTop="@dimen/activity_padding_half"
+        android:background="@color/green_4">
 
         <LinearLayout
             android:id="@+id/ll_container"

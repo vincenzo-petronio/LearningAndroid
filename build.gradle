@@ -27,6 +27,14 @@ allprojects {
     }
 }
 
+// This block encapsulates custom properties and makes them available to all
+// modules in the project.
+ext {
+    compileSdkVersion = 25
+    buildToolsVersion = "25.0.2"
+    supportVersion = "25.2.0"
+}
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }

@@ -2,6 +2,7 @@
     <!-- COMMON -->
     <string name="app_name">LearningAndroid</string>
     <string name="lorem">Lorem ipsum dolor sit amet, has dicant saperet voluptatibus ad. Eu cum libris interesset, duo ne zril tollit malorum, pro ei quas civibus. Disputando dissentiunt ei his. Vim ei exerci deleniti. Cu graeci scripserit vim, iusto deseruisse ei sit.</string>
+    <string name="lorem_intro">Lorem ipsum dolor sit amet.</string>
     <string name="drag">drag</string>
     <string name="add">Add</string>
     <string name="delete">Delete</string>
@@ -69,6 +70,10 @@
 
     <!-- REALM -->
     <string name="realm_actionbar_title">Realm</string>
-
-
+    <string name="realm_tvresults">%1$s nel DB</string>
+    <plurals name="risultati">
+        <item quantity="zero">nessun risultato presente</item>
+        <item quantity="one">un risultato presente</item>
+        <item quantity="other">%1$d risultati presenti</item>
+    </plurals>
 </resources>

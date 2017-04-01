@@ -10,7 +10,9 @@ import android.widget.Button;
 import android.widget.CheckedTextView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import java.util.Locale;
 import java.util.Random;
 
 import butterknife.BindView;
@@ -44,6 +46,8 @@ public class RealmActivity extends BaseActivity {
     RecyclerView mRvItems;
     @BindView(R.id.ll_container)
     LinearLayout mLlContainer;
+    @BindView(R.id.tv_results)
+    TextView mTvResults;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -123,6 +127,8 @@ public class RealmActivity extends BaseActivity {
         mRvItems.setAdapter(mRealmAdapter);
         mRvItems.setLayoutManager(new LinearLayoutManager(this));
         mRealmAdapter.setIAdapterCallback(mIAdapterCallback);
+
+        setTvRisultati(userStories.size());
     }
 
     RealmAdapter.IAdapterCallback mIAdapterCallback = new RealmAdapter.IAdapterCallback() {
@@ -148,5 +154,15 @@ public class RealmActivity extends BaseActivity {
                 mLlContainer.addView(checkedTextView);
             }
         }
+
+        @Override
+        public void onCollectionSizeChanged(int size) {
+            setTvRisultati(size);
+        }
     };
+
+    private void setTvRisultati(int size) {
+        mTvResults.setText(String.format(Locale.ITALY, getString(R.string.realm_tvresults),
+                getResources().getQuantityString(R.plurals.risultati, size, size)));
+    }
 }

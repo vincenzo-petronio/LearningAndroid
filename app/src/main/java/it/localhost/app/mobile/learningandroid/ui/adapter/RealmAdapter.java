@@ -70,6 +70,10 @@ public class RealmAdapter extends RealmRecyclerViewAdapter<UserStory, RealmAdapt
             public void execute(Realm localRealm) {
 //                localRealm.copyToRealmOrUpdate(userStory);
                 localRealm.insertOrUpdate(userStory);
+
+                if (getData() != null && mIAdapterCallback != null) {
+                    mIAdapterCallback.onCollectionSizeChanged(getData().size());
+                }
             }
         });
     }
@@ -86,6 +90,11 @@ public class RealmAdapter extends RealmRecyclerViewAdapter<UserStory, RealmAdapt
 //                mCollection.deleteFromRealm(position);
                 if (getData() != null) {
                     getData().deleteFromRealm(position);
+
+                    // notify collection size changed
+                    if (mIAdapterCallback != null) {
+                        mIAdapterCallback.onCollectionSizeChanged(getData().size());
+                    }
                 }
             }
         });
@@ -149,5 +158,7 @@ public class RealmAdapter extends RealmRecyclerViewAdapter<UserStory, RealmAdapt
 
     public interface IAdapterCallback {
         void onItemLongClicked(RealmList<Task> tasks);
+
+        void onCollectionSizeChanged(int size);
     }
 }
