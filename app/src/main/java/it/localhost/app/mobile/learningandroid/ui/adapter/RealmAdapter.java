@@ -132,7 +132,7 @@ public class RealmAdapter extends RealmRecyclerViewAdapter<UserStory, RealmAdapt
         @OnLongClick(R.id.tv_us_title)
         boolean onTvLongClickListener() {
             Log.d(TAG, "onTvLongClickListener: " + "" + getAdapterPosition());
-            if (mIAdapterCallback != null) {
+            if (mIAdapterCallback != null && getData() != null) {
                 mIAdapterCallback.onItemLongClicked(getData().get(getAdapterPosition()).getTaskRealmCollection());
             }
             return true;

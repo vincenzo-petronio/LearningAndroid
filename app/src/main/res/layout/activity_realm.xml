@@ -55,8 +55,9 @@
     <ScrollView
         android:id="@+id/sv_container"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="150dp"
         android:layout_alignParentBottom="true"
+        android:background="@color/green_4"
         android:layout_marginTop="@dimen/activity_padding_half">
 
         <LinearLayout
