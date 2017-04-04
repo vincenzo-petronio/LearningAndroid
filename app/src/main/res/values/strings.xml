@@ -9,6 +9,9 @@
     <string name="change">Change</string>
     <string name="modify">Modify</string>
     <string name="settings">Settings</string>
+    <string name="sort">Sort</string>
+    <string name="filter">Filter</string>
+    <string name="search">Search</string>
 
     <!-- MAIN -->
     <string-array name="main_items">
@@ -76,4 +79,6 @@
         <item quantity="one">un risultato presente</item>
         <item quantity="other">%1$d risultati presenti</item>
     </plurals>
+    <string name="realm_menuoptions_sortid">Sort by ID</string>
+    <string name="realm_menuoptions_searchneeded">Search needed tasks</string>
 </resources>

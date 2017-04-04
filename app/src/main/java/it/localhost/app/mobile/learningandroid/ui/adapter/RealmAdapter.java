@@ -3,6 +3,7 @@ package it.localhost.app.mobile.learningandroid.ui.adapter;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,10 +14,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnLongClick;
+import io.realm.Case;
 import io.realm.OrderedRealmCollection;
 import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmRecyclerViewAdapter;
+import io.realm.Sort;
 import it.localhost.app.mobile.learningandroid.R;
 import it.localhost.app.mobile.learningandroid.data.model.Task;
 import it.localhost.app.mobile.learningandroid.data.model.UserStory;
@@ -50,6 +53,7 @@ public class RealmAdapter extends RealmRecyclerViewAdapter<UserStory, RealmAdapt
 
     /**
      * @param data OrderedRealmCollection
+     * @deprecated C'è updateData() in Realm!
      */
     public void updateCollection(@NonNull OrderedRealmCollection<UserStory> data) {
 //        this.mCollection.clear();
@@ -58,6 +62,8 @@ public class RealmAdapter extends RealmRecyclerViewAdapter<UserStory, RealmAdapt
     }
 
     /**
+     * Aggiunge un elemento alla collection
+     *
      * @param userStory UserStory
      */
     public void addItem(final UserStory userStory) {
@@ -79,6 +85,8 @@ public class RealmAdapter extends RealmRecyclerViewAdapter<UserStory, RealmAdapt
     }
 
     /**
+     * Elimina un elemento dalla collection
+     *
      * @param position int
      */
     private void deleteItem(final int position) {
@@ -98,6 +106,61 @@ public class RealmAdapter extends RealmRecyclerViewAdapter<UserStory, RealmAdapt
                 }
             }
         });
+    }
+
+    /**
+     * Cerca gli elementi nella collection
+     *
+     * @param query String
+     */
+    public void searchItem(final String query) {
+        if (TextUtils.isEmpty(query)) {
+            updateData(
+                    mRealmInstance
+                            .where(UserStory.class)
+                            .findAll()
+            );
+        } else {
+            updateData(
+                    mRealmInstance
+                            .where(UserStory.class)
+                            .contains("name", query, Case.INSENSITIVE)
+                            .findAll()
+            );
+        }
+
+        // N.B. updateData() mostra solo il risultato di una query,
+        // ma non sovrascrive l'adapter con la nuova collection!
+
+        if (getData() != null && mIAdapterCallback != null) {
+            mIAdapterCallback.onCollectionSizeChanged(getData().size());
+        }
+    }
+
+    /**
+     * Cerca gli elementi nella collection
+     *
+     * @param needed boolean
+     */
+    public void searchItem(boolean needed) {
+        updateData(
+                mRealmInstance
+                        .where(UserStory.class)
+                        .in("taskRealmCollection.needed", new Boolean[]{needed})
+                        .findAll()
+        );
+
+        if (getData() != null && mIAdapterCallback != null) {
+            mIAdapterCallback.onCollectionSizeChanged(getData().size());
+        }
+    }
+
+    public void sortItems() {
+        updateData(
+                mRealmInstance
+                        .where(UserStory.class)
+                        .findAllSorted("id", Sort.ASCENDING)
+        );
     }
 
     @Override

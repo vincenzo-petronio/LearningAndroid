@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/toolbar_search"
+        android:actionViewClass="android.widget.SearchView"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="@string/search"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="always|collapseActionView" />
+    <item
+        android:id="@+id/toolbar_sortid"
+        android:enabled="true"
+        android:title="@string/realm_menuoptions_sortid"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/toolbar_searchneeded"
+        android:enabled="true"
+        android:title="@string/realm_menuoptions_searchneeded"
+        app:showAsAction="never" />
+</menu>

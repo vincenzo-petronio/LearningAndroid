@@ -2,10 +2,14 @@ package it.localhost.app.mobile.learningandroid.ui.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.CheckedTextView;
 import android.widget.EditText;
@@ -77,12 +81,37 @@ public class RealmActivity extends BaseActivity {
 
     @Override
     public int getIdToolbar() {
-        return 0;
+        return R.id.toolbar;
     }
 
     @Override
     public int getIdFab() {
         return 0;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_realm, menu);
+
+        onCreateOptionsMenuSearch(menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.toolbar_search:
+                return true;
+            case R.id.toolbar_sortid:
+                mRealmAdapter.sortItems();
+                return true;
+            case R.id.toolbar_searchneeded:
+                mRealmAdapter.searchItem(true);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @OnClick(R.id.bt_add)
@@ -118,6 +147,8 @@ public class RealmActivity extends BaseActivity {
     }
 
     private void initUI() {
+
+
         // REALM
         mRealm = Realm.getDefaultInstance();
 
@@ -164,5 +195,27 @@ public class RealmActivity extends BaseActivity {
     private void setTvRisultati(int size) {
         mTvResults.setText(String.format(Locale.ITALY, getString(R.string.realm_tvresults),
                 getResources().getQuantityString(R.plurals.risultati, size, size)));
+    }
+
+    /**
+     * Gestione del menu Search
+     *
+     * @param menu Menu
+     */
+    private void onCreateOptionsMenuSearch(Menu menu) {
+        MenuItem searchItem = menu.findItem(R.id.toolbar_search);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                mRealmAdapter.searchItem(newText);
+                return false;
+            }
+        });
     }
 }
