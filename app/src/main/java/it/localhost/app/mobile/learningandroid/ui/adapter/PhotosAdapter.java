@@ -19,15 +19,15 @@ import it.localhost.app.mobile.learningandroid.data.model.Photo;
 
 public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.ViewHolder> {
 
-    private static List<Photo> photos;
-    private static Context context;
+    private List<Photo> photos;
+    private Context mContext;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView tvTitle;
         private ImageView ivPhoto;
 
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
 
             tvTitle = (TextView) itemView.findViewById(R.id.tvTitle);
@@ -42,34 +42,32 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.ViewHolder
             int position = getLayoutPosition();
             Photo photo = photos.get(position);
 
-            Toast.makeText(context, Integer.toString(photo.getId()), Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, Integer.toString(photo.getId()), Toast.LENGTH_SHORT).show();
         }
     }
 
     /**
-     * @param photos
-     * @param context
+     * @param photos List<Photo>
+     * @param context Context
      */
     public PhotosAdapter(List<Photo> photos, Context context) {
         this.photos = photos;
-        this.context = context;
     }
 
     private Context getContext() {
-        return context;
+        return mContext;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Context context = parent.getContext();
-        LayoutInflater inflater = LayoutInflater.from(context);
+        mContext = parent.getContext();
+        LayoutInflater inflater = LayoutInflater.from(mContext);
 
         // Inflate the custom layout
         View photoView = inflater.inflate(R.layout.activity_recycler_photo_row, parent, false);
 
         // Return a new holder instance
-        ViewHolder viewHolder = new ViewHolder(photoView);
-        return viewHolder;
+        return new ViewHolder(photoView);
     }
 
     @Override
@@ -93,7 +91,7 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.ViewHolder
 //                //.resize(120, 60)
 //                .into(holder.ivPhoto);
 
-        Glide.with(context).load(photo.getThumbnailUrl()).into(holder.ivPhoto);
+        Glide.with(mContext).load(photo.getThumbnailUrl()).into(holder.ivPhoto);
     }
 
     @Override

@@ -97,10 +97,10 @@ public class DifferentRowAdapter extends BaseAdapter {
 
         if (type == 0) {
             viewHolderCompleted.tvId.setText(String.format(Locale.ITALY, "%d", mCollection.get(position).getId()));
-            viewHolderCompleted.tvTitle.setText(mCollection.get(position).getTitle().toUpperCase());
+            viewHolderCompleted.tvTitle.setText(mCollection.get(position).getTitle().toUpperCase(Locale.ITALY));
         } else {
             viewHolderNotCompleted.tvId.setText(String.format(Locale.ITALY, "%d", mCollection.get(position).getId()));
-            viewHolderNotCompleted.tvTitle.setText(mCollection.get(position).getTitle().toUpperCase());
+            viewHolderNotCompleted.tvTitle.setText(mCollection.get(position).getTitle().toUpperCase(Locale.ITALY));
             viewHolderNotCompleted.rb.setChecked(!changed);
         }
 

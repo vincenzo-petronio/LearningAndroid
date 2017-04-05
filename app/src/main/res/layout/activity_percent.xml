@@ -48,7 +48,8 @@
                 android:layout="@layout/framelayout_container"
                 app:layout_heightPercent="80%"
                 app:layout_marginLeftPercent="5%"
-                app:layout_widthPercent="80%" />
+                app:layout_widthPercent="80%"
+                tools:ignore="UnknownId" />
 
             <android.support.v7.widget.ViewStubCompat
                 android:id="@+id/vsGreen"
@@ -59,7 +60,8 @@
                 android:layout="@layout/framelayout_container"
                 app:layout_aspectRatio="133%"
                 app:layout_marginTopPercent="15%"
-                app:layout_widthPercent="40%" />
+                app:layout_widthPercent="40%"
+                tools:ignore="UnknownId" />
         </android.support.percent.PercentRelativeLayout>
 
     </LinearLayout>

@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.Locale;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import it.localhost.app.mobile.learningandroid.R;
@@ -28,6 +30,6 @@ public class DayViewHolder extends GroupViewHolder {
     }
 
     public void setTitle(String title) {
-        mTvGroupTitle.setText(title.toUpperCase());
+        mTvGroupTitle.setText(title.toUpperCase(Locale.ITALY));
     }
 }
