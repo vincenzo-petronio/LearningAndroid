@@ -81,4 +81,7 @@
     </plurals>
     <string name="realm_menuoptions_sortid">Sort by ID</string>
     <string name="realm_menuoptions_searchneeded">Search needed tasks</string>
+
+    <!-- REFLECTION -->
+    <string name="reflection_actionbar_title">Reflection</string>
 </resources>

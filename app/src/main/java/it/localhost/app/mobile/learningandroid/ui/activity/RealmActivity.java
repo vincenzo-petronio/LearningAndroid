@@ -147,8 +147,6 @@ public class RealmActivity extends BaseActivity {
     }
 
     private void initUI() {
-
-
         // REALM
         mRealm = Realm.getDefaultInstance();
 

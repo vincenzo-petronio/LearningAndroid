@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @OnItemClick(R.id.lvItems)
-    public void OnItemClick(int position) {
+    void OnItemClick(int position) {
         Log.d(TAG, "OnItemSelected: " + lvItems.getItemAtPosition(position));
 
         Intent i;
@@ -101,6 +101,8 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case 11:
                 // REFLECTION
+                i = new Intent(MainActivity.this, ReflectionActivity.class);
+                startActivity(i);
                 break;
             case 12:
                 // CUSTOMVIEW

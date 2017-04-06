@@ -70,6 +70,9 @@
             android:label="@string/realm_actionbar_title"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ui.activity.ReflectionActivity"
+            android:label="@string/reflection_actionbar_title" />
     </application>
 
 </manifest>
