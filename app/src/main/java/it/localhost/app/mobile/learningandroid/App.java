@@ -1,5 +1,7 @@
 package it.localhost.app.mobile.learningandroid;
 
+import com.facebook.soloader.SoLoader;
+
 import android.app.Application;
 import android.util.Log;
 
@@ -20,6 +22,7 @@ public class App extends Application {
         super.onCreate();
 
         initRealm();
+        initLitho();
     }
 
     private void initRealm() {
@@ -37,5 +40,9 @@ public class App extends Application {
 //                .inMemory()
                 .build();
         Realm.setDefaultConfiguration(realmConfiguration);
+    }
+
+    private void initLitho() {
+        SoLoader.init(this, false);
     }
 }

@@ -5,9 +5,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <uses-sdk
-        android:minSdkVersion="14"
-        tools:overrideLibrary="com.thoughtbot:expandablecheckrecyclerview, com.thoughtbot.expandablecheckrecyclerview,com.thoughtbot.expandablerecyclerview" />
+    <uses-sdk tools:overrideLibrary="com.thoughtbot.expandablecheckrecyclerview, com.thoughtbot.expandablerecyclerview" />
 
     <application
         android:name=".App"
@@ -73,6 +71,9 @@
         <activity
             android:name=".ui.activity.ReflectionActivity"
             android:label="@string/reflection_actionbar_title" />
+        <activity
+            android:name=".ui.activity.LithoActivity"
+            android:label="@string/litho_actionbar_title" />
     </application>
 
 </manifest>

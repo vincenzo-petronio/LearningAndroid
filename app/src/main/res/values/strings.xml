@@ -33,6 +33,7 @@
         <item>ConstraintLayout</item>
         <item>Parcelable with Parceler</item>
         <item>Pub/Sub Design Pattern</item>
+        <item>Litho</item>
     </string-array>
 
     <!-- JSOUP -->
@@ -84,4 +85,7 @@
 
     <!-- REFLECTION -->
     <string name="reflection_actionbar_title">Reflection</string>
+
+    <!-- LITHO -->
+    <string name="litho_actionbar_title">Litho</string>
 </resources>

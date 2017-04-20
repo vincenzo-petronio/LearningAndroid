@@ -128,8 +128,11 @@ public class MainActivity extends AppCompatActivity {
                 i = new Intent(MainActivity.this, PubSubActivity.class);
                 startActivity(i);
                 break;
-
-
+            case 18:
+                // LITHO
+                i = new Intent(MainActivity.this, LithoActivity.class);
+                startActivity(i);
+                break;
             //...
             default:
                 break;
