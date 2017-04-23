@@ -74,6 +74,9 @@
         <activity
             android:name=".ui.activity.LithoActivity"
             android:label="@string/litho_actionbar_title" />
+        <activity
+            android:name=".ui.activity.CustomViewActivity"
+            android:label="@string/customview_actionbar_title" />
     </application>
 
 </manifest>

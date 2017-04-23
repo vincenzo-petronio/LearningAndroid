@@ -88,4 +88,7 @@
 
     <!-- LITHO -->
     <string name="litho_actionbar_title">Litho</string>
+
+    <!-- CUSTOMVIEW -->
+    <string name="customview_actionbar_title">CustomView</string>
 </resources>

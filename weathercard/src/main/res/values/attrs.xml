@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="WeatherCardView">
+        <attr name="cardType" format="enum">
+            <enum name="cloudy" value="1" />
+            <enum name="hail" value="2" />
+        </attr>
+
+    </declare-styleable>
+</resources>

@@ -96,4 +96,6 @@ dependencies {
     compile 'com.facebook.soloader:soloader:0.2.0'
     provided 'com.facebook.litho:litho-annotations:0.2.0'
     annotationProcessor 'com.facebook.litho:litho-processor:0.2.0'
+
+    compile project(":weathercard")
 }

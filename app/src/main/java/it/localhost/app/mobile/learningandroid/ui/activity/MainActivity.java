@@ -106,6 +106,8 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case 12:
                 // CUSTOMVIEW
+                i = new Intent(MainActivity.this, CustomViewActivity.class);
+                startActivity(i);
                 break;
             case 13:
                 // XML BINDING
