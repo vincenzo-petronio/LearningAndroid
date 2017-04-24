@@ -1,4 +1,4 @@
-package it.localhost.app.mobile.weathercard.view;
+package it.localhost.app.mobile.weathercard;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -15,8 +15,6 @@ import android.widget.TextView;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-
-import it.localhost.app.mobile.weathercard.R;
 
 /**
  *
@@ -46,7 +44,7 @@ public class WeatherCardView extends CardView {
     public WeatherCardView(@NonNull Context context) {
         super(context);
 
-//        init(context, null, 0);
+        init(context, null, 0);
     }
 
     /**
@@ -58,7 +56,7 @@ public class WeatherCardView extends CardView {
     public WeatherCardView(@NonNull Context context, AttributeSet attrs) {
         super(context, attrs);
 
-//        init(context, attrs, 0);
+        init(context, attrs, 0);
     }
 
     /**
@@ -71,7 +69,7 @@ public class WeatherCardView extends CardView {
     public WeatherCardView(@NonNull Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-//        init(context, attrs, defStyleAttr);
+        init(context, attrs, defStyleAttr);
     }
 
     /**
@@ -84,8 +82,8 @@ public class WeatherCardView extends CardView {
         ((LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.layout_weathercard, this, true);
 
-//        mTvDateTime = (TextView) findViewById(R.id.tv_datetime);
-//        mTvTemperature = (TextView) findViewById(R.id.tv_temperature);
+        mTvDateTime = (TextView) findViewById(R.id.tv_datetime);
+        mTvTemperature = (TextView) findViewById(R.id.tv_temperature);
         mIvIcon = (ImageView) findViewById(R.id.iv_icon);
 
 

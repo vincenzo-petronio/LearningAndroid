@@ -2,28 +2,28 @@ package it.localhost.app.mobile.learningandroid.ui.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import it.localhost.app.mobile.learningandroid.R;
+import it.localhost.app.mobile.weathercard.WeatherCardView;
 
 /**
  *
  */
 
-public class CustomViewActivity extends AppCompatActivity {
+public class CustomViewActivity extends BaseActivity {
 
     private static final String TAG = CustomViewActivity.class.getSimpleName();
 
-//    @BindView(R.id.wcv)
-//    WeatherCardView mWeatherCardView;
+    @BindView(R.id.wcv)
+    WeatherCardView mWeatherCardView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         Log.v(TAG, "onCreate");
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customview);
 
         ButterKnife.bind(this);
     }
@@ -40,18 +40,18 @@ public class CustomViewActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-//    @Override
-//    public int getIdLayout() {
-//        return R.layout.activity_customview;
-//    }
-//
-//    @Override
-//    public int getIdToolbar() {
-//        return 0;
-//    }
-//
-//    @Override
-//    public int getIdFab() {
-//        return 0;
-//    }
+    @Override
+    public int getIdLayout() {
+        return R.layout.activity_customview;
+    }
+
+    @Override
+    public int getIdToolbar() {
+        return 0;
+    }
+
+    @Override
+    public int getIdFab() {
+        return 0;
+    }
 }
