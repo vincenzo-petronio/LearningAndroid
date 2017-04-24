@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import it.localhost.app.mobile.learningandroid.R;
 
@@ -24,10 +23,9 @@ public class CustomViewActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         Log.v(TAG, "onCreate");
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_customview);
 
-//        ButterKnife.bind(this);
-
-        setContentView(R.layout.layout_weathercard);
+        ButterKnife.bind(this);
     }
 
     @Override

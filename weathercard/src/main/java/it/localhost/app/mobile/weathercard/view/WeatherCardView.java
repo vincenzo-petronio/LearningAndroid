@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.support.annotation.IntDef;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -42,10 +43,10 @@ public class WeatherCardView extends CardView {
      *
      * @param context Context
      */
-    public WeatherCardView(Context context) {
+    public WeatherCardView(@NonNull Context context) {
         super(context);
 
-        init(context, null, 0);
+//        init(context, null, 0);
     }
 
     /**
@@ -54,10 +55,10 @@ public class WeatherCardView extends CardView {
      * @param context Context
      * @param attrs   AttributeSet
      */
-    public WeatherCardView(Context context, AttributeSet attrs) {
+    public WeatherCardView(@NonNull Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        init(context, attrs, 0);
+//        init(context, attrs, 0);
     }
 
     /**
@@ -67,10 +68,10 @@ public class WeatherCardView extends CardView {
      * @param attrs        AttributeSet
      * @param defStyleAttr int
      */
-    public WeatherCardView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public WeatherCardView(@NonNull Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        init(context, attrs, defStyleAttr);
+//        init(context, attrs, defStyleAttr);
     }
 
     /**
