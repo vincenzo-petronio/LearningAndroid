@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/bt_change"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/margin_xlarge"
+        android:text="@string/change" />
 
     <it.localhost.app.mobile.weathercard.WeatherCardView
         android:id="@+id/wcv"
@@ -11,6 +20,6 @@
         custom:cardBackgroundColor="@color/cardview_dark_background"
         custom:cardElevation="1dp"
         custom:cardPreventCornerOverlap="false"
-        custom:cardType="hail"
+        custom:cardType="HAIL"
         custom:cardUseCompatPadding="true" />
-</RelativeLayout>
+</LinearLayout>

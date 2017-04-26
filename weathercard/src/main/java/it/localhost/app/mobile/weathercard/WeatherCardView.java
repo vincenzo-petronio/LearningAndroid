@@ -28,12 +28,19 @@ public class WeatherCardView extends CardView {
     private int mWeatherCardType;
 
     @Retention(RetentionPolicy.SOURCE)
-    @IntDef({CLOUDY, HAIL})
+    @IntDef({CLOUDY, HAIL, LIGHTNING, NIGHT, PARTLYCLOUDY, POURING, RAINY, SNOWY, WINDY})
     public @interface WeatherCardType {
     }
 
     public static final int CLOUDY = 1;
     public static final int HAIL = 2;
+    public static final int LIGHTNING = 3;
+    public static final int NIGHT = 4;
+    public static final int PARTLYCLOUDY = 5;
+    public static final int POURING = 6;
+    public static final int RAINY = 7;
+    public static final int SNOWY = 8;
+    public static final int WINDY = 9;
 
 
     /**
@@ -97,16 +104,7 @@ public class WeatherCardView extends CardView {
             a.recycle();
         }
 
-        switch (mWeatherCardType) {
-            case CLOUDY:
-                mIvIcon.setImageResource(R.drawable.ic_weather_cloudy_grey600_48dp);
-                break;
-            case HAIL:
-                mIvIcon.setImageResource(R.drawable.ic_weather_hail_grey600_48dp);
-                break;
-            default:
-                break;
-        }
+//        initUI();
     }
 
     @Override
@@ -125,8 +123,43 @@ public class WeatherCardView extends CardView {
     protected void onDraw(Canvas canvas) {
         Log.v(TAG, "onDraw");
         super.onDraw(canvas);
+
+        initUI();
     }
 
+    private void initUI() {
+        switch (mWeatherCardType) {
+            case CLOUDY:
+                mIvIcon.setImageResource(R.drawable.ic_weather_cloudy_grey600_48dp);
+                break;
+            case HAIL:
+                mIvIcon.setImageResource(R.drawable.ic_weather_hail_grey600_48dp);
+                break;
+            case LIGHTNING:
+                mIvIcon.setImageResource(R.drawable.ic_weather_lightning_grey600_48dp);
+                break;
+            case NIGHT:
+                mIvIcon.setImageResource(R.drawable.ic_weather_night_grey600_48dp);
+                break;
+            case PARTLYCLOUDY:
+                mIvIcon.setImageResource(R.drawable.ic_weather_partlycloudy_grey600_48dp);
+                break;
+            case POURING:
+                mIvIcon.setImageResource(R.drawable.ic_weather_pouring_grey600_48dp);
+                break;
+            case RAINY:
+                mIvIcon.setImageResource(R.drawable.ic_weather_rainy_grey600_48dp);
+                break;
+            case SNOWY:
+                mIvIcon.setImageResource(R.drawable.ic_weather_snowy_grey600_48dp);
+                break;
+            case WINDY:
+                mIvIcon.setImageResource(R.drawable.ic_weather_windy_grey600_48dp);
+                break;
+            default:
+                break;
+        }
+    }
 
     // GETTER & SETTER
 
@@ -137,5 +170,6 @@ public class WeatherCardView extends CardView {
 
     public void setWeatherCardType(@WeatherCardType int weatherCardType) {
         this.mWeatherCardType = weatherCardType;
+        invalidate();
     }
 }
