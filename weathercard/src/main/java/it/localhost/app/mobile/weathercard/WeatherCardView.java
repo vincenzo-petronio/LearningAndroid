@@ -9,12 +9,13 @@ import android.support.v7.widget.CardView;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import java.util.Calendar;
+import java.util.Locale;
 
 /**
  *
@@ -22,9 +23,9 @@ import java.lang.annotation.RetentionPolicy;
 public class WeatherCardView extends CardView {
 
     private static final String TAG = WeatherCardView.class.getSimpleName();
+    private Context mContext;
     private ImageView mIvIcon;
     private TextView mTvDateTime, mTvTemperature;
-    private View mContainer;
     private int mWeatherCardType;
 
     @Retention(RetentionPolicy.SOURCE)
@@ -86,13 +87,14 @@ public class WeatherCardView extends CardView {
     private void init(Context context, AttributeSet attrs, int defStyleAttr) {
         Log.v(TAG, "init");
 
+        this.mContext = context;
+
         ((LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.layout_weathercard, this, true);
 
         mTvDateTime = (TextView) findViewById(R.id.tv_datetime);
         mTvTemperature = (TextView) findViewById(R.id.tv_temperature);
         mIvIcon = (ImageView) findViewById(R.id.iv_icon);
-
 
         TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.WeatherCardView, defStyleAttr, 0);
         try {
@@ -103,8 +105,6 @@ public class WeatherCardView extends CardView {
         } finally {
             a.recycle();
         }
-
-//        initUI();
     }
 
     @Override
@@ -131,34 +131,49 @@ public class WeatherCardView extends CardView {
         switch (mWeatherCardType) {
             case CLOUDY:
                 mIvIcon.setImageResource(R.drawable.ic_weather_cloudy_grey600_48dp);
+                mTvTemperature.setText("15");
                 break;
             case HAIL:
                 mIvIcon.setImageResource(R.drawable.ic_weather_hail_grey600_48dp);
+                mTvTemperature.setText("12");
                 break;
             case LIGHTNING:
                 mIvIcon.setImageResource(R.drawable.ic_weather_lightning_grey600_48dp);
+                mTvTemperature.setText("10");
                 break;
             case NIGHT:
                 mIvIcon.setImageResource(R.drawable.ic_weather_night_grey600_48dp);
+                mTvTemperature.setText("8");
                 break;
             case PARTLYCLOUDY:
                 mIvIcon.setImageResource(R.drawable.ic_weather_partlycloudy_grey600_48dp);
+                mTvTemperature.setText("17");
                 break;
             case POURING:
                 mIvIcon.setImageResource(R.drawable.ic_weather_pouring_grey600_48dp);
+                mTvTemperature.setText("15");
                 break;
             case RAINY:
                 mIvIcon.setImageResource(R.drawable.ic_weather_rainy_grey600_48dp);
+                mTvTemperature.setText("13");
                 break;
             case SNOWY:
                 mIvIcon.setImageResource(R.drawable.ic_weather_snowy_grey600_48dp);
+                mTvTemperature.setText("-2");
                 break;
             case WINDY:
                 mIvIcon.setImageResource(R.drawable.ic_weather_windy_grey600_48dp);
+                mTvTemperature.setText("4");
                 break;
             default:
                 break;
         }
+
+        mTvDateTime.setText(String.format(Locale.ITALY, mContext.getString(R.string.weather_tvdate), getTimeNow()));
+    }
+
+    private long getTimeNow() {
+        return Calendar.getInstance().getTimeInMillis();
     }
 
     // GETTER & SETTER

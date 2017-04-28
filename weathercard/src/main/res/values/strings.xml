@@ -1,3 +1,4 @@
 <resources>
     <string name="library_name">WeatherCard</string>
+    <string name="weather_tvdate">Today is %1$tA, %1$td %1$tB %1$tY, %1$TH:%1$TM</string>
 </resources>
