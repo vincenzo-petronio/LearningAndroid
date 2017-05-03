@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private Context mContex;
+
     @BindArray(R.array.main_items)
     String[] mStringsItems;
     @BindView(R.id.lvItems)
@@ -62,6 +63,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
                 break;
             case 1:
+                // RX
+                i = new Intent(MainActivity.this, RxActivity.class);
+                startActivity(i);
                 break;
             case 2:
                 break;
