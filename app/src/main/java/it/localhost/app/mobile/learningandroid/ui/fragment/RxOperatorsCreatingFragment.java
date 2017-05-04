@@ -118,7 +118,13 @@ public class RxOperatorsCreatingFragment extends BaseFragment {
 
         switch (integer) {
             case 0:
-                // empty
+                Observable<String> observableOperatorDefer = getObservableOperatorDefer();
+                Log.v(TAG, "observableOperatorDefer after getObservableOperatorDefer");
+
+                // In questo punto l'Observable non è ancora stato creato!
+
+                observableOperatorDefer.subscribe(getObserverOperatorCreate());
+                Log.v(TAG, "observableOperatorDefer after subscribe");
                 break;
             case 1:
                 getObservableOperatorCreate().subscribe(getObserverOperatorCreate());
@@ -155,11 +161,45 @@ public class RxOperatorsCreatingFragment extends BaseFragment {
     }
 
     /**
+     * Restituisce un Observer
+     *
+     * @return Observer<String>
+     */
+    private Observer<String> getObserverOperatorCreate() {
+        return new Observer<String>() {
+            @Override
+            public void onSubscribe(@NonNull Disposable d) {
+                Log.v(TAG, "getObserverOperatorCreate.onSubscribe: d.isDisposed=" + d.isDisposed());
+                // Azzero la ListView
+                clearListView();
+            }
+
+            @Override
+            public void onNext(@NonNull String s) {
+                Log.v(TAG, "getObserverOperatorCreate.onNext");
+                // Aggiungo la string ricevuta alla ListView
+                loadListView(s);
+            }
+
+            @Override
+            public void onError(@NonNull Throwable e) {
+                Log.e(TAG, "getObserverOperatorCreate.onError", e);
+            }
+
+            @Override
+            public void onComplete() {
+                Log.v(TAG, "getObserverOperatorCreate.onComplete");
+            }
+        };
+    }
+
+    /**
      * Restituisce un Observable ottenuto con l'operatore create
      *
      * @return Observable<String>
      */
     private Observable<String> getObservableOperatorCreate() {
+        Log.v(TAG, "getObservableOperatorCreate");
         return Observable.create(new ObservableOnSubscribe<String>() {
             @Override
             public void subscribe(@NonNull ObservableEmitter<String> emitter) throws Exception {
@@ -182,35 +222,17 @@ public class RxOperatorsCreatingFragment extends BaseFragment {
     }
 
     /**
-     * Restituisce un Observer
+     * Restituisce un Observable ottenuto con l'operatore just. </br>
+     * E' un Observable defer, cioè l'emissione dei dati avviene dopo aver sottoscritto l'Observer.
      *
-     * @return Observer<String>
+     * @return Observable<String>
      */
-    private Observer<String> getObserverOperatorCreate() {
-        return new Observer<String>() {
-            @Override
-            public void onSubscribe(@NonNull Disposable d) {
-                Log.v(TAG, "Observer.onSubscribe");
-                // Azzero la ListView
-                clearListView();
-            }
-
-            @Override
-            public void onNext(@NonNull String s) {
-                Log.v(TAG, "Observer.onNext");
-                // Aggiungo la string ricevuta alla ListView
-                loadListView(s);
-            }
-
-            @Override
-            public void onError(@NonNull Throwable e) {
-                Log.e(TAG, "Observer.onError", e);
-            }
-
-            @Override
-            public void onComplete() {
-                Log.v(TAG, "Observer.onComplete");
-            }
-        };
+    private Observable<String> getObservableOperatorDefer() {
+        Log.i(TAG, "getObservableOperatorDefer");
+        return Observable.defer(() -> {
+            // L'emissione avviene solo dopo aver chiamato il subscribe()
+            Log.i(TAG, "getObservableOperatorDefer.just");
+            return Observable.just("create 0");
+        });
     }
 }
