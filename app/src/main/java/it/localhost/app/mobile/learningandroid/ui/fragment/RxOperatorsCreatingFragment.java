@@ -118,6 +118,13 @@ public class RxOperatorsCreatingFragment extends BaseFragment {
 
         switch (integer) {
             case 0:
+                // empty
+                break;
+            case 1:
+                // CREATE
+                getObservableOperatorCreate().subscribe(getObserverOperatorCreate());
+
+                // DEFER
                 Observable<String> observableOperatorDefer = getObservableOperatorDefer();
                 Log.v(TAG, "observableOperatorDefer after getObservableOperatorDefer");
 
@@ -125,9 +132,6 @@ public class RxOperatorsCreatingFragment extends BaseFragment {
 
                 observableOperatorDefer.subscribe(getObserverOperatorCreate());
                 Log.v(TAG, "observableOperatorDefer after subscribe");
-                break;
-            case 1:
-                getObservableOperatorCreate().subscribe(getObserverOperatorCreate());
                 break;
             default:
                 break;
@@ -171,7 +175,7 @@ public class RxOperatorsCreatingFragment extends BaseFragment {
             public void onSubscribe(@NonNull Disposable d) {
                 Log.v(TAG, "getObserverOperatorCreate.onSubscribe: d.isDisposed=" + d.isDisposed());
                 // Azzero la ListView
-                clearListView();
+//                clearListView();
             }
 
             @Override
@@ -232,7 +236,7 @@ public class RxOperatorsCreatingFragment extends BaseFragment {
         return Observable.defer(() -> {
             // L'emissione avviene solo dopo aver chiamato il subscribe()
             Log.i(TAG, "getObservableOperatorDefer.just");
-            return Observable.just("create 0");
+            return Observable.just("defer + just");
         });
     }
 }
