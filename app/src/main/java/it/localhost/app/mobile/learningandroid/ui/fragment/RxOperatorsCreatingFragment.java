@@ -20,11 +20,10 @@ import butterknife.ButterKnife;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.Observer;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
 import it.localhost.app.mobile.learningandroid.R;
 
 /**
@@ -67,6 +66,12 @@ public class RxOperatorsCreatingFragment extends BaseFragment {
         Log.v(TAG, "onViewCreated");
         super.onViewCreated(view, savedInstanceState);
 
+        // LISTVIEW
+        mLvArrayAdapter = new ArrayAdapter<>(
+                getActivity(),
+                android.R.layout.simple_list_item_1);
+        mLvItems.setAdapter(mLvArrayAdapter);
+
         // SPINNER
         mSpinnerItems.setAdapter(new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_spinner_item, mStringsRxOperatorsItems));
@@ -78,13 +83,6 @@ public class RxOperatorsCreatingFragment extends BaseFragment {
             }
         };
         mDisposableItemSelected = RxAdapterView.itemSelections(mSpinnerItems).subscribe(mConsumerItemSelected);
-
-
-        // LISTVIEW
-        mLvArrayAdapter = new ArrayAdapter<>(
-                getActivity(),
-                android.R.layout.simple_list_item_1);
-        mLvItems.setAdapter(mLvArrayAdapter);
     }
 
     @Override
@@ -109,20 +107,21 @@ public class RxOperatorsCreatingFragment extends BaseFragment {
         return R.layout.fragment_rx_operatorscreating;
     }
 
+    /**
+     * Popola la ListView
+     *
+     * @param integer Integer
+     */
     private void loadData(@android.support.annotation.NonNull Integer integer) {
         Log.v(TAG, "" + integer);
+        clearListView();
+
         switch (integer) {
             case 0:
                 // empty
                 break;
             case 1:
-                Disposable d = getOperatorCreate().subscribeOn(Schedulers.newThread())
-                    .observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<String>() {
-                    @Override
-                    public void accept(@NonNull String s) throws Exception {
-                        loadListView(s);
-                    }
-                });
+                getObservableOperatorCreate().subscribe(getObserverOperatorCreate());
                 break;
             default:
                 break;
@@ -144,16 +143,74 @@ public class RxOperatorsCreatingFragment extends BaseFragment {
      * @param list List<String>
      */
     private void loadListView(List<String> list) {
-        mLvArrayAdapter.clear();
+        clearListView();
         mLvArrayAdapter.addAll(list);
     }
 
-    private Observable<String> getOperatorCreate() {
+    /**
+     * Svuota la collection nella ListView
+     */
+    private void clearListView() {
+        mLvArrayAdapter.clear();
+    }
+
+    /**
+     * Restituisce un Observable ottenuto con l'operatore create
+     *
+     * @return Observable<String>
+     */
+    private Observable<String> getObservableOperatorCreate() {
         return Observable.create(new ObservableOnSubscribe<String>() {
             @Override
             public void subscribe(@NonNull ObservableEmitter<String> emitter) throws Exception {
-                emitter.onNext("ciao");
+                Log.v(TAG, "ObservableOnSubscribe.subscribe");
+
+                // L'Observer emette (push) una serie di strings. L'emissione avviene dopo aver
+                // sottoscritto un Observer
+                for (int i = 0; i <= 20; i++) {
+                    emitter.onNext("create " + "" + i);
+                }
+
+                emitter.onComplete();
             }
         });
+
+        // Stessa cosa con lambdaexpr
+//        return Observable.create(emitter -> {
+//            emitter.onNext("ciao");
+//        });
+    }
+
+    /**
+     * Restituisce un Observer
+     *
+     * @return Observer<String>
+     */
+    private Observer<String> getObserverOperatorCreate() {
+        return new Observer<String>() {
+            @Override
+            public void onSubscribe(@NonNull Disposable d) {
+                Log.v(TAG, "Observer.onSubscribe");
+                // Azzero la ListView
+                clearListView();
+            }
+
+            @Override
+            public void onNext(@NonNull String s) {
+                Log.v(TAG, "Observer.onNext");
+                // Aggiungo la string ricevuta alla ListView
+                loadListView(s);
+            }
+
+            @Override
+            public void onError(@NonNull Throwable e) {
+                Log.e(TAG, "Observer.onError", e);
+            }
+
+            @Override
+            public void onComplete() {
+                Log.v(TAG, "Observer.onComplete");
+            }
+        };
     }
 }

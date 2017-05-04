@@ -93,19 +93,19 @@
     <string name="customview_actionbar_title">CustomView</string>
 
     <!-- RX -->
-    <string name="rx_actionbar_title">RX</string>
+    <string name="rx_actionbar_title">Rx2</string>
     <string-array name="rx_items">
         <item>Operators by category</item>
     </string-array>
     <string-array name="rx_operators_items">
         <item></item>
-        <item>Creating: Operators that originate new Observables</item>
-        <item>Transforming: Operators that transform items that are emitted by an Observable</item>
-        <item>Filtering: Operators that selectively emit items from a source Observable</item>
-        <item>Combining: Operators that work with multiple source Observables to create a single Observable</item>
-        <item>Error Handling: Operators that help to recover from error notifications from an Observable</item>
-        <item>Conditional and Boolean: Operators that evaluate one or more Observables or items emitted by Observables</item>
-        <item>Mathematical and Aggregate: Operators that operate on the entire sequence of items emitted by an Observable</item>
+        <item>Creating:\nOperators that originate new Observables</item>
+        <item>Transforming:\nOperators that transform items that are emitted by an Observable</item>
+        <item>Filtering:\nOperators that selectively emit items from a source Observable</item>
+        <item>Combining:\nOperators that work with multiple source Observables to create a single Observable</item>
+        <item>Error Handling:\nOperators that help to recover from error notifications from an Observable</item>
+        <item>Conditional and Boolean:\nOperators that evaluate one or more Observables or items emitted by Observables</item>
+        <item>Mathematical and Aggregate:\nOperators that operate on the entire sequence of items emitted by an Observable</item>
         <item>Backpressure</item>
     </string-array>
 </resources>
