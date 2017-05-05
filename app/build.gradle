@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'net.ltgt.errorprone'
 apply plugin: 'realm-android'
 apply plugin: 'me.tatarka.retrolambda'
+apply from: '../config/quality.gradle'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
