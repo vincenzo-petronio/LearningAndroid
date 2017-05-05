@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindArray;
 import butterknife.BindView;
@@ -21,9 +22,11 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 import it.localhost.app.mobile.learningandroid.R;
 
 /**
@@ -122,16 +125,26 @@ public class RxOperatorsCreatingFragment extends BaseFragment {
                 break;
             case 1:
                 // CREATE
-                getObservableOperatorCreate().subscribe(getObserverOperatorCreate());
+                getObservableOperatorCreate()
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(getObserverOperatorCreate());
 
-                // DEFER
+                // DEFER - JUST
                 Observable<String> observableOperatorDefer = getObservableOperatorDefer();
                 Log.v(TAG, "observableOperatorDefer after getObservableOperatorDefer");
-
                 // In questo punto l'Observable non è ancora stato creato!
-
-                observableOperatorDefer.subscribe(getObserverOperatorCreate());
+                observableOperatorDefer
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(getObserverOperatorCreate());
                 Log.v(TAG, "observableOperatorDefer after subscribe");
+
+                // INTERVAL - REPEAT
+                getObservableOperatorInterval()
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(getObserverOperatorCreate());
                 break;
             default:
                 break;
@@ -232,11 +245,28 @@ public class RxOperatorsCreatingFragment extends BaseFragment {
      * @return Observable<String>
      */
     private Observable<String> getObservableOperatorDefer() {
-        Log.i(TAG, "getObservableOperatorDefer");
+        Log.v(TAG, "getObservableOperatorDefer");
         return Observable.defer(() -> {
             // L'emissione avviene solo dopo aver chiamato il subscribe()
-            Log.i(TAG, "getObservableOperatorDefer.just");
+            Log.v(TAG, "getObservableOperatorDefer.just");
             return Observable.just("defer + just");
         });
+    }
+
+    /**
+     * Restituisce un Observable ottenuto con l'operatore interval. </ br>
+     *
+     * @return Observable<String>
+     */
+    private Observable<String> getObservableOperatorInterval() {
+        Log.v(TAG, "getObservableOperatorDefer");
+        return Observable
+                .interval(2, 3, TimeUnit.SECONDS) // Inizia il conteggio dopo 2'', si ripete ogni 3''
+                .takeWhile(tick -> tick < 5) // Si ripete fino a 5 volte (0-based)
+                .map(tick -> "item at interval: " + tick) // mappa il conteggio in una string
+                .doOnComplete(() -> Log.v(TAG, "getObservableOperatorInterval.onComplete"))
+                .doOnError(e -> Log.e(TAG, "getObservableOperatorInterval.doOnError", e))
+                .doOnNext(string -> Log.v(TAG, "getObservableOperatorInterval.doOnNext: " + string))
+                .retry(); // in caso di errore riparte dal conteggio successivo
     }
 }
