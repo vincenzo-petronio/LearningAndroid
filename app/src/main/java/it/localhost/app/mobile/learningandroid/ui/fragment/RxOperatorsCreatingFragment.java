@@ -146,6 +146,12 @@ public class RxOperatorsCreatingFragment extends BaseFragment {
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(getObserverOperatorCreate());
                 break;
+
+            case 2:
+                // BUFFER
+
+
+                break;
             default:
                 break;
         }
@@ -269,4 +275,11 @@ public class RxOperatorsCreatingFragment extends BaseFragment {
                 .doOnNext(string -> Log.v(TAG, "getObservableOperatorInterval.doOnNext: " + string))
                 .retry(); // in caso di errore riparte dal conteggio successivo
     }
+
+//    private Observable<String> getObservableOperatorBuffer() {
+//        Log.v(TAG, "getObservableOperatorBuffer");
+//        return getObservableOperatorCreate()
+//                .buffer(2, 2)
+//                .flatMap(list -> {return Observable.just(list[0]);});
+//    }
 }
