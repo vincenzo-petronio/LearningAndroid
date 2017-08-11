@@ -34,6 +34,7 @@
         <item>Parcelable with Parceler</item>
         <item>Pub/Sub Design Pattern</item>
         <item>Litho</item>
+        <item>Dagger</item>
     </string-array>
 
     <!-- JSOUP -->
@@ -108,4 +109,7 @@
         <item>Mathematical and Aggregate:\nOperators that operate on the entire sequence of items emitted by an Observable</item>
         <item>Backpressure</item>
     </string-array>
+
+    <!-- DAGGER -->
+    <string name="dagger_actionbar_title">Dagger2</string>
 </resources>

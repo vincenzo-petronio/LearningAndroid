@@ -139,6 +139,10 @@ public class MainActivity extends AppCompatActivity {
                 i = new Intent(MainActivity.this, LithoActivity.class);
                 startActivity(i);
                 break;
+            case 19:
+                // DAGGER
+                i = new Intent(MainActivity.this, DaggerActivity.class);
+                startActivity(i);
             //...
             default:
                 break;

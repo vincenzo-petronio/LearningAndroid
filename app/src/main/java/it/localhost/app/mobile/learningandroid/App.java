@@ -2,17 +2,27 @@ package it.localhost.app.mobile.learningandroid;
 
 import com.facebook.soloader.SoLoader;
 
+import android.app.Activity;
 import android.app.Application;
 import android.util.Log;
 
+import javax.inject.Inject;
+
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.HasActivityInjector;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
+import it.localhost.app.mobile.learningandroid.dagger.components.DaggerAppComponent;
 import it.localhost.app.mobile.learningandroid.util.Constants;
 
 /**
  *
  */
-public class App extends Application {
+public class App extends Application implements HasActivityInjector {
+
+    @Inject
+    DispatchingAndroidInjector<Activity> dispatchingAndroidInjector;
 
     private static final String TAG = App.class.getSimpleName();
 
@@ -21,8 +31,17 @@ public class App extends Application {
         Log.v(TAG, "onCreate");
         super.onCreate();
 
+        initDagger();
         initRealm();
         initLitho();
+    }
+
+    private void initDagger() {
+        DaggerAppComponent
+                .builder()
+                .application(this)
+                .build()
+                .inject(this);
     }
 
     private void initRealm() {
@@ -44,5 +63,10 @@ public class App extends Application {
 
     private void initLitho() {
         SoLoader.init(this, false);
+    }
+
+    @Override
+    public AndroidInjector<Activity> activityInjector() {
+        return dispatchingAndroidInjector;
     }
 }
