@@ -1,13 +1,12 @@
 package it.localhost.app.mobile.learningandroid.dagger.components;
 
-import android.app.Application;
-
 import javax.inject.Singleton;
 
 import dagger.BindsInstance;
 import dagger.Component;
 import dagger.android.AndroidInjectionModule;
 import it.localhost.app.mobile.learningandroid.App;
+import it.localhost.app.mobile.learningandroid.dagger.modules.ActivityBuilderModule;
 import it.localhost.app.mobile.learningandroid.dagger.modules.AppModule;
 
 /**
@@ -18,7 +17,7 @@ import it.localhost.app.mobile.learningandroid.dagger.modules.AppModule;
 @Component(
         modules = {
                 AndroidInjectionModule.class,
-//                ActivityBuilder.class,
+                ActivityBuilderModule.class,
                 AppModule.class
         }
 )

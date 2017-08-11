@@ -1,5 +1,6 @@
 package it.localhost.app.mobile.learningandroid.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -18,6 +19,8 @@ public class DaggerActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         Log.v(TAG, "onCreate");
         super.onCreate(savedInstanceState);
+
+        startActivity(new Intent(DaggerActivity.this, ContactsListActivity.class));
     }
 
     @Override

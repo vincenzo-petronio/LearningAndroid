@@ -10,14 +10,19 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import it.localhost.app.mobile.learningandroid.App;
+import it.localhost.app.mobile.learningandroid.ui.dagger.components.ContactsListActivityComponent;
 import it.localhost.app.mobile.learningandroid.util.NetworkStateManager;
 
 /**
  * Dagger Module.<br>
  * I Modules dicono cosa fornire e come costruire tali oggetti.<br>
  * Con questo Module vengono fornite le dipendenze globali.
+ * <br><br>
+ * Tutti i subcomponents devono essere aggiunti a questo Module.
  */
-@Module
+@Module(subcomponents = {
+        ContactsListActivityComponent.class
+})
 public class AppModule {
 
     /**

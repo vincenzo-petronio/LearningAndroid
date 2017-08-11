@@ -83,6 +83,9 @@
         <activity
             android:name=".ui.activity.DaggerActivity"
             android:label="@string/dagger_actionbar_title" />
+        <activity
+            android:name=".ui.activity.ContactsListActivity"
+            android:label="@string/dagger_actionbar_title" />
     </application>
 
 </manifest>
