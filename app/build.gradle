@@ -4,6 +4,12 @@ apply plugin: 'realm-android'
 apply plugin: 'me.tatarka.retrolambda'
 apply from: '../config/quality.gradle'
 
+repositories {
+    flatDir {
+        dirs '../rve/'
+    }
+}
+
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -119,4 +125,14 @@ dependencies {
     compile 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
 
     compile project(':weathercard')
+
+    // RECYCLERVIEW EXTENSION
+    compile(name: 'Animations-release', ext: 'aar')
+    compile(name: 'ClickListeners-release', ext: 'aar')
+    compile(name: 'Dividers-release', ext: 'aar')
+    compile(name: 'DragDrop-release', ext: 'aar')
+    compile(name: 'Flippers-release', ext: 'aar')
+    compile(name: 'PinchZoom-release', ext: 'aar')
+    compile(name: 'Selectors-release', ext: 'aar')
+    compile(name: 'StickyHeaders-release', ext: 'aar')
 }

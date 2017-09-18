@@ -5,7 +5,18 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <uses-sdk tools:overrideLibrary="com.thoughtbot.expandablecheckrecyclerview, com.thoughtbot.expandablerecyclerview" />
+    <uses-sdk tools:overrideLibrary="
+        com.thoughtbot.expandablecheckrecyclerview,
+        com.thoughtbot.expandablerecyclerview,
+        io.doist.recyclerviewext.animations,
+        io.doist.recyclerviewext.sticky_headers,
+        io.doist.recyclerviewext.click_listeners,
+        io.doist.recyclerviewext.dividers,
+        io.doist.recyclerviewext.dragdrop,
+        io.doist.recyclerviewext.flippers,
+        io.doist.recyclerviewext.pinch_zoom,
+        io.doist.recyclerviewext.choice_modes
+    " />
 
     <application
         android:name=".App"
@@ -86,6 +97,9 @@
         <activity
             android:name=".ui.activity.ContactsListActivity"
             android:label="@string/dagger_actionbar_title" />
+        <activity
+            android:name=".ui.activity.RecyclerStickyActivity"
+            android:label="@string/recyclerview_actionbar_title" />
     </application>
 
 </manifest>

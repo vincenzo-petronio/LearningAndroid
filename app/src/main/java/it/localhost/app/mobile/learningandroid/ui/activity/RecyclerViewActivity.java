@@ -55,6 +55,13 @@ public class RecyclerViewActivity extends AppCompatActivity {
                 startActivity(new Intent(RecyclerViewActivity.this, RecyclerExpandActivity.class));
             }
         });
+        Button btnRecyclerSticky = (Button) findViewById(R.id.btnRecyclerSticky);
+        btnRecyclerSticky.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(RecyclerViewActivity.this, RecyclerStickyActivity.class));
+            }
+        });
 
     }
 }
