@@ -39,6 +39,7 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+        incremental = false
     }
     configurations.all {
         resolutionStrategy.force 'com.google.code.findbugs:jsr305:3.0.1'
@@ -64,19 +65,19 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
 
     // BUTTERKNIFE
-    compile 'com.jakewharton:butterknife:8.5.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+    compile 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
     // DAGGER
-    compile 'com.google.dagger:dagger:2.11'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
+    compile 'com.google.dagger:dagger:2.12'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.12'
 //    compile 'com.google.dagger:dagger-android:2.x'
-    compile 'com.google.dagger:dagger-android-support:2.11'
-    annotationProcessor 'com.google.dagger:dagger-android-processor:2.11'
+    compile 'com.google.dagger:dagger-android-support:2.12'
+    annotationProcessor 'com.google.dagger:dagger-android-processor:2.12'
 
     // PARSING
-    compile 'org.jsoup:jsoup:1.10.2'
-    compile 'net.sourceforge.htmlcleaner:htmlcleaner:2.19'
+    compile 'org.jsoup:jsoup:1.10.3'
+    compile 'net.sourceforge.htmlcleaner:htmlcleaner:2.21'
 //    compile group: 'com.thoughtworks.xstream', name: 'xstream', version: '1.4.9'
     compile('com.thoughtworks.xstream:xstream:1.4.7') {
         exclude group: 'xmlpull', module: 'xmlpull'
@@ -84,23 +85,23 @@ dependencies {
 
     // NETWORK
     compile 'com.android.volley:volley:1.0.0'
-    compile 'com.squareup.retrofit2:retrofit:2.2.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.2.0'
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
 
     // GSON
-    compile 'com.google.code.gson:gson:2.8.0'
+    compile 'com.google.code.gson:gson:2.8.2'
 
     // IMAGE LOADING
     compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.github.bumptech.glide:glide:4.2.0'
 
     // ANNOTATION
-    annotationProcessor 'org.androidannotations:androidannotations:4.3.0'
-    compile 'org.androidannotations:androidannotations-api:4.3.0'
+    annotationProcessor 'org.androidannotations:androidannotations:4.3.1'
+    compile 'org.androidannotations:androidannotations-api:4.3.1'
 
     // PARCELER
-    compile 'org.parceler:parceler-api:1.1.6'
-    annotationProcessor 'org.parceler:parceler:1.1.6'
+    compile 'org.parceler:parceler-api:1.1.9'
+    annotationProcessor 'org.parceler:parceler:1.1.9'
 
     // WIDGETS
     compile 'com.thoughtbot:expandablerecyclerview:1.1'
@@ -113,14 +114,14 @@ dependencies {
     compile 'io.realm:android-adapters:2.0.0'
 
     // LITHO
-    compile 'com.facebook.litho:litho-core:0.2.0'
-    compile 'com.facebook.litho:litho-widget:0.2.0'
+    compile 'com.facebook.litho:litho-core:0.6.0'
+    compile 'com.facebook.litho:litho-widget:0.4.1'
     compile 'com.facebook.soloader:soloader:0.2.0'
-    provided 'com.facebook.litho:litho-annotations:0.2.0'
-    annotationProcessor 'com.facebook.litho:litho-processor:0.2.0'
+    provided 'com.facebook.litho:litho-annotations:0.6.0'
+    annotationProcessor 'com.facebook.litho:litho-processor:0.4.1'
 
     // RX
-    compile 'io.reactivex.rxjava2:rxjava:2.0.9'
+    compile 'io.reactivex.rxjava2:rxjava:2.1.5'
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
     compile 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
 
