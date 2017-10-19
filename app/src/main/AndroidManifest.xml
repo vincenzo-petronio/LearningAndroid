@@ -100,6 +100,9 @@
         <activity
             android:name=".ui.activity.RecyclerStickyActivity"
             android:label="@string/recyclerview_actionbar_title" />
+        <activity
+            android:name=".ui.activity.ServerSyncActivity"
+            android:label="@string/serversync_actionbar_title" />
     </application>
 
 </manifest>

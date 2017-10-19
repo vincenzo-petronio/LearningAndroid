@@ -143,6 +143,11 @@ public class MainActivity extends AppCompatActivity {
                 // DAGGER
                 i = new Intent(MainActivity.this, DaggerActivity.class);
                 startActivity(i);
+                break;
+            case 20:
+                i = new Intent(MainActivity.this, ServerSyncActivity.class);
+                startActivity(i);
+                break;
             //...
             default:
                 break;
