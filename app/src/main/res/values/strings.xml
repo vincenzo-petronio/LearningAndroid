@@ -59,6 +59,7 @@
 
     <!-- BASEADAPTER DIFFERENT ROW -->
     <string name="differentrow_actionbar_title">BaseAdapter with different row</string>
+    <string name="differentrow_btchange_title">Change first 5</string>
 
     <!-- XML BINDING -->
     <string name="xmlbinding_actionbar_title">XML Binding</string>

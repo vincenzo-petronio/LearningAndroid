@@ -17,6 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import it.localhost.app.mobile.learningandroid.R;
 import it.localhost.app.mobile.learningandroid.data.model.Todo;
+import it.localhost.app.mobile.learningandroid.helper.CustomListIterable;
 
 /**
  * Adapter
@@ -24,25 +25,42 @@ import it.localhost.app.mobile.learningandroid.data.model.Todo;
 public class DifferentRowAdapter extends BaseAdapter {
 
     private static final String TAG = DifferentRowAdapter.class.getSimpleName();
-    private List<Todo> mCollection = Collections.emptyList();
+    //        private List<Todo> mCollection = Collections.emptyList();
+    private CustomListIterable<Todo> mCollection;
     private static final int TYPE_COMPLETED = 0;
     private static final int TYPE_NOTCOMPLETED = 1;
     private LayoutInflater mInflater;
-    private Context mContext;
     private boolean changed;
 
     /**
      *
      */
     public DifferentRowAdapter(Context ctx) {
-        this.mContext = ctx;
-        mInflater = (LayoutInflater) this.mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        mInflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     /**
-     * @param collection List<Todo>
+     * @param ctx        Context
+     * @param collection CustomListIterable<Todo>
      */
-    public void updateCollection(List<Todo> collection) {
+    public DifferentRowAdapter(Context ctx, CustomListIterable<Todo> collection) {
+        mInflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        mCollection = collection;
+    }
+
+//    /**
+//     * @param collection List<Todo>
+//     */
+//    public void updateCollection(List<Todo> collection) {
+//        this.mCollection = collection;
+//        notifyDataSetChanged();
+//    }
+
+    /**
+     * @param collection CustomListIterable
+     * @deprecated
+     */
+    public void updateCollection(CustomListIterable<Todo> collection) {
         this.mCollection = collection;
         notifyDataSetChanged();
     }

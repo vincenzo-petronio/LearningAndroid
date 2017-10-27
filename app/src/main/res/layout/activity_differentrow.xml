@@ -26,11 +26,11 @@
                 android:text="@string/modify" />
 
             <Button
-                android:id="@+id/btAddRemove"
+                android:id="@+id/btChange"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
-                android:text="@string/change" />
+                android:text="@string/differentrow_btchange_title" />
         </LinearLayout>
 
         <ListView
