@@ -179,6 +179,7 @@ public class RealmAdapter extends RealmRecyclerViewAdapter<UserStory, RealmAdapt
         }
 
         holder.mTvUsTitle.setText(userStory.getName());
+        holder.mTvUsId.setText(String.valueOf(userStory.getId()));
     }
 
 
@@ -189,6 +190,8 @@ public class RealmAdapter extends RealmRecyclerViewAdapter<UserStory, RealmAdapt
 
         @BindView(R.id.tv_us_title)
         TextView mTvUsTitle;
+        @BindView(R.id.tv_us_id)
+        TextView mTvUsId;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -219,9 +222,23 @@ public class RealmAdapter extends RealmRecyclerViewAdapter<UserStory, RealmAdapt
         mIAdapterCallback = IAdapterCallback;
     }
 
+    /**
+     * Callback da Adapter a Activity
+     */
     public interface IAdapterCallback {
+
+        /**
+         * Notifica il longclick su un elemento della collection
+         *
+         * @param tasks RealmList<Task>
+         */
         void onItemLongClicked(RealmList<Task> tasks);
 
+        /**
+         * Notifica il cambio di elementi nella collection
+         *
+         * @param size int
+         */
         void onCollectionSizeChanged(int size);
     }
 }

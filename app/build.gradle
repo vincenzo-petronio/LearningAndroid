@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 //apply plugin: 'net.ltgt.errorprone'
 apply plugin: 'realm-android'
-apply plugin: 'me.tatarka.retrolambda'
+//apply plugin: 'me.tatarka.retrolambda'
 apply from: '../config/quality.gradle'
 
 repositories {
@@ -111,7 +111,7 @@ dependencies {
     compile 'org.greenrobot:eventbus:3.0.0'
 
     // REALM
-    compile 'io.realm:android-adapters:2.0.0'
+    compile 'io.realm:android-adapters:2.1.0'
 
     // LITHO
     compile 'com.facebook.litho:litho-core:0.6.0'

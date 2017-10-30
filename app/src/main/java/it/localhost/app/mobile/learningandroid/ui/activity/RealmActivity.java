@@ -1,6 +1,7 @@
 package it.localhost.app.mobile.learningandroid.ui.activity;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -39,6 +40,7 @@ public class RealmActivity extends BaseActivity {
     private static final String TAG = RealmActivity.class.getSimpleName();
     private Realm mRealm;
     private RealmAdapter mRealmAdapter;
+    private RealmResults<UserStory> mUserStories;
 
     @BindView(R.id.et_userstory)
     EditText mEtUserStory;
@@ -60,8 +62,8 @@ public class RealmActivity extends BaseActivity {
 
         ButterKnife.bind(this);
 
-        initData();
         initUI();
+        initData();
     }
 
     @Override
@@ -69,7 +71,7 @@ public class RealmActivity extends BaseActivity {
         Log.v(TAG, "onDestroy");
         super.onDestroy();
 
-        if (mRealm != null) {
+        if (mRealm != null && !mRealm.isClosed()) {
             mRealm.close();
         }
     }
@@ -144,23 +146,20 @@ public class RealmActivity extends BaseActivity {
     }
 
     private void initData() {
+        mUserStories = mRealm.where(UserStory.class).findAll();
+        mRealmAdapter.updateData(mUserStories);
+        setTvRisultati(mUserStories == null ? 0 : mUserStories.size());
     }
 
     private void initUI() {
-        // REALM
         mRealm = Realm.getDefaultInstance();
-
-        // RECYCLER
-        RealmResults<UserStory> userStories = mRealm.where(UserStory.class).findAll();
-        mRealmAdapter = new RealmAdapter(userStories, true, mRealm);
-        mRvItems.setAdapter(mRealmAdapter);
         mRvItems.setLayoutManager(new LinearLayoutManager(this));
+        mRealmAdapter = new RealmAdapter(null, true, mRealm);
         mRealmAdapter.setIAdapterCallback(mIAdapterCallback);
-
-        setTvRisultati(userStories.size());
+        mRvItems.setAdapter(mRealmAdapter);
     }
 
-    RealmAdapter.IAdapterCallback mIAdapterCallback = new RealmAdapter.IAdapterCallback() {
+    private RealmAdapter.IAdapterCallback mIAdapterCallback = new RealmAdapter.IAdapterCallback() {
         @Override
         public void onItemLongClicked(RealmList<Task> tasks) {
             if (tasks.isEmpty()) {

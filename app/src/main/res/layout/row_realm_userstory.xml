@@ -3,17 +3,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="@dimen/activity_padding">
+    android:padding="@dimen/activity_padding_half">
+
+    <TextView
+        android:id="@+id/tv_us_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        tools:text="87976" />
 
     <TextView
         android:id="@+id/tv_us_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/activity_padding_half"
+        android:layout_marginLeft="@dimen/activity_padding_half"
+        android:layout_marginRight="@dimen/activity_padding_half"
+        android:layout_marginStart="@dimen/activity_padding_half"
+        android:layout_toEndOf="@id/tv_us_id"
         android:layout_toLeftOf="@+id/bt_us_del"
+        android:layout_toRightOf="@id/tv_us_id"
         android:layout_toStartOf="@+id/bt_us_del"
+        android:ellipsize="end"
+        android:maxLines="3"
         tools:text="@string/lorem" />
 
     <Button
