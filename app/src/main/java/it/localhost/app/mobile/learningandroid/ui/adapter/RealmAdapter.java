@@ -35,8 +35,19 @@ public class RealmAdapter extends RealmRecyclerViewAdapter<UserStory, RealmAdapt
     // N.B. Con Realm è inutile gestire la collection, basta avere l'instanza del DB e aggiornare i dati su DB,
     // perché poi il notify verrà gestito automaticamente da RealmAdapter.
     private OrderedRealmCollection<UserStory> mCollection;
-
     private Realm mRealmInstance;
+
+    /**
+     * Costruttore
+     *
+     * @param data       OrderedRealmCollection<UserStory>
+     * @param autoUpdate boolean
+     */
+    public RealmAdapter(@Nullable OrderedRealmCollection<UserStory> data, boolean autoUpdate) {
+        super(data, autoUpdate);
+        this.mCollection = data;
+        this.mRealmInstance = Realm.getDefaultInstance();
+    }
 
     /**
      * Costruttore

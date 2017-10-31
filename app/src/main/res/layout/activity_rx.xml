@@ -5,5 +5,5 @@
     android:orientation="vertical">
 
     <!-- CONTAINER -->
-    <include layout="@layout/framelayout_container" />
+    <include layout="@layout/layout_container" />
 </LinearLayout>

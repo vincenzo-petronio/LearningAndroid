@@ -1,5 +1,8 @@
 package it.localhost.app.mobile.learningandroid.data.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 import io.realm.annotations.Required;
@@ -8,7 +11,7 @@ import io.realm.annotations.Required;
  *
  */
 
-public class Task extends RealmObject {
+public class Task extends RealmObject implements Parcelable {
 
     @PrimaryKey
     private int id;
@@ -66,4 +69,44 @@ public class Task extends RealmObject {
     public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
     }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.id);
+        dest.writeString(this.title);
+        dest.writeString(this.subtitle);
+        dest.writeByte(this.needed ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.type);
+        dest.writeLong(this.timestamp);
+    }
+
+    public Task() {
+    }
+
+    protected Task(Parcel in) {
+        this.id = in.readInt();
+        this.title = in.readString();
+        this.subtitle = in.readString();
+        this.needed = in.readByte() != 0;
+        this.type = in.readInt();
+        this.timestamp = in.readLong();
+    }
+
+    public static final Creator<Task> CREATOR = new Creator<Task>() {
+        @Override
+        public Task createFromParcel(Parcel source) {
+            return new Task(source);
+        }
+
+        @Override
+        public Task[] newArray(int size) {
+            return new Task[size];
+        }
+    };
 }

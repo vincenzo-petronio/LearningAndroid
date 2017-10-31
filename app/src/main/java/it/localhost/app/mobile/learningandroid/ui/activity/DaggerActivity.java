@@ -37,7 +37,7 @@ public class DaggerActivity extends BaseActivity {
 
     @Override
     public int getIdLayout() {
-        return R.layout.framelayout_container;
+        return R.layout.layout_container;
     }
 
     @Override
