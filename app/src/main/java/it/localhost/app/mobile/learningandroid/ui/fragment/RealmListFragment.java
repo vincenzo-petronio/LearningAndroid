@@ -159,12 +159,12 @@ public class RealmListFragment extends BaseFragment {
 
     private RealmAdapter.IAdapterCallback mIAdapterCallback = new RealmAdapter.IAdapterCallback() {
         @Override
-        public void onItemLongClicked(RealmList<Task> tasks) {
-            if (tasks.isEmpty() || getActivity() == null) {
+        public void onItemLongClicked(UserStory userStory) {
+            if (userStory == null || getActivity() == null) {
                 return;
             }
 
-            ((RealmActivity)getActivity()).navToDetails(tasks);
+            ((RealmActivity) getActivity()).navToDetails(userStory);
         }
 
         @Override

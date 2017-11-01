@@ -17,11 +17,9 @@ import butterknife.OnLongClick;
 import io.realm.Case;
 import io.realm.OrderedRealmCollection;
 import io.realm.Realm;
-import io.realm.RealmList;
 import io.realm.RealmRecyclerViewAdapter;
 import io.realm.Sort;
 import it.localhost.app.mobile.learningandroid.R;
-import it.localhost.app.mobile.learningandroid.data.model.Task;
 import it.localhost.app.mobile.learningandroid.data.model.UserStory;
 
 /**
@@ -219,7 +217,7 @@ public class RealmAdapter extends RealmRecyclerViewAdapter<UserStory, RealmAdapt
         boolean onTvLongClickListener() {
             Log.d(TAG, "onTvLongClickListener: " + "" + getAdapterPosition());
             if (mIAdapterCallback != null && getData() != null) {
-                mIAdapterCallback.onItemLongClicked(getData().get(getAdapterPosition()).getTaskRealmCollection());
+                mIAdapterCallback.onItemLongClicked(getData().get(getAdapterPosition()));
             }
             return true;
         }
@@ -241,9 +239,9 @@ public class RealmAdapter extends RealmRecyclerViewAdapter<UserStory, RealmAdapt
         /**
          * Notifica il longclick su un elemento della collection
          *
-         * @param tasks RealmList<Task>
+         * @param userStory {@link UserStory}
          */
-        void onItemLongClicked(RealmList<Task> tasks);
+        void onItemLongClicked(UserStory userStory);
 
         /**
          * Notifica il cambio di elementi nella collection

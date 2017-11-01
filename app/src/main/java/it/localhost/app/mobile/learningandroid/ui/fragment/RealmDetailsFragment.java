@@ -15,6 +15,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import it.localhost.app.mobile.learningandroid.R;
 import it.localhost.app.mobile.learningandroid.data.model.Task;
+import it.localhost.app.mobile.learningandroid.data.model.UserStory;
 
 /**
  * @author vincenzo.petronio on 31/10/2017.
@@ -23,6 +24,7 @@ public class RealmDetailsFragment extends BaseFragment {
 
     private static final String TAG = RealmDetailsFragment.class.getSimpleName();
     private Unbinder mUnbinder;
+    private UserStory mBundleUserStory;
 
     @BindView(R.id.ll_container)
     LinearLayout mLlContainer;
@@ -37,6 +39,16 @@ public class RealmDetailsFragment extends BaseFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         Log.v(TAG, "onCreate");
         super.onCreate(savedInstanceState);
+
+        // BUNDLE
+        try {
+            mBundleUserStory = getArguments().getParcelable("BUNDLE_USERSTORY");
+            if (mBundleUserStory == null) {
+                throw new Exception("Bundle NULL!!!");
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "Exception", e);
+        }
     }
 
     @Nullable
@@ -79,18 +91,18 @@ public class RealmDetailsFragment extends BaseFragment {
     private void initUI() {
         mLlContainer.removeAllViews();
 
-//        for (Task task : tasks) {
-//            CheckedTextView checkedTextView = new CheckedTextView(getActivity());
-//            if (task.isNeeded()) {
-//                checkedTextView.setCheckMarkDrawable(android.R.drawable.checkbox_on_background);
-//            } else {
-//                checkedTextView.setCheckMarkDrawable(0);
-//            }
-//            checkedTextView.setText(
-//                    Integer.toString(task.getId()) + " " +
-//                            task.getTitle() + " " +
-//                            Long.toString(task.getTimestamp()));
-//            mLlContainer.addView(checkedTextView);
-//        }
+        for (Task task : mBundleUserStory.getTaskRealmCollection()) {
+            CheckedTextView checkedTextView = new CheckedTextView(getActivity());
+            if (task.isNeeded()) {
+                checkedTextView.setCheckMarkDrawable(android.R.drawable.checkbox_on_background);
+            } else {
+                checkedTextView.setCheckMarkDrawable(0);
+            }
+            checkedTextView.setText(
+                    Integer.toString(task.getId()) + " " +
+                            task.getTitle() + " " +
+                            Long.toString(task.getTimestamp()));
+            mLlContainer.addView(checkedTextView);
+        }
     }
 }

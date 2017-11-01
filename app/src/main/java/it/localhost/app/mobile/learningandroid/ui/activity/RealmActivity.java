@@ -10,6 +10,7 @@ import android.widget.SearchView;
 import io.realm.RealmList;
 import it.localhost.app.mobile.learningandroid.R;
 import it.localhost.app.mobile.learningandroid.data.model.Task;
+import it.localhost.app.mobile.learningandroid.data.model.UserStory;
 import it.localhost.app.mobile.learningandroid.ui.fragment.RealmDetailsFragment;
 import it.localhost.app.mobile.learningandroid.ui.fragment.RealmListFragment;
 
@@ -79,10 +80,17 @@ public class RealmActivity extends BaseActivity {
         getSupportFragmentManager().beginTransaction().add(R.id.container, new RealmListFragment()).commit();
     }
 
-    public void navToDetails(RealmList<Task> tasks) {
+    /**
+     * Naviga alla pagina con i dettagli dell'oggetto passato.
+     *
+     * @param userStory {@link UserStory}
+     */
+    public void navToDetails(UserStory userStory) {
         Bundle b = new Bundle();
-//        b.putParcelable("BUNDLE_TASK",);
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, new RealmDetailsFragment(), null).commit();
+        b.putParcelable("BUNDLE_USERSTORY", userStory);
+        RealmDetailsFragment fragment = new RealmDetailsFragment();
+        fragment.setArguments(b);
+        getSupportFragmentManager().beginTransaction().add(R.id.container, fragment).addToBackStack(null).commit();
     }
 
     /**
