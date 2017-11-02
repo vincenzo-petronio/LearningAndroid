@@ -23,6 +23,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import io.realm.Realm;
+import io.realm.RealmChangeListener;
 import io.realm.RealmList;
 import io.realm.RealmResults;
 import it.localhost.app.mobile.learningandroid.R;
@@ -39,7 +40,6 @@ public class RealmListFragment extends BaseFragment {
 
     private static final String TAG = RealmListFragment.class.getSimpleName();
     private Unbinder mUnbinder;
-    private Realm mRealm;
     private RealmAdapter mRealmAdapter;
     private RealmResults<UserStory> mUserStories;
 
@@ -97,10 +97,6 @@ public class RealmListFragment extends BaseFragment {
         Log.v(TAG, "onDestroyView");
         super.onDestroyView();
         mUnbinder.unbind();
-
-        if (mRealm != null && !mRealm.isClosed()) {
-            mRealm.close();
-        }
     }
 
     @Override
@@ -138,10 +134,17 @@ public class RealmListFragment extends BaseFragment {
     }
 
     private void initData() {
-        mRealm = Realm.getDefaultInstance();
-        mUserStories = mRealm.where(UserStory.class).findAll();
-        mRealmAdapter.updateData(mUserStories);
-        setTvRisultati(mUserStories == null ? 0 : mUserStories.size());
+        try (Realm mRealm = Realm.getDefaultInstance()) {
+            mUserStories = mRealm.where(UserStory.class).findAll();
+            mUserStories.addChangeListener(new RealmChangeListener<RealmResults<UserStory>>() {
+
+                @Override
+                public void onChange(RealmResults<UserStory> userStories) {
+                    setTvRisultati(userStories == null ? 0 : userStories.size());
+                }
+            });
+            mRealmAdapter.updateData(mUserStories);
+        }
     }
 
     private void initUI() {

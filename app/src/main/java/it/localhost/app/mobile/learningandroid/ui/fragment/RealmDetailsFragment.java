@@ -12,7 +12,10 @@ import android.widget.LinearLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
+import io.realm.Realm;
+import io.realm.RealmResults;
 import it.localhost.app.mobile.learningandroid.R;
 import it.localhost.app.mobile.learningandroid.data.model.Task;
 import it.localhost.app.mobile.learningandroid.data.model.UserStory;
@@ -86,6 +89,24 @@ public class RealmDetailsFragment extends BaseFragment {
     @Override
     public int getIdLayout() {
         return R.layout.fragment_realmdetails;
+    }
+
+    @OnClick(R.id.bt_delete)
+    void onClickListenerBtDelete() {
+        // TRY-WITH-RESOURCES
+        // @see <a href="https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html"></>
+        try (Realm mRealmInstance = Realm.getDefaultInstance()) {
+            mRealmInstance.executeTransaction(new Realm.Transaction() {
+                @Override
+                public void execute(Realm localRealm) {
+                    UserStory userStory = localRealm.where(UserStory.class).equalTo("id", mBundleUserStory.getId()).findFirst();
+                    if (userStory != null) {
+                        userStory.deleteFromRealm();
+                        getFragmentManager().popBackStack();
+                    }
+                }
+            });
+        }
     }
 
     private void initUI() {
