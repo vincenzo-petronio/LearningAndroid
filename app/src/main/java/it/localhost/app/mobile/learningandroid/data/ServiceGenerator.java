@@ -18,6 +18,8 @@ public class ServiceGenerator {
             .baseUrl(Constants.API_JSONPLACEHOLDER_URL_BASE)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+    // N.B. Posso aggiungere più callAdapter in successione, Retrofit è in grado di selezionare
+    // quello corretto a seconda del metodo chiamato (cioè del return type)
 
 
     /**

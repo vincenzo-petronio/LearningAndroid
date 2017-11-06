@@ -13,6 +13,12 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import it.localhost.app.mobile.learningandroid.R;
 import it.localhost.app.mobile.learningandroid.data.ApiJsonPlaceholderEndpoint;
 import it.localhost.app.mobile.learningandroid.data.ServiceGenerator;
@@ -30,6 +36,8 @@ public class RetrofitActivity extends BaseActivity {
     private static final String TAG = RetrofitActivity.class.getSimpleName();
     private CommentsAdapter mAdapter;
     private List<Comment> mCommentList;
+    private Observable<List<Comment>> mObservableCommentList;
+    private ApiJsonPlaceholderEndpoint mClient;
 
     @BindView(R.id.lvItems)
     protected ListView mLvItems;
@@ -41,6 +49,8 @@ public class RetrofitActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         ButterKnife.bind(this);
+
+        mClient = ServiceGenerator.createService(ApiJsonPlaceholderEndpoint.class);
 
         initUI();
         loadData();
@@ -75,7 +85,10 @@ public class RetrofitActivity extends BaseActivity {
     protected void onBtCaseClickListener(View view) {
         switch (view.getId()) {
             case R.id.btCase1:
-                loadDataFromImgur();
+                loadDataWithRx();
+                break;
+            case R.id.btCase2:
+                loadDataWithRx();
                 break;
             default:
                 break;
@@ -99,11 +112,9 @@ public class RetrofitActivity extends BaseActivity {
     private void loadData() {
         showProgress(true);
 
-        ApiJsonPlaceholderEndpoint client = ServiceGenerator.createService(ApiJsonPlaceholderEndpoint.class);
-
         // execute() sul Thread UI va in Exception, è da utilizzare solo in un Background Service
         // o Thread secondario e viene eseguito in sincrono
-        Call<List<Comment>> call = client.getComments("1");
+        Call<List<Comment>> call = mClient.getComments("1");
         try {
             mCommentList = call.execute().body();
             mAdapter.updateCollection(mCommentList);
@@ -135,7 +146,34 @@ public class RetrofitActivity extends BaseActivity {
         showProgress(false);
     }
 
-    private void loadDataFromImgur() {
+    private void loadDataWithRx() {
+        mObservableCommentList = mClient.getRxComments("2");
+        mObservableCommentList
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<List<Comment>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                Log.v(TAG, "loadDataWithRx:onSubscribe");
+            }
+
+            @Override
+            public void onNext(List<Comment> comments) {
+                Log.v(TAG, "loadDataWithRx:onNext");
+                mAdapter.updateCollection(comments);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.e(TAG, "loadDataWithRx:onError", e);
+
+            }
+
+            @Override
+            public void onComplete() {
+                Log.v(TAG, "loadDataWithRx:onComplete");
+            }
+        });
 
     }
 }
