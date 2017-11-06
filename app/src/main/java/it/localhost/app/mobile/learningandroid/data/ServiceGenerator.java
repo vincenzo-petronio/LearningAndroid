@@ -3,6 +3,7 @@ package it.localhost.app.mobile.learningandroid.data;
 import it.localhost.app.mobile.learningandroid.util.Constants;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -10,17 +11,17 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class ServiceGenerator {
 
-    private static OkHttpClient.Builder mHttpClient = new OkHttpClient.Builder();
+    private static OkHttpClient.Builder mHttpClient = new OkHttpClient.Builder()
+            .addInterceptor(new LoggerInterceptor());
 
     private static Retrofit.Builder mRetrofitBuilder = new Retrofit.Builder()
             .baseUrl(Constants.API_JSONPLACEHOLDER_URL_BASE)
-            .addConverterFactory(GsonConverterFactory.create());
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create());
 
 
     /**
-     *
      * @param serviceClass Class<T>
-     * @param <T>
      * @return <T>
      */
     public static <T> T createService(Class<T> serviceClass) {

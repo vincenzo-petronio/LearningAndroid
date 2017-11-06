@@ -37,6 +37,7 @@ ext {
     minSdkVersion = 15
     targetSdkVersion = 26
     supportVersion = "26.0.1"
+    retrofitVersion = "2.3.0"
 }
 
 task clean(type: Delete) {

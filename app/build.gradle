@@ -85,8 +85,9 @@ dependencies {
 
     // NETWORK
     compile 'com.android.volley:volley:1.0.0'
-    compile 'com.squareup.retrofit2:retrofit:2.3.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    compile 'com.squareup.retrofit2:retrofit:' + rootProject.ext.retrofitVersion
+    compile 'com.squareup.retrofit2:converter-gson:' + rootProject.ext.retrofitVersion
+    compile 'com.squareup.retrofit2:adapter-rxjava2:' + rootProject.ext.retrofitVersion
 
     // GSON
     compile 'com.google.code.gson:gson:2.8.2'
@@ -121,7 +122,7 @@ dependencies {
     annotationProcessor 'com.facebook.litho:litho-processor:0.4.1'
 
     // RX
-    compile 'io.reactivex.rxjava2:rxjava:2.1.5'
+    compile 'io.reactivex.rxjava2:rxjava:2.1.6'
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
     compile 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
 
