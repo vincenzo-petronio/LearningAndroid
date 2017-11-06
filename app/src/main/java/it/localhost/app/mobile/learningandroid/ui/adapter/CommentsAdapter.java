@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -80,6 +81,7 @@ public class CommentsAdapter extends BaseAdapter {
 
         viewHolderComments.mTvTitle.setText(comment.getName());
         viewHolderComments.mTvIngredients.setText(comment.getBody());
+        viewHolderComments.mTvId.setText(String.format(Locale.ITALY, "PostID:%1$s - ID:%2$s", comment.getPostId(), comment.getId()));
 
         return convertView;
     }
@@ -93,6 +95,8 @@ public class CommentsAdapter extends BaseAdapter {
         TextView mTvTitle;
         @BindView(R.id.tvIngredients)
         TextView mTvIngredients;
+        @BindView(R.id.tvId)
+        TextView mTvId;
 
         ViewHolderComments(View view) {
             ButterKnife.bind(this, view);

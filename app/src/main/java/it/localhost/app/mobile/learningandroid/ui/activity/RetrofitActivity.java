@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -23,6 +24,7 @@ import it.localhost.app.mobile.learningandroid.R;
 import it.localhost.app.mobile.learningandroid.data.ApiJsonPlaceholderEndpoint;
 import it.localhost.app.mobile.learningandroid.data.ServiceGenerator;
 import it.localhost.app.mobile.learningandroid.data.model.Comment;
+import it.localhost.app.mobile.learningandroid.data.model.Post;
 import it.localhost.app.mobile.learningandroid.ui.adapter.CommentsAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -147,33 +149,79 @@ public class RetrofitActivity extends BaseActivity {
     }
 
     private void loadDataWithRx() {
-        mObservableCommentList = mClient.getRxComments("2");
-        mObservableCommentList
+        getObservableOperatorCreate()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<List<Comment>>() {
+                .subscribe(getObserverOperatorCreate());
+    }
+
+
+    /**
+     * Observer
+     *
+     * @return Observer<Comment>
+     */
+    private Observer<Comment> getObserverOperatorCreate() {
+        return new Observer<Comment>() {
+
+            List<Comment> mCommentList = new ArrayList<>();
+
             @Override
             public void onSubscribe(Disposable d) {
-                Log.v(TAG, "loadDataWithRx:onSubscribe");
+                Log.v(TAG, "getObserverOperatorCreate:onSubscribe");
+                mCommentList.clear();
             }
 
             @Override
-            public void onNext(List<Comment> comments) {
-                Log.v(TAG, "loadDataWithRx:onNext");
-                mAdapter.updateCollection(comments);
+            public void onNext(Comment comment) {
+                Log.v(TAG, "getObserverOperatorCreate:onNext");
+                mCommentList.add(comment);
             }
 
             @Override
             public void onError(Throwable e) {
-                Log.e(TAG, "loadDataWithRx:onError", e);
-
+                Log.e(TAG, "getObserverOperatorCreate:onError", e);
             }
 
             @Override
             public void onComplete() {
-                Log.v(TAG, "loadDataWithRx:onComplete");
+                Log.v(TAG, "getObserverOperatorCreate:onComplete");
+                mAdapter.updateCollection(mCommentList);
             }
-        });
-
+        };
     }
+
+    /**
+     * Observable: concatena due Observable di tipo List<Comments> ottenuti dal BE (Retrofit) e crea
+     * un nuovo Observable di tipo Comments
+     *
+     * @return Observable<Comment>
+     */
+    private Observable<Comment> getObservableOperatorCreate() {
+        return getRxPostIdComments("10").concatWith(getRxPostIdComments("20")).flatMapIterable(c -> c);
+    }
+
+    /**
+     * @return List<Post>
+     */
+    private Observable<List<Post>> getRxPostsObservable() {
+        return mClient.getRxPosts();
+    }
+
+    /**
+     * @param id String
+     * @return Post
+     */
+    private Observable<Post> getRxPostIdObservable(String id) {
+        return mClient.getRxPostId(id);
+    }
+
+    /**
+     * @param id String
+     * @return List<Comment>
+     */
+    private Observable<List<Comment>> getRxPostIdComments(String id) {
+        return mClient.getRxPostIdComments(id);
+    }
+
 }
