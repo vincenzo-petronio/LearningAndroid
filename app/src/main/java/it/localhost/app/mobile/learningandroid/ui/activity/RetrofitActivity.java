@@ -16,7 +16,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
-import io.reactivex.Scheduler;
+import io.reactivex.Single;
+import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
@@ -192,13 +193,15 @@ public class RetrofitActivity extends BaseActivity {
     }
 
     /**
-     * Observable: concatena due Observable di tipo List<Comments> ottenuti dal BE (Retrofit) e crea
-     * un nuovo Observable di tipo Comments
+     * Observable ottenuto da fonti diverse.
      *
      * @return Observable<Comment>
      */
     private Observable<Comment> getObservableOperatorCreate() {
-        return getRxPostIdComments("10").concatWith(getRxPostIdComments("20")).flatMapIterable(c -> c);
+        return getRxPostIdComments("10")    // 1° Observable dal BE
+                .concatWith(getRxPostIdComments("20"))  // 2° Observable dal BE
+                .flatMapIterable(c -> c)    // Converte una List<Comment> in Comment
+                .concatWith(getRxComment().toObservable()); // 3° Observable da un Single
     }
 
     /**
@@ -224,4 +227,18 @@ public class RetrofitActivity extends BaseActivity {
         return mClient.getRxPostIdComments(id);
     }
 
+    /**
+     * Emette un Single Comment
+     *
+     * @return Single<Comment>
+     */
+    private Single<Comment> getRxComment() {
+        Comment comment = new Comment();
+        comment.setId(9999);
+        comment.setName("Single Comment name");
+        comment.setPostId(8888);
+        comment.setBody("Single Comment body");
+        comment.setEmail("Single Comment email");
+        return Single.just(comment);
+    }
 }
