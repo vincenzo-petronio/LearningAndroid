@@ -2,11 +2,17 @@
 
 buildscript {
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0'
-        classpath "io.realm:realm-gradle-plugin:4.1.1"
+        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath "io.realm:realm-gradle-plugin:4.3.1"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
+    }
+    repositories {
+        // Gradle 4.1 and higher include support for Google's Maven repo using
+        // the google() method. And you need to include this repo to download
+        // Android plugin 3.0.0 or higher.
+        google()
     }
 }
 
@@ -36,7 +42,7 @@ ext {
     compileSdkVersion = 26
     minSdkVersion = 15
     targetSdkVersion = 26
-    supportVersion = "26.0.1"
+    supportVersion = "26.0.2"
     retrofitVersion = "2.3.0"
 }
 
