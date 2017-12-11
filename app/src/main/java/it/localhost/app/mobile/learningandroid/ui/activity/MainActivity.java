@@ -148,6 +148,11 @@ public class MainActivity extends AppCompatActivity {
                 i = new Intent(MainActivity.this, ServerSyncActivity.class);
                 startActivity(i);
                 break;
+            case 21:
+                // CONCURRENCY
+                i = new Intent(MainActivity.this, ConcurrencyActivity.class);
+                startActivity(i);
+                break;
             //...
             default:
                 break;

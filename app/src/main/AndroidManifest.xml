@@ -103,6 +103,9 @@
         <activity
             android:name=".ui.activity.ServerSyncActivity"
             android:label="@string/serversync_actionbar_title" />
+        <activity
+            android:name=".ui.activity.ConcurrencyActivity"
+            android:label="@string/concurrency_actionbar_title" />
     </application>
 
 </manifest>

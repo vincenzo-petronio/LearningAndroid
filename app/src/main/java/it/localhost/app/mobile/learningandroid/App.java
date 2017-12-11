@@ -1,5 +1,6 @@
 package it.localhost.app.mobile.learningandroid;
 
+import com.akaita.java.rxjava2debug.RxJava2Debug;
 import com.facebook.soloader.SoLoader;
 
 import android.app.Activity;
@@ -34,6 +35,7 @@ public class App extends Application implements HasActivityInjector {
         initDagger();
         initRealm();
         initLitho();
+        initRxDebug();
     }
 
     private void initDagger() {
@@ -63,6 +65,13 @@ public class App extends Application implements HasActivityInjector {
 
     private void initLitho() {
         SoLoader.init(this, false);
+    }
+
+    private void initRxDebug() {
+        RxJava2Debug.enableRxJava2AssemblyTracking();
+//        RxJava2Debug.enableRxJava2AssemblyTracking(
+//                new String[]{getApplicationContext().getPackageName()}
+//        );
     }
 
     @Override

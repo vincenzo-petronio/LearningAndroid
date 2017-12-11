@@ -36,6 +36,7 @@
         <item>Litho</item>
         <item>Dagger</item>
         <item>SyncAdapter</item>
+        <item>Concurrency</item>
     </string-array>
 
     <!-- JSOUP -->
@@ -117,4 +118,7 @@
 
     <!-- SYNCADAPTER -->
     <string name="serversync_actionbar_title">ServerSync (SyncAdapter)</string>
+
+    <!-- CONCURRENCY -->
+    <string name="concurrency_actionbar_title">Concurrency (Future)</string>
 </resources>

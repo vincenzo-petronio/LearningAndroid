@@ -5,6 +5,7 @@ import java.util.List;
 import io.reactivex.Observable;
 import it.localhost.app.mobile.learningandroid.data.model.Comment;
 import it.localhost.app.mobile.learningandroid.data.model.Post;
+import it.localhost.app.mobile.learningandroid.data.model.User;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -20,6 +21,12 @@ public interface ApiJsonPlaceholderEndpoint {
 
     @GET("/posts/{postId}/comments")
     Call<List<Comment>> getComments(@Path("postId") String postId);
+
+    @GET("/users")
+    Call<List<User>> getUsers();
+
+    @GET("/users/{userId}")
+    Call<User> getUser(@Path("userId") String userId);
 
 
     // **** RETROFIT + RXJava2 ****

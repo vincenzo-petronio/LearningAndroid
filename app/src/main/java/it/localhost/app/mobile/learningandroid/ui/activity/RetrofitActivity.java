@@ -1,15 +1,21 @@
 package it.localhost.app.mobile.learningandroid.ui.activity;
 
+import com.akaita.java.rxjava2debug.RxJava2Debug;
+import com.jakewharton.rxbinding2.widget.RxTextView;
+
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,6 +26,7 @@ import io.reactivex.Single;
 import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import it.localhost.app.mobile.learningandroid.R;
 import it.localhost.app.mobile.learningandroid.data.ApiJsonPlaceholderEndpoint;
@@ -41,14 +48,18 @@ public class RetrofitActivity extends BaseActivity {
     private List<Comment> mCommentList;
     private Observable<List<Comment>> mObservableCommentList;
     private ApiJsonPlaceholderEndpoint mClient;
+    private Disposable mDisposableEtSearch;
 
     @BindView(R.id.lvItems)
     protected ListView mLvItems;
     @BindView(R.id.pb)
     protected ProgressBar mProgressBar;
+    @BindView(R.id.et_search)
+    EditText mEtSearch;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        Log.v(TAG, "onCreate");
         super.onCreate(savedInstanceState);
 
         ButterKnife.bind(this);
@@ -61,12 +72,18 @@ public class RetrofitActivity extends BaseActivity {
 
     @Override
     protected void onResume() {
+        Log.v(TAG, "onResume");
         super.onResume();
     }
 
     @Override
     protected void onDestroy() {
+        Log.v(TAG, "onDestroy");
         super.onDestroy();
+
+        if (mDisposableEtSearch.isDisposed()) {
+            mDisposableEtSearch.dispose();
+        }
     }
 
     @Override
@@ -91,7 +108,7 @@ public class RetrofitActivity extends BaseActivity {
                 loadDataWithRx();
                 break;
             case R.id.btCase2:
-                loadDataWithRx();
+                navigateToSearch();
                 break;
             default:
                 break;
@@ -154,6 +171,18 @@ public class RetrofitActivity extends BaseActivity {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getObserverOperatorCreate());
+
+        mDisposableEtSearch = RxTextView.textChanges(mEtSearch)
+                .debounce(800, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
+                .filter(charSequence -> charSequence.length() > 0)
+                .flatMap(charSequence -> getRxObservableCommentFromCharSequence(charSequence.toString()))
+//                .switchMap(charSequence -> getRxObservableCommentFromCharSequence(charSequence.toString()))
+                .subscribe(getRxConsumerForSearch(), RxJava2Debug::getEnhancedStackTrace);
+//                .subscribe(charSequence -> Log.v(TAG, charSequence.toString()), RxJava2Debug::getEnhancedStackTrace);
+    }
+
+    private void navigateToSearch() {
+        // TODO
     }
 
 
@@ -240,5 +269,29 @@ public class RetrofitActivity extends BaseActivity {
         comment.setBody("Single Comment body");
         comment.setEmail("Single Comment email");
         return Single.just(comment);
+    }
+
+    /**
+     * @return Consumer<CharSequence>
+     */
+    private Consumer<Comment> getRxConsumerForSearch() {
+        return new Consumer<Comment>() {
+            @Override
+            public void accept(Comment comment) throws Exception {
+                Log.i(TAG, "getRxConsumerForSearch.accept:  " + "" + comment.getId());
+            }
+        };
+    }
+
+    private Observable<Comment> getRxObservableCommentFromCharSequence(String query) {
+//        if (TextUtils.isEmpty(query)) {
+//            return getObservableOperatorCreate();
+//        }
+
+        List<Comment> mCommentFoundedList = new ArrayList<>();
+//        for (Comment comment : getObservableOperatorCreate().ite)
+        return getObservableOperatorCreate().filter(comment -> comment.getName().toLowerCase().equals(query.toLowerCase()));
+
+//        return Observable.just(mCommentFoundedList).flatMapIterable(q -> q);
     }
 }
