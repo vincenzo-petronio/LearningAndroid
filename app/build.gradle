@@ -115,11 +115,11 @@ dependencies {
     implementation 'io.realm:android-adapters:2.1.1'
 
     // LITHO
-    implementation 'com.facebook.litho:litho-core:0.6.0'
-    implementation 'com.facebook.litho:litho-widget:0.4.1'
+    implementation 'com.facebook.litho:litho-core:0.11.0'
+    implementation 'com.facebook.litho:litho-widget:0.11.0'
     implementation 'com.facebook.soloader:soloader:0.2.0'
-    compileOnly 'com.facebook.litho:litho-annotations:0.6.0'
-    annotationProcessor 'com.facebook.litho:litho-processor:0.4.1'
+    compileOnly 'com.facebook.litho:litho-annotations:0.11.0'
+    annotationProcessor 'com.facebook.litho:litho-processor:0.11.0'
 
     // RX
     implementation 'io.reactivex.rxjava2:rxjava:2.1.6'
