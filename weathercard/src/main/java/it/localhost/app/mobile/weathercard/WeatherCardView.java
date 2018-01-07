@@ -12,8 +12,10 @@ import android.view.LayoutInflater;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -29,6 +31,7 @@ public class WeatherCardView extends CardView {
     private int mWeatherCardType;
 
     @Retention(RetentionPolicy.SOURCE)
+    @Target({ElementType.PARAMETER, ElementType.METHOD})
     @IntDef({CLOUDY, HAIL, LIGHTNING, NIGHT, PARTLYCLOUDY, POURING, RAINY, SNOWY, WINDY})
     public @interface WeatherCardType {
     }

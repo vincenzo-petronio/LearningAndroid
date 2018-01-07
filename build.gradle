@@ -38,11 +38,16 @@ allprojects {
 // This block encapsulates custom properties and makes them available to all
 // modules in the project.
 ext {
-    buildToolsVersion = "26.0.2"
-    compileSdkVersion = 26
+    // deprecated:
+    // If you're using Android plugin for Gradle 3.0.0 or higher,
+    // your project automatically uses a default version of the build tools
+    // that the plugin specifies
+//    buildToolsVersion = "27.0.3"
+
+    compileSdkVersion = 27
     minSdkVersion = 15
-    targetSdkVersion = 26
-    supportVersion = "26.0.2"
+    targetSdkVersion = 27
+    supportVersion = "27.0.2"
     retrofitVersion = "2.3.0"
 }
 
