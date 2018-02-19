@@ -1,1 +1,9 @@
-include ':app', ':weathercard'
+// ANDROID APP
+//include ':app'
+//include ':weathercard'
+
+// ANDROID INSTANT APP
+include ':application'
+include ':base'
+include ':instantapp'
+include ':features:htmlreader'

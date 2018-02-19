@@ -8,8 +8,11 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/weathercard" />
+            <option value="$PROJECT_DIR$/application" />
+            <option value="$PROJECT_DIR$/base" />
+            <option value="$PROJECT_DIR$/features" />
+            <option value="$PROJECT_DIR$/features/htmlreader" />
+            <option value="$PROJECT_DIR$/instantapp" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
