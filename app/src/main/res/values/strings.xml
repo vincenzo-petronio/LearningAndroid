@@ -37,6 +37,7 @@
         <item>Dagger</item>
         <item>SyncAdapter</item>
         <item>Concurrency</item>
+        <item>Patterns</item>
     </string-array>
 
     <!-- JSOUP -->
@@ -121,4 +122,11 @@
 
     <!-- CONCURRENCY -->
     <string name="concurrency_actionbar_title">Concurrency (Future)</string>
+
+    <!-- PATTERNS -->
+    <string name="patterns_actionbar_title">Patterns</string>
+    <string-array name="patterns_items">
+        <item>Strategy</item>
+        <item>Decorator</item>
+    </string-array>
 </resources>

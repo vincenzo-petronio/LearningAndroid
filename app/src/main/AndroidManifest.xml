@@ -3,20 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="it.localhost.app.mobile.learningandroid">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-sdk tools:overrideLibrary="         com.thoughtbot.expandablecheckrecyclerview,         com.thoughtbot.expandablerecyclerview,         io.doist.recyclerviewext.animations,         io.doist.recyclerviewext.sticky_headers,         io.doist.recyclerviewext.click_listeners,         io.doist.recyclerviewext.dividers,         io.doist.recyclerviewext.dragdrop,         io.doist.recyclerviewext.flippers,         io.doist.recyclerviewext.pinch_zoom,         io.doist.recyclerviewext.choice_modes     " />
 
-    <uses-sdk tools:overrideLibrary="
-        com.thoughtbot.expandablecheckrecyclerview,
-        com.thoughtbot.expandablerecyclerview,
-        io.doist.recyclerviewext.animations,
-        io.doist.recyclerviewext.sticky_headers,
-        io.doist.recyclerviewext.click_listeners,
-        io.doist.recyclerviewext.dividers,
-        io.doist.recyclerviewext.dragdrop,
-        io.doist.recyclerviewext.flippers,
-        io.doist.recyclerviewext.pinch_zoom,
-        io.doist.recyclerviewext.choice_modes
-    " />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".App"
@@ -106,6 +95,10 @@
         <activity
             android:name=".ui.activity.ConcurrencyActivity"
             android:label="@string/concurrency_actionbar_title" />
+        <activity
+            android:name=".ui.activity.PatternsActivity"
+            android:label="@string/patterns_actionbar_title"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

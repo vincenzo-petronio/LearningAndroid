@@ -153,6 +153,11 @@ public class MainActivity extends AppCompatActivity {
                 i = new Intent(MainActivity.this, ConcurrencyActivity.class);
                 startActivity(i);
                 break;
+            case 22:
+                // PATTERNS
+                i = new Intent(MainActivity.this, PatternsActivity.class);
+                startActivity(i);
+                break;
             //...
             default:
                 break;

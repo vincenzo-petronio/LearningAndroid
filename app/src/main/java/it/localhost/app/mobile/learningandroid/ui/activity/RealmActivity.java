@@ -7,9 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SearchView;
 
-import io.realm.RealmList;
 import it.localhost.app.mobile.learningandroid.R;
-import it.localhost.app.mobile.learningandroid.data.model.Task;
 import it.localhost.app.mobile.learningandroid.data.model.UserStory;
 import it.localhost.app.mobile.learningandroid.ui.fragment.RealmDetailsFragment;
 import it.localhost.app.mobile.learningandroid.ui.fragment.RealmListFragment;
