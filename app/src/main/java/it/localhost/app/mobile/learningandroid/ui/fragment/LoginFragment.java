@@ -16,17 +16,21 @@ import butterknife.Unbinder;
 import it.localhost.app.mobile.learningandroid.R;
 import it.localhost.app.mobile.learningandroid.helper.login.AdminStrategy;
 import it.localhost.app.mobile.learningandroid.helper.login.ClassicStrategy;
+import it.localhost.app.mobile.learningandroid.helper.login.EmptyDecorator;
 import it.localhost.app.mobile.learningandroid.helper.login.ILoginStrategy;
+import it.localhost.app.mobile.learningandroid.helper.login.LengthEmptyDecorator;
 import it.localhost.app.mobile.learningandroid.helper.login.SocialStrategy;
+import it.localhost.app.mobile.learningandroid.util.Constants;
 
 /**
  * @author vincenzo.petronio on 20/02/2018.
  */
 
-public class PatternStrategyFragment extends BaseFragment {
+public class LoginFragment extends BaseFragment {
 
-    private static final String TAG = PatternStrategyFragment.class.getSimpleName();
+    private static final String TAG = LoginFragment.class.getSimpleName();
     private Unbinder mUnbinder;
+    private boolean mBundleUseDecorator;
 
     @BindView(R.id.et_username)
     EditText mEtUsername;
@@ -43,6 +47,10 @@ public class PatternStrategyFragment extends BaseFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         Log.v(TAG, "onCreate");
         super.onCreate(savedInstanceState);
+
+        if (getArguments() != null) {
+            mBundleUseDecorator = getArguments().getBoolean(Constants.EXTRA_USEDECORATOR, false);
+        }
     }
 
     @Nullable
@@ -98,7 +106,7 @@ public class PatternStrategyFragment extends BaseFragment {
                 login(new SocialStrategy("7h1sI5AnAcc3ssT0kenExamp13"));
                 break;
             case R.id.bt_login:
-                login(new ClassicStrategy());
+                login(mBundleUseDecorator ? new LengthEmptyDecorator(new EmptyDecorator(new ClassicStrategy())) : new ClassicStrategy());
                 break;
             case R.id.bt_login_admin:
                 login(new AdminStrategy());
@@ -110,7 +118,11 @@ public class PatternStrategyFragment extends BaseFragment {
     }
 
     private void login(ILoginStrategy loginStrategy) {
-        loginStrategy.login(getUsername(), getPassword());
+        try {
+            loginStrategy.login(getUsername(), getPassword());
+        } catch (Exception e) {
+            Log.e(TAG, "Exception: " + e.getLocalizedMessage());
+        }
     }
 
     private String getUsername() {

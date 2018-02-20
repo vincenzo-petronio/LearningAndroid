@@ -10,5 +10,5 @@ public interface ILoginStrategy {
      * @param username String
      * @param psw      String
      */
-    void login(String username, String psw);
+    void login(String username, String psw) throws Exception;
 }

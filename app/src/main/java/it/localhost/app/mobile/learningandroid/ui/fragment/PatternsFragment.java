@@ -17,6 +17,7 @@ import butterknife.OnItemClick;
 import butterknife.Unbinder;
 import it.localhost.app.mobile.learningandroid.R;
 import it.localhost.app.mobile.learningandroid.ui.activity.PatternsActivity;
+import it.localhost.app.mobile.learningandroid.util.Constants;
 
 /**
  * Patterns home
@@ -57,6 +58,7 @@ public class PatternsFragment extends BaseFragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        Log.v(TAG, "onViewCreated");
         super.onViewCreated(view, savedInstanceState);
 
         initUI();
@@ -64,7 +66,7 @@ public class PatternsFragment extends BaseFragment {
 
     @Override
     public void onResume() {
-        Log.v(TAG, "onDetach");
+        Log.v(TAG, "onResume");
         super.onResume();
     }
 
@@ -89,10 +91,18 @@ public class PatternsFragment extends BaseFragment {
     @OnItemClick(R.id.lvItems)
     void OnItemClick(int position) {
         Log.d(TAG, "OnItemSelected: " + lvItems.getItemAtPosition(position));
+        Bundle bundle;
 
         switch (lvItems.getItemAtPosition(position).toString()) {
             case "Strategy":
-                mActivity.navigateTo(new PatternStrategyFragment());
+                mActivity.navigateTo(new LoginFragment());
+                break;
+            case "Decorator":
+                bundle = new Bundle();
+                bundle.putBoolean(Constants.EXTRA_USEDECORATOR, true);
+                BaseFragment fragment = new LoginFragment();
+                fragment.setArguments(bundle);
+                mActivity.navigateTo(fragment);
                 break;
             default:
                 break;
