@@ -12,6 +12,9 @@
     <string name="sort">Sort</string>
     <string name="filter">Filter</string>
     <string name="search">Search</string>
+    <string name="login">Login</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
 
     <!-- MAIN -->
     <string-array name="main_items">

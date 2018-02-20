@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_padding">
+
+    <LinearLayout
+        android:id="@+id/ll_social"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_login_tumblr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/login"
+            android:padding="@dimen/activity_padding_half"
+            app:srcCompat="@drawable/social_tumblr"
+            tools:srcCompat="@drawable/social_tumblr" />
+
+        <ImageView
+            android:id="@+id/iv_login_gplus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/login"
+            android:padding="@dimen/activity_padding_half"
+            app:srcCompat="@drawable/social_gplus"
+            tools:srcCompat="@drawable/social_gplus" />
+
+        <ImageView
+            android:id="@+id/iv_login_fb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/login"
+            android:padding="@dimen/activity_padding_half"
+            app:srcCompat="@drawable/social_facebook"
+            tools:srcCompat="@drawable/social_facebook" />
+
+        <ImageView
+            android:id="@+id/iv_login_linkedin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/login"
+            android:padding="@dimen/activity_padding_half"
+            app:srcCompat="@drawable/social_linkedin"
+            tools:srcCompat="@drawable/social_linkedin" />
+
+        <ImageView
+            android:id="@+id/iv_login_twitter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/login"
+            android:padding="@dimen/activity_padding_half"
+            app:srcCompat="@drawable/social_twitter"
+            tools:srcCompat="@drawable/social_twitter" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_classic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_padding"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/ll_social">
+
+        <EditText
+            android:id="@+id/et_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/username"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            android:inputType="textPassword" />
+
+        <Button
+            android:id="@+id/bt_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login" />
+
+        <Button
+            android:id="@+id/bt_login_admin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:text="@string/login"
+            android:textColor="@android:color/transparent"
+            android:visibility="visible" />
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

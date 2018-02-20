@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import it.localhost.app.mobile.learningandroid.R;
+import it.localhost.app.mobile.learningandroid.ui.fragment.BaseFragment;
 import it.localhost.app.mobile.learningandroid.ui.fragment.PatternsFragment;
 
 /**
@@ -50,5 +51,12 @@ public class PatternsActivity extends BaseActivity {
 
     private void initUI() {
         getSupportFragmentManager().beginTransaction().add(R.id.container, new PatternsFragment()).commit();
+    }
+
+    /**
+     * @param toFragment BaseFragment
+     */
+    public void navigateTo(BaseFragment toFragment) {
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, toFragment).addToBackStack(TAG).commit();
     }
 }

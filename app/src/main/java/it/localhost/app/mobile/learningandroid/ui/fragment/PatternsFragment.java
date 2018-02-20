@@ -16,6 +16,7 @@ import butterknife.ButterKnife;
 import butterknife.OnItemClick;
 import butterknife.Unbinder;
 import it.localhost.app.mobile.learningandroid.R;
+import it.localhost.app.mobile.learningandroid.ui.activity.PatternsActivity;
 
 /**
  * Patterns home
@@ -24,6 +25,8 @@ public class PatternsFragment extends BaseFragment {
 
     private static final String TAG = PatternsFragment.class.getSimpleName();
     private Unbinder mUnbinder;
+    private PatternsActivity mActivity;
+
     @BindArray(R.array.patterns_items)
     String[] mStringsItems;
     @BindView(R.id.lvItems)
@@ -33,6 +36,8 @@ public class PatternsFragment extends BaseFragment {
     public void onAttach(Context context) {
         Log.v(TAG, "onAttach");
         super.onAttach(context);
+
+        mActivity = (PatternsActivity) context;
     }
 
     @Override
@@ -87,7 +92,7 @@ public class PatternsFragment extends BaseFragment {
 
         switch (lvItems.getItemAtPosition(position).toString()) {
             case "Strategy":
-                //TODO
+                mActivity.navigateTo(new PatternStrategyFragment());
                 break;
             default:
                 break;
