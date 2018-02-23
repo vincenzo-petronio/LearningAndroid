@@ -1,6 +1,9 @@
 package it.localhost.app.mobile.learningandroid.helper.login;
 
 /**
+ * CONCRETE DECORATOR <br>
+ * Verifica la lunghezza minima della password e rimuove gli space dall'username
+ *
  * @author vincenzo.petronio on 20/02/2018.
  */
 

@@ -1,4 +1,4 @@
-package it.localhost.app.mobile.learningandroid.helper;
+package it.localhost.app.mobile.learningandroid.helper.login;
 
 import android.support.annotation.IntDef;
 
@@ -23,6 +23,15 @@ public class LoginType {
         int TWITTER = 4;
         int TUMBLR = 5;
         int USER_PSW = 6;
+    }
+
+    @IntDef({AuthType.BASIC, AuthType.OAUTH2, AuthType.JWT})
+    @Retention(RetentionPolicy.SOURCE)
+    @Target({ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER, ElementType.ANNOTATION_TYPE})
+    @interface AuthType {
+        int BASIC = 1;
+        int OAUTH2 = 2;
+        int JWT = 3;
     }
 
     //    @Login

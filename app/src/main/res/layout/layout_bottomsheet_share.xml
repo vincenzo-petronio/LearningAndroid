@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/activity_padding"
+    android:gravity="center_horizontal"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/iv_twitter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/activity_padding_half"
+        app:srcCompat="@drawable/social_twitter" />
+
+    <ImageView
+        android:id="@+id/iv_facebook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/activity_padding_half"
+        android:tag="2"
+        app:srcCompat="@drawable/social_facebook" />
+
+    <ImageView
+        android:id="@+id/iv_linkedin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/activity_padding_half"
+        android:tag="3"
+        app:srcCompat="@drawable/social_linkedin" />
+
+    <ImageView
+        android:id="@+id/iv_gplus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/activity_padding_half"
+        android:tag="4"
+        app:srcCompat="@drawable/social_gplus" />
+
+    <ImageView
+        android:id="@+id/iv_tumblr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/activity_padding_half"
+        android:tag="5"
+        app:srcCompat="@drawable/social_tumblr" />
+</LinearLayout>

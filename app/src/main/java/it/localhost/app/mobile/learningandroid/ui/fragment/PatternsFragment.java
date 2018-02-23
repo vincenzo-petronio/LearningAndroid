@@ -10,12 +10,17 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.Random;
+
 import butterknife.BindArray;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnItemClick;
 import butterknife.Unbinder;
 import it.localhost.app.mobile.learningandroid.R;
+import it.localhost.app.mobile.learningandroid.helper.login.BottomSheetFactory;
+import it.localhost.app.mobile.learningandroid.helper.login.IBottomSheet;
+import it.localhost.app.mobile.learningandroid.helper.login.IBundleCallback;
 import it.localhost.app.mobile.learningandroid.ui.activity.PatternsActivity;
 import it.localhost.app.mobile.learningandroid.util.Constants;
 
@@ -103,6 +108,21 @@ public class PatternsFragment extends BaseFragment {
                 BaseFragment fragment = new LoginFragment();
                 fragment.setArguments(bundle);
                 mActivity.navigateTo(fragment);
+                break;
+            case "Factory Method":
+                IBottomSheet bottomSheet = BottomSheetFactory.getBottomSheet(new Random().nextInt(2 - 1 + 1) + 1);
+                bottomSheet.setCallback(new IBundleCallback() {
+                    @Override
+                    public void onItemClicked(Bundle bundle) {
+                        Log.i(TAG, bundle.toString());
+                    }
+
+                    @Override
+                    public void onItemClicked(int position) {
+                        Log.i(TAG, "position=" + "" + position);
+                    }
+                });
+                bottomSheet.showDialog(getFragmentManager(), bottomSheet.getClass().getSimpleName());
                 break;
             default:
                 break;

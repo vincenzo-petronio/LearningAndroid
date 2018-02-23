@@ -131,5 +131,6 @@
     <string-array name="patterns_items">
         <item>Strategy</item>
         <item>Decorator</item>
+        <item>Factory Method</item>
     </string-array>
 </resources>
