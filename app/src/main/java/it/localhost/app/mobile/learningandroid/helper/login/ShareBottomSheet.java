@@ -58,7 +58,24 @@ public class ShareBottomSheet extends BottomSheetDialogFragment implements IBott
         @Override
         public void onClick(View view) {
 
-            mItemClicked = "" + view.getId();
+            switch (view.getId()) {
+                case R.id.iv_twitter:
+                    mItemClicked = "TWITTER";
+                    break;
+                case R.id.iv_facebook:
+                    mItemClicked = "FACEBOOK";
+                    break;
+                case R.id.iv_gplus:
+                    mItemClicked = "GPLUS";
+                    break;
+                case R.id.iv_linkedin:
+                    mItemClicked = "LINKEDIN";
+                    break;
+                case R.id.iv_tumblr:
+                    mItemClicked = "TUMBLR";
+                    break;
+            }
+
             if (mBundleCallback != null) {
                 Bundle bundle = new Bundle();
                 bundle.putString("ITEM", mItemClicked);

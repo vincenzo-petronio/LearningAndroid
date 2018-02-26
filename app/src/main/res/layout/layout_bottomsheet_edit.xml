@@ -1,11 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_padding">
 
     <TextView
-        android:id="@+id/textView2"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:text="Edit" />
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_add_circle_black_36dp"
+        android:drawablePadding="@dimen/activity_padding_half"
+        android:drawableStart="@drawable/ic_add_circle_black_36dp"
+        android:gravity="center_vertical"
+        android:text="@string/add"
+        android:textSize="24sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_mode_edit_black_24dp"
+        android:drawablePadding="@dimen/activity_padding_half"
+        android:drawableStart="@drawable/ic_mode_edit_black_24dp"
+        android:gravity="center_vertical"
+        android:text="@string/modify"
+        android:textSize="24sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_favorite_black_24dp"
+        android:drawablePadding="@dimen/activity_padding_half"
+        android:drawableStart="@drawable/ic_favorite_black_24dp"
+        android:gravity="center_vertical"
+        android:text="@string/favorite"
+        android:textSize="24sp" />
 </LinearLayout>
