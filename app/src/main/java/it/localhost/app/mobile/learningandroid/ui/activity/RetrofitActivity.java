@@ -32,6 +32,7 @@ import it.localhost.app.mobile.learningandroid.data.ServiceGenerator;
 import it.localhost.app.mobile.learningandroid.data.model.Comment;
 import it.localhost.app.mobile.learningandroid.data.model.Post;
 import it.localhost.app.mobile.learningandroid.ui.adapter.CommentsAdapter;
+import it.localhost.app.mobile.learningandroid.util.Constants;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -62,7 +63,11 @@ public class RetrofitActivity extends BaseActivity {
 
         ButterKnife.bind(this);
 
-        mClient = ServiceGenerator.createService(ApiJsonPlaceholderEndpoint.class);
+        mClient = new ServiceGenerator
+                .Builder(Constants.API_JSONPLACEHOLDER_URL_BASE)
+                .connectionTimeout(2)
+                .build()
+                .createService(ApiJsonPlaceholderEndpoint.class);
 
         initUI();
         loadData();

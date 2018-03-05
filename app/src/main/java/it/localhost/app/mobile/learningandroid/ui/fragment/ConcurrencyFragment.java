@@ -26,6 +26,7 @@ import it.localhost.app.mobile.learningandroid.data.ApiJsonPlaceholderEndpoint;
 import it.localhost.app.mobile.learningandroid.data.ServiceGenerator;
 import it.localhost.app.mobile.learningandroid.data.model.User;
 import it.localhost.app.mobile.learningandroid.ui.adapter.SimpleUsersAdapter;
+import it.localhost.app.mobile.learningandroid.util.Constants;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -116,7 +117,10 @@ public class ConcurrencyFragment extends BaseFragment {
         Log.v(TAG, "loadData");
         showProgress(true);
 
-        mClient = ServiceGenerator.createService(ApiJsonPlaceholderEndpoint.class);
+        mClient = new ServiceGenerator
+                .Builder(Constants.API_JSONPLACEHOLDER_URL_BASE)
+                .build()
+                .createService(ApiJsonPlaceholderEndpoint.class);
         int[] ids = {2, 4, 6, 8};
         List<User> userList = new ArrayList<>();
         CountDownLatch countDownLatch = new CountDownLatch(ids.length);
