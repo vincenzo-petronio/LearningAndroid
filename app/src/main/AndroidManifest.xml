@@ -1,15 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="it.localhost.app.mobile.learningandroid">
+    package="it.localhost.app.mobile.learningandroid"
+    android:installLocation="internalOnly">
 
-    <uses-sdk tools:overrideLibrary="         com.thoughtbot.expandablecheckrecyclerview,         com.thoughtbot.expandablerecyclerview,         io.doist.recyclerviewext.animations,         io.doist.recyclerviewext.sticky_headers,         io.doist.recyclerviewext.click_listeners,         io.doist.recyclerviewext.dividers,         io.doist.recyclerviewext.dragdrop,         io.doist.recyclerviewext.flippers,         io.doist.recyclerviewext.pinch_zoom,         io.doist.recyclerviewext.choice_modes     " />
+    <uses-sdk tools:overrideLibrary="com.thoughtbot.expandablecheckrecyclerview,
+    com.thoughtbot.expandablerecyclerview,
+    io.doist.recyclerviewext.animations,
+    io.doist.recyclerviewext.sticky_headers,
+    io.doist.recyclerviewext.click_listeners,
+    io.doist.recyclerviewext.dividers,
+    io.doist.recyclerviewext.dragdrop,
+    io.doist.recyclerviewext.flippers,
+    io.doist.recyclerviewext.pinch_zoom,
+    io.doist.recyclerviewext.choice_modes" />
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".App"
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"

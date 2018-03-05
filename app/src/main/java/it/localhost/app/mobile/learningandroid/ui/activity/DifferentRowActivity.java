@@ -8,10 +8,6 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
 import butterknife.BindView;

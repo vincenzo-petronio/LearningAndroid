@@ -2,9 +2,6 @@ package it.localhost.app.mobile.learningandroid.data.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.annotation.NonNull;
-
-import java.util.ArrayList;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;

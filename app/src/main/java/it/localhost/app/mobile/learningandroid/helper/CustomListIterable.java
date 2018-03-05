@@ -3,9 +3,7 @@ package it.localhost.app.mobile.learningandroid.helper;
 import android.support.annotation.NonNull;
 
 import java.util.AbstractList;
-import java.util.Collections;
 import java.util.Iterator;
-import java.util.NoSuchElementException;
 import java.util.function.Consumer;
 
 /**

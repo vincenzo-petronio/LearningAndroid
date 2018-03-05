@@ -9,8 +9,6 @@ import android.widget.BaseAdapter;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
-import java.util.Collections;
-import java.util.List;
 import java.util.Locale;
 
 import butterknife.BindView;
