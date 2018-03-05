@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @OnItemClick(R.id.lvItems)
-    void OnItemClick(int position) {
+    void onItemClick(int position) {
         Log.d(TAG, "OnItemSelected: " + lvItems.getItemAtPosition(position));
 
         Intent i;
