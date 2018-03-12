@@ -16,7 +16,9 @@ public class Constants {
     public static final String DB_NAME = "my.realm";
     public static final long DB_SCHEMA_VERSION = 1;
 
-
     // EXTRA FOR BUNDLE
     public static final String EXTRA_USEDECORATOR = "EXTRA_USEDECORATOR";
+
+    // SHAREDPREFERENCES
+    public static final String SHARED_KEY_FIREBASE_TOKEN = "SHARED_KEY_FIREBASE_TOKEN";
 }

@@ -138,4 +138,12 @@ dependencies {
     implementation(name: 'PinchZoom-release', ext: 'aar')
     implementation(name: 'Selectors-release', ext: 'aar')
     implementation(name: 'StickyHeaders-release', ext: 'aar')
+
+    // PLAY SERVICES - FIREBASE
+    implementation 'com.google.android.gms:play-services-base:' + rootProject.ext.playServicesVersion
+    implementation 'com.google.firebase:firebase-core:' + rootProject.ext.playServicesVersion
+    implementation 'com.google.firebase:firebase-messaging:' + rootProject.ext.playServicesVersion
 }
+
+// LEAVE ME AT THE BOTTOM!
+apply plugin: 'com.google.gms.google-services'
