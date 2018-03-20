@@ -143,6 +143,9 @@ dependencies {
     implementation 'com.google.android.gms:play-services-base:' + rootProject.ext.playServicesVersion
     implementation 'com.google.firebase:firebase-core:' + rootProject.ext.playServicesVersion
     implementation 'com.google.firebase:firebase-messaging:' + rootProject.ext.playServicesVersion
+
+    // BOLTS
+    implementation 'com.parse.bolts:bolts-tasks:1.4.0'
 }
 
 // LEAVE ME AT THE BOTTOM!

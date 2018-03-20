@@ -12,10 +12,14 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import bolts.CancellationToken;
+import bolts.CancellationTokenSource;
+import bolts.Continuation;
+import bolts.Task;
+import bolts.TaskCompletionSource;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -48,6 +52,7 @@ public class RetrofitActivity extends BaseActivity {
     private Observable<List<Comment>> mObservableCommentList;
     private ApiJsonPlaceholderEndpoint mClient;
     private Disposable mDisposableEtSearch;
+    private CancellationTokenSource mCts = new CancellationTokenSource();
 
     @BindView(R.id.lvItems)
     protected ListView mLvItems;
@@ -70,7 +75,8 @@ public class RetrofitActivity extends BaseActivity {
                 .createService(ApiJsonPlaceholderEndpoint.class);
 
         initUI();
-        loadData();
+//        loadData();
+        loadDataWithBolts();
     }
 
     @Override
@@ -84,7 +90,7 @@ public class RetrofitActivity extends BaseActivity {
         Log.v(TAG, "onDestroy");
         super.onDestroy();
 
-        if (mDisposableEtSearch.isDisposed()) {
+        if (mDisposableEtSearch != null && mDisposableEtSearch.isDisposed()) {
             mDisposableEtSearch.dispose();
         }
     }
@@ -119,17 +125,14 @@ public class RetrofitActivity extends BaseActivity {
     }
 
     private void initUI() {
-        mCommentList = Collections.emptyList();
+        mCommentList = new ArrayList<>();
+//                Collections.emptyList();
         mAdapter = new CommentsAdapter(this);
         mLvItems.setAdapter(mAdapter);
     }
 
     private void showProgress(boolean show) {
-        if (show) {
-            mProgressBar.setVisibility(View.VISIBLE);
-        } else {
-            mProgressBar.setVisibility(View.INVISIBLE);
-        }
+        mProgressBar.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
     }
 
     private void loadData() {
@@ -167,6 +170,99 @@ public class RetrofitActivity extends BaseActivity {
         }
 
         showProgress(false);
+    }
+
+    private void loadDataWithBolts() {
+        showProgress(true);
+
+        getCallTask(mClient.getComments("1"), mCts.getToken())
+                .continueWithTask(new Continuation<List<Comment>, Task<List<Comment>>>() {
+                    @Override
+                    public Task<List<Comment>> then(Task<List<Comment>> firstTask) throws Exception {
+//                        if (true) {
+//                            throw new Exception("Exception from first continueWithTask");
+//                        }
+                        if (firstTask.isCancelled()) {
+                            throw new Exception("Cancel from first continueWithTask");
+                        } else if (firstTask.isFaulted()) {
+                            throw new Exception(firstTask.getError());
+                        } else {
+                            mCommentList.addAll(firstTask.getResult());
+
+                            Task<List<Comment>> secondTask = getCallTask(mClient.getComments("2"), mCts.getToken());
+//                            mCts.cancel();
+                            return secondTask;
+                        }
+                    }
+                })
+                .continueWithTask(new Continuation<List<Comment>, Task<List<Comment>>>() {
+                    @Override
+                    public Task<List<Comment>> then(Task<List<Comment>> secondTask) throws Exception {
+                        if (secondTask.isCancelled()) {
+                            throw new Exception("Cancel from second continueWithTask");
+                        } else if (secondTask.isFaulted()) {
+                            throw new Exception(secondTask.getError());
+                        } else {
+                            List<Comment> secondTaskResult = secondTask.getResult();
+                            secondTaskResult.get(1).setName("Name from second Task!");
+
+                            TaskCompletionSource<List<Comment>> thirdTask = new TaskCompletionSource<>();
+                            thirdTask.setResult(secondTaskResult);
+                            return thirdTask.getTask();
+                        }
+                    }
+                })
+                .continueWith(new Continuation<List<Comment>, Object>() {
+                    @Override
+                    public Object then(Task<List<Comment>> thirdTask) throws Exception {
+                        if (thirdTask.isCancelled()) {
+                            mCommentList.clear();
+                            Comment comment = new Comment();
+                            comment.setName("CANCEL!");
+                            mCommentList.add(comment);
+                            mAdapter.updateCollection(mCommentList);
+                        } else if (thirdTask.isFaulted()) {
+                            // handle all error
+                            Log.e(TAG, "EXCEPTION", thirdTask.getError());
+                            mCommentList.clear();
+                            Comment comment = new Comment();
+                            comment.setName("ERROR!");
+                            mCommentList.add(comment);
+                            mAdapter.updateCollection(mCommentList);
+                        } else {
+                            mCommentList.addAll(thirdTask.getResult());
+                            mAdapter.updateCollection(mCommentList);
+                        }
+                        showProgress(false);
+                        return null;
+                    }
+                });
+
+    }
+
+    private Task<List<Comment>> getCallTask(Call<List<Comment>> call, CancellationToken cToken) {
+        final TaskCompletionSource<List<Comment>> task = new TaskCompletionSource<>();
+        call.clone().enqueue(new Callback<List<Comment>>() {
+            @Override
+            public void onResponse(Call<List<Comment>> call, Response<List<Comment>> response) {
+                if (cToken.isCancellationRequested()) {
+                    task.setCancelled();
+                    return;
+                }
+                task.setResult(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<List<Comment>> call, Throwable t) {
+                if (cToken.isCancellationRequested()) {
+                    task.setCancelled();
+                    return;
+                }
+                task.setError(new Exception(t));
+            }
+        });
+
+        return task.getTask();
     }
 
     private void loadDataWithRx() {
