@@ -4,6 +4,7 @@ import com.akaita.java.rxjava2debug.RxJava2Debug;
 import com.jakewharton.rxbinding2.widget.RxTextView;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
@@ -75,8 +76,7 @@ public class RetrofitActivity extends BaseActivity {
                 .createService(ApiJsonPlaceholderEndpoint.class);
 
         initUI();
-//        loadData();
-        loadDataWithBolts();
+        loadData();
     }
 
     @Override
@@ -92,6 +92,11 @@ public class RetrofitActivity extends BaseActivity {
 
         if (mDisposableEtSearch != null && mDisposableEtSearch.isDisposed()) {
             mDisposableEtSearch.dispose();
+        }
+
+        // Con il tasto back posso simulare la cancellazione del Token
+        if (mCts != null) {
+            mCts.cancel();
         }
     }
 
@@ -110,14 +115,20 @@ public class RetrofitActivity extends BaseActivity {
         return 0;
     }
 
-    @OnClick({R.id.btCase1})
+    @OnClick({R.id.btCase1, R.id.btCase2, R.id.btCase3, R.id.btCase4})
     protected void onBtCaseClickListener(View view) {
         switch (view.getId()) {
             case R.id.btCase1:
                 loadDataWithRx();
                 break;
             case R.id.btCase2:
-                navigateToSearch();
+                // search with rx
+                break;
+            case R.id.btCase3:
+                loadDataWithBolts();
+                break;
+            case R.id.btCase4:
+                loadDataWithBoltsInParallel();
                 break;
             default:
                 break;
@@ -173,15 +184,17 @@ public class RetrofitActivity extends BaseActivity {
     }
 
     private void loadDataWithBolts() {
+        Log.v(TAG, "loadDataWithBolts");
         showProgress(true);
+
+        mCommentList.clear();
 
         getCallTask(mClient.getComments("1"), mCts.getToken())
                 .continueWithTask(new Continuation<List<Comment>, Task<List<Comment>>>() {
                     @Override
                     public Task<List<Comment>> then(Task<List<Comment>> firstTask) throws Exception {
-//                        if (true) {
-//                            throw new Exception("Exception from first continueWithTask");
-//                        }
+                        Log.v(TAG, "then from first continueWithTask");
+
                         if (firstTask.isCancelled()) {
                             throw new Exception("Cancel from first continueWithTask");
                         } else if (firstTask.isFaulted()) {
@@ -189,8 +202,8 @@ public class RetrofitActivity extends BaseActivity {
                         } else {
                             mCommentList.addAll(firstTask.getResult());
 
+                            // task da passare alla successiva Continuation
                             Task<List<Comment>> secondTask = getCallTask(mClient.getComments("2"), mCts.getToken());
-//                            mCts.cancel();
                             return secondTask;
                         }
                     }
@@ -198,14 +211,18 @@ public class RetrofitActivity extends BaseActivity {
                 .continueWithTask(new Continuation<List<Comment>, Task<List<Comment>>>() {
                     @Override
                     public Task<List<Comment>> then(Task<List<Comment>> secondTask) throws Exception {
+                        Log.v(TAG, "then from second continueWithTask");
+
                         if (secondTask.isCancelled()) {
                             throw new Exception("Cancel from second continueWithTask");
                         } else if (secondTask.isFaulted()) {
                             throw new Exception(secondTask.getError());
                         } else {
+                            // cambio valore ad un elemento
                             List<Comment> secondTaskResult = secondTask.getResult();
                             secondTaskResult.get(1).setName("Name from second Task!");
 
+                            // task da passare alla successiva Continuation
                             TaskCompletionSource<List<Comment>> thirdTask = new TaskCompletionSource<>();
                             thirdTask.setResult(secondTaskResult);
                             return thirdTask.getTask();
@@ -215,12 +232,10 @@ public class RetrofitActivity extends BaseActivity {
                 .continueWith(new Continuation<List<Comment>, Object>() {
                     @Override
                     public Object then(Task<List<Comment>> thirdTask) throws Exception {
+                        Log.v(TAG, "then from last continue");
+
                         if (thirdTask.isCancelled()) {
-                            mCommentList.clear();
-                            Comment comment = new Comment();
-                            comment.setName("CANCEL!");
-                            mCommentList.add(comment);
-                            mAdapter.updateCollection(mCommentList);
+                            Log.i(TAG, "task canceled!");
                         } else if (thirdTask.isFaulted()) {
                             // handle all error
                             Log.e(TAG, "EXCEPTION", thirdTask.getError());
@@ -237,30 +252,73 @@ public class RetrofitActivity extends BaseActivity {
                         return null;
                     }
                 });
+    }
 
+    private void loadDataWithBoltsInParallel() {
+        Log.v(TAG, "loadDataWithBoltsInParallel");
+        showProgress(true);
+
+        getCallTask(mClient.getComments("1"), mCts.getToken())
+                .continueWithTask(new Continuation<List<Comment>, Task<Void>>() {
+                    @Override
+                    public Task<Void> then(Task<List<Comment>> task) throws Exception {
+                        // Crea un array di Task eseguiti in parallelo
+                        List<Task<List<Comment>>> parallelTasks = new ArrayList<>();
+                        for (int i = 2; i < 5; i++) {
+                            parallelTasks.add(getCallTask(mClient.getComments("" + i), mCts.getToken()));
+                        }
+
+                        // ritorna quando tutti i Task sono completi
+                        return Task.whenAll(parallelTasks);
+                    }
+                })
+                .onSuccess(new Continuation<Void, Void>() {
+                    @Override
+                    public Void then(Task<Void> task) throws Exception {
+                        Log.i(TAG, "all task completed!");
+                        showProgress(false);
+                        return null;
+                    }
+                });
     }
 
     private Task<List<Comment>> getCallTask(Call<List<Comment>> call, CancellationToken cToken) {
+        Log.v(TAG, "getCallTask");
         final TaskCompletionSource<List<Comment>> task = new TaskCompletionSource<>();
-        call.clone().enqueue(new Callback<List<Comment>>() {
-            @Override
-            public void onResponse(Call<List<Comment>> call, Response<List<Comment>> response) {
-                if (cToken.isCancellationRequested()) {
-                    task.setCancelled();
-                    return;
-                }
-                task.setResult(response.body());
-            }
 
+        // aggiungo un ritardo di 2s
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public void onFailure(Call<List<Comment>> call, Throwable t) {
+            public void run() {
                 if (cToken.isCancellationRequested()) {
                     task.setCancelled();
                     return;
                 }
-                task.setError(new Exception(t));
+
+                call.clone().enqueue(new Callback<List<Comment>>() {
+                    @Override
+                    public void onResponse(Call<List<Comment>> call, Response<List<Comment>> response) {
+                        if (cToken.isCancellationRequested()) {
+                            task.setCancelled();
+                            return;
+                        }
+
+                        task.setResult(response.body());
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Comment>> call, Throwable t) {
+                        if (cToken.isCancellationRequested()) {
+                            task.setCancelled();
+                            return;
+                        }
+
+                        task.setError(new Exception(t));
+                    }
+                });
+
             }
-        });
+        }, 2000);
 
         return task.getTask();
     }
@@ -279,11 +337,6 @@ public class RetrofitActivity extends BaseActivity {
                 .subscribe(getRxConsumerForSearch(), RxJava2Debug::getEnhancedStackTrace);
 //                .subscribe(charSequence -> Log.v(TAG, charSequence.toString()), RxJava2Debug::getEnhancedStackTrace);
     }
-
-    private void navigateToSearch() {
-        // TODO
-    }
-
 
     /**
      * Observer

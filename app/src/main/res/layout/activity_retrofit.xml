@@ -17,7 +17,7 @@
             style="android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Use RX" />
+            android:text="RX" />
 
         <Button
             android:id="@+id/btCase2"
@@ -25,6 +25,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Search with RX"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btCase3"
+            style="android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="boalts"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/btCase4"
+            style="android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="boalts parallels"
             android:visibility="visible" />
 
     </LinearLayout>
