@@ -158,7 +158,10 @@ public class MainActivity extends AppCompatActivity {
                 i = new Intent(MainActivity.this, PatternsActivity.class);
                 startActivity(i);
                 break;
-            //...
+            case 23: // CLOUD
+                i = new Intent(MainActivity.this, CloudActivity.class);
+                startActivity(i);
+                //...
             default:
                 break;
         }

@@ -42,6 +42,7 @@
         <item>SyncAdapter</item>
         <item>Concurrency</item>
         <item>Patterns</item>
+        <item>Cloud</item>
     </string-array>
 
     <!-- JSOUP -->
@@ -133,5 +134,14 @@
         <item>Strategy</item>
         <item>Decorator</item>
         <item>Factory Method</item>
+    </string-array>
+
+    <!-- CLOUD -->
+    <string name="cloud_actionbar_title">Cloud</string>
+    <string-array name="cloud_login_type">
+        <item />
+        <item>Google</item>
+        <item>AWS</item>
+        <item>Azure</item>
     </string-array>
 </resources>

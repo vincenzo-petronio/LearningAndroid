@@ -112,6 +112,10 @@
             android:name=".ui.activity.PatternsActivity"
             android:label="@string/patterns_actionbar_title"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.activity.CloudActivity"
+            android:label="@string/cloud_actionbar_title"
+            android:theme="@style/AppTheme.NoActionBar" />
 
 
         <!-- FIREBASE -->
