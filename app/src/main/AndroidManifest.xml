@@ -38,14 +38,15 @@
         <activity android:name=".ui.activity.NestedScrollActivity" />
         <activity android:name=".ui.activity.RecyclerViewActivity">
             <intent-filter>
-                <data
-                    android:host="test_android_linking"
-                    android:scheme="file"
-                    android:pathPrefix="/recycler" />
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="vincenzo-petronio.github.io"
+                    android:pathPrefix="/recycler"
+                    android:scheme="https" />
             </intent-filter>
         </activity>
         <activity android:name=".ui.activity.RecyclerActivity" />
