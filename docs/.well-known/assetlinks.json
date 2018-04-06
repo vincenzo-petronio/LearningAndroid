@@ -1,9 +1,0 @@
-[{
-  "relation": ["delegate_permission/common.handle_all_urls"],
-  "target": {
-    "namespace": "android_app",
-    "package_name": "it.localhost.app.mobile.learningandroid",
-    "sha256_cert_fingerprints":
-    ["97:D1:14:CE:73:00:71:93:4F:43:6F:36:FE:E4:03:B6:DB:5F:C2:2D:C0:89:61:71:BB:73:E5:54:7A:C5:38:DF"]
-  }
-}]
