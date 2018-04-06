@@ -36,7 +36,18 @@
         <activity android:name=".ui.activity.MainActivity" />
         <activity android:name=".ui.activity.JsoupActivity" />
         <activity android:name=".ui.activity.NestedScrollActivity" />
-        <activity android:name=".ui.activity.RecyclerViewActivity" />
+        <activity android:name=".ui.activity.RecyclerViewActivity">
+            <intent-filter>
+                <data
+                    android:host="test_android_linking"
+                    android:scheme="file"
+                    android:pathPrefix="/recycler" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+        </activity>
         <activity android:name=".ui.activity.RecyclerActivity" />
         <activity android:name=".ui.activity.RecyclerCardActivity" />
         <activity android:name=".ui.activity.RecyclerPhotoActivity" />

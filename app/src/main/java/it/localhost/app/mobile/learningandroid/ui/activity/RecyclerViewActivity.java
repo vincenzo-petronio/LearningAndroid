@@ -1,8 +1,10 @@
 package it.localhost.app.mobile.learningandroid.ui.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -14,7 +16,10 @@ public class RecyclerViewActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.v(TAG, "onCreate");
         super.onCreate(savedInstanceState);
+
+        handleAppLinking(getIntent());
 
         // VIEW
         setContentView(R.layout.activity_recycler_view);
@@ -62,6 +67,16 @@ public class RecyclerViewActivity extends AppCompatActivity {
                 startActivity(new Intent(RecyclerViewActivity.this, RecyclerStickyActivity.class));
             }
         });
+    }
 
+    private void handleAppLinking(Intent appLinkIntent) {
+        if (appLinkIntent == null) {
+            return;
+        }
+
+        String appLinkAction = appLinkIntent.getAction();
+        Uri appLinkData = appLinkIntent.getData();
+        Log.i(TAG, "appLinkAction: " + appLinkAction);
+        Log.i(TAG, "appLinkData: " + (appLinkData != null ? appLinkData.toString() : ""));
     }
 }
