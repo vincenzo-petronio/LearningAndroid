@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.Set;
+
 import it.localhost.app.mobile.learningandroid.R;
 
 public class RecyclerViewActivity extends AppCompatActivity {
@@ -82,5 +84,14 @@ public class RecyclerViewActivity extends AppCompatActivity {
         Uri appLinkData = appLinkIntent.getData();
         Log.i(TAG, "appLinkAction: " + appLinkAction);
         Log.i(TAG, "appLinkData: " + (appLinkData != null ? appLinkData.toString() : ""));
+
+        try {
+            Set<String> queryParams = appLinkData.getQueryParameterNames();
+            for (String queryParam : queryParams) {
+                Log.i(TAG, queryParam + "=" + appLinkData.getQueryParameter(queryParam));
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "Exception", e);
+        }
     }
 }

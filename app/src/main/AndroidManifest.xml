@@ -36,7 +36,9 @@
         <activity android:name=".ui.activity.MainActivity" />
         <activity android:name=".ui.activity.JsoupActivity" />
         <activity android:name=".ui.activity.NestedScrollActivity" />
-        <activity android:name=".ui.activity.RecyclerViewActivity">
+        <activity
+            android:name=".ui.activity.RecyclerViewActivity"
+            android:launchMode="singleTask">
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
 
@@ -45,8 +47,8 @@
 
                 <data
                     android:host="learning-android.netlify.com"
-                    android:scheme="https"
-                    android:pathPrefix="/recycler" />
+                    android:pathPrefix="/recycler"
+                    android:scheme="https" />
             </intent-filter>
         </activity>
         <activity android:name=".ui.activity.RecyclerActivity" />
