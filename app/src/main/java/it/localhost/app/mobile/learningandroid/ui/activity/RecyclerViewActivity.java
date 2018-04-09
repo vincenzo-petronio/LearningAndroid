@@ -69,6 +69,10 @@ public class RecyclerViewActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * @param appLinkIntent Intent
+     * @see <a href="https://developer.android.com/training/app-links/deep-linking.html">Links to app content</a>
+     */
     private void handleAppLinking(Intent appLinkIntent) {
         if (appLinkIntent == null) {
             return;
