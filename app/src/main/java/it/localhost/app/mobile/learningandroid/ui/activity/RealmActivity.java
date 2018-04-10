@@ -2,6 +2,7 @@ package it.localhost.app.mobile.learningandroid.ui.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -9,6 +10,7 @@ import android.widget.SearchView;
 
 import it.localhost.app.mobile.learningandroid.R;
 import it.localhost.app.mobile.learningandroid.data.model.UserStory;
+import it.localhost.app.mobile.learningandroid.ui.fragment.BaseFragment;
 import it.localhost.app.mobile.learningandroid.ui.fragment.RealmDetailsFragment;
 import it.localhost.app.mobile.learningandroid.ui.fragment.RealmListFragment;
 
@@ -64,7 +66,8 @@ public class RealmActivity extends BaseActivity {
             case R.id.toolbar_search:
                 return true;
             case R.id.toolbar_sortid:
-//                mRealmAdapter.sortItems();
+                RealmListFragment fragment = (RealmListFragment) findFragment(R.id.container);
+                fragment.getRealmAdapter().sortItems();
                 return true;
             case R.id.toolbar_searchneeded:
 //                mRealmAdapter.searchItem(true);
@@ -76,6 +79,18 @@ public class RealmActivity extends BaseActivity {
 
     private void initUI() {
         getSupportFragmentManager().beginTransaction().add(R.id.container, new RealmListFragment()).commit();
+    }
+
+    /**
+     * @param fragmentId int
+     * @return android.support.v4.app.Fragment
+     * @throws NullPointerException Exception
+     */
+    private Fragment findFragment(int fragmentId) throws NullPointerException {
+        if (getSupportFragmentManager() == null) {
+            throw new NullPointerException("getSupportFragmentManager NULL!");
+        }
+        return getSupportFragmentManager().findFragmentById(fragmentId);
     }
 
     /**

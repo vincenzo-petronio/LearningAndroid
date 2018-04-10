@@ -168,7 +168,8 @@ public class RealmAdapter extends RealmRecyclerViewAdapter<UserStory, RealmAdapt
         updateData(
                 mRealmInstance
                         .where(UserStory.class)
-                        .findAllSorted("id", Sort.ASCENDING)
+                        .sort("id", Sort.ASCENDING)
+                        .findAll()
         );
     }
 

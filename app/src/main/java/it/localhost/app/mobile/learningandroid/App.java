@@ -14,6 +14,7 @@ import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
+import io.realm.log.RealmLog;
 import it.localhost.app.mobile.learningandroid.dagger.components.DaggerAppComponent;
 import it.localhost.app.mobile.learningandroid.helper.SharedPrefs;
 import it.localhost.app.mobile.learningandroid.util.Constants;
@@ -75,6 +76,7 @@ public class App extends Application implements HasActivityInjector {
 //                .inMemory()
                 .build();
         Realm.setDefaultConfiguration(realmConfiguration);
+        RealmLog.setLevel(Log.ERROR);
     }
 
     private void initLitho() {

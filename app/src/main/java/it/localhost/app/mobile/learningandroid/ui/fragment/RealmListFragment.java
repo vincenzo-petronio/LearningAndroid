@@ -160,8 +160,10 @@ public class RealmListFragment extends BaseFragment {
     }
 
     private RealmAdapter.IAdapterCallback mIAdapterCallback = new RealmAdapter.IAdapterCallback() {
+
         @Override
         public void onItemLongClicked(UserStory userStory) {
+            Log.v(TAG, "onItemLongClicked");
             if (userStory == null || getActivity() == null) {
                 return;
             }
@@ -171,8 +173,13 @@ public class RealmListFragment extends BaseFragment {
 
         @Override
         public void onCollectionSizeChanged(int size) {
+            Log.i(TAG, "onCollectionSizeChanged");
             setTvRisultati(size);
         }
     };
 
+
+    public RealmAdapter getRealmAdapter() {
+        return mRealmAdapter;
+    }
 }

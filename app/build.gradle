@@ -112,7 +112,7 @@ dependencies {
     implementation 'org.greenrobot:eventbus:3.0.0'
 
     // REALM
-    implementation 'io.realm:android-adapters:2.1.1'
+    implementation 'io.realm:android-adapters:3.0.0'
 
     // LITHO
     implementation 'com.facebook.litho:litho-core:0.11.0'
