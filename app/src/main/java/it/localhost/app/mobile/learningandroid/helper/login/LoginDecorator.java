@@ -1,5 +1,7 @@
 package it.localhost.app.mobile.learningandroid.helper.login;
 
+import bolts.Task;
+
 /**
  * DECORATOR
  *
@@ -15,8 +17,8 @@ abstract class LoginDecorator implements ILoginStrategy {
     }
 
     @Override
-    public void login(String username, String psw) throws Exception {
+    public Task login(String username, String psw) throws Exception {
         // forwarding dei metodi
-        mLoginStrategy.login(username, psw);
+        return mLoginStrategy.login(username, psw);
     }
 }

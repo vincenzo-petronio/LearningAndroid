@@ -1,5 +1,7 @@
 package it.localhost.app.mobile.learningandroid.helper.login;
 
+import bolts.Task;
+
 /**
  * CONCRETE DECORATOR <br>
  * Rimuove gli space dall'username
@@ -14,9 +16,9 @@ public class EmptyDecorator extends LoginDecorator {
     }
 
     @Override
-    public void login(String username, String psw) throws Exception {
+    public Task login(String username, String psw) throws Exception {
         // nell'override modifico il comportamento
         String usernameNoEmptySpace = username.replace(" ", "");
-        super.login(usernameNoEmptySpace, psw);
+        return super.login(usernameNoEmptySpace, psw);
     }
 }

@@ -1,20 +1,24 @@
 package it.localhost.app.mobile.learningandroid.ui.activity;
 
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseUser;
+
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.Spinner;
 
 import java.util.Locale;
 
+import bolts.Continuation;
+import bolts.Task;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnItemSelected;
 import it.localhost.app.mobile.learningandroid.R;
-import it.localhost.app.mobile.learningandroid.helper.login.ClassicStrategy;
+import it.localhost.app.mobile.learningandroid.data.model.GenericAuthResult;
 import it.localhost.app.mobile.learningandroid.helper.login.EmptyDecorator;
 import it.localhost.app.mobile.learningandroid.helper.login.GoogleFirebaseStrategy;
 import it.localhost.app.mobile.learningandroid.helper.login.ILoginStrategy;
@@ -86,7 +90,7 @@ public class CloudActivity extends BaseActivity {
         }
     }
 
-    @OnClick(R.id.bt_login)
+    @OnClick(R.id.bt_send)
     void onBtLoginClickListener() {
         switch (getCloudType()) {
             case Constants.CloudType.GOOGLE:
@@ -112,7 +116,24 @@ public class CloudActivity extends BaseActivity {
 
     private void login(ILoginStrategy loginStrategy) {
         try {
-            loginStrategy.login(getUsername(), getPassword());
+            loginStrategy
+                    .login(getUsername(), getPassword())
+                    .continueWith(new Continuation<GenericAuthResult, Void>() {
+                        @Override
+                        public Void then(Task<GenericAuthResult> task) throws Exception {
+                            if (task.isFaulted()) {
+                                Log.e(TAG, "Exception", task.getError());
+                            } else {
+                                if (task.getResult().getGenericResult() instanceof AuthResult) {
+                                    // TODO
+                                    AuthResult res = (AuthResult) task.getResult().getGenericResult();
+                                    FirebaseUser user = res.getUser();
+                                }
+
+                            }
+                            return null;
+                        }
+                    });
         } catch (Exception e) {
             Log.e(TAG, "Exception: " + e.getLocalizedMessage());
         }

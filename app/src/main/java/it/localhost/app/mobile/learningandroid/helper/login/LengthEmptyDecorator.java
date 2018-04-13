@@ -1,5 +1,7 @@
 package it.localhost.app.mobile.learningandroid.helper.login;
 
+import bolts.Task;
+
 /**
  * CONCRETE DECORATOR <br>
  * Verifica la lunghezza minima della password e rimuove gli space dall'username
@@ -14,11 +16,11 @@ public class LengthEmptyDecorator extends EmptyDecorator {
     }
 
     @Override
-    public void login(String username, String psw) throws Exception {
+    public Task login(String username, String psw) throws Exception {
         if (psw.length() < 3) {
             throw new Exception("Password is too short!");
         } else {
-            super.login(username, psw);
+            return super.login(username, psw);
         }
     }
 }
