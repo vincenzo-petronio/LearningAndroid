@@ -55,76 +55,63 @@ public class MainActivity extends AppCompatActivity {
     void onItemClick(int position) {
         Log.d(TAG, "OnItemSelected: " + lvItems.getItemAtPosition(position));
 
-        Intent i;
+        Intent i = null;
 
         switch (position) {
             case 0:
                 i = new Intent(MainActivity.this, JsoupActivity.class);
-                startActivity(i);
                 break;
             case 1:
                 // RX
                 i = new Intent(MainActivity.this, RxActivity.class);
-                startActivity(i);
                 break;
             case 2:
                 break;
             case 3:
                 i = new Intent(MainActivity.this, NestedScrollActivity.class);
-                startActivity(i);
                 break;
             case 4:
                 i = new Intent(MainActivity.this, RecyclerViewActivity.class);
-                startActivity(i);
                 break;
             case 5:
                 i = new Intent(MainActivity.this, PercentActivity.class);
-                startActivity(i);
                 break;
             case 6:
                 i = new Intent(MainActivity.this, CollapsingActivity.class);
-                startActivity(i);
                 break;
             case 7:
                 // RETROFIT
                 i = new Intent(MainActivity.this, RetrofitActivity.class);
-                startActivity(i);
                 break;
             case 8:
                 i = new Intent(MainActivity.this, AnnotationActivity.class);
-                startActivity(i);
                 break;
             case 9:
                 //REALM
                 i = new Intent(MainActivity.this, RealmActivity.class);
-                startActivity(i);
                 break;
             case 10:
                 i = new Intent(MainActivity.this, DifferentRowActivity.class);
-                startActivity(i);
                 break;
             case 11:
                 // REFLECTION
                 i = new Intent(MainActivity.this, ReflectionActivity.class);
-                startActivity(i);
                 break;
             case 12:
                 // CUSTOMVIEW
                 i = new Intent(MainActivity.this, CustomViewActivity.class);
-                startActivity(i);
                 break;
             case 13:
                 // XML BINDING
                 i = new Intent(MainActivity.this, XMLBindingActivity.class);
-                startActivity(i);
                 break;
             case 14:
-                // WIRE
+                // PROTO BUFFER - WIRE
+                i = new Intent(MainActivity.this, ProtoBufActivity.class);
                 break;
             case 15:
                 // CONSTRAINT
                 i = new Intent(MainActivity.this, ConstraintActivity.class);
-                startActivity(i);
                 break;
             case 16:
                 // PARCELER
@@ -132,35 +119,33 @@ public class MainActivity extends AppCompatActivity {
             case 17:
                 // EVENTBUS
                 i = new Intent(MainActivity.this, PubSubActivity.class);
-                startActivity(i);
                 break;
             case 18:
                 // LITHO
                 i = new Intent(MainActivity.this, LithoActivity.class);
-                startActivity(i);
                 break;
             case 19:
                 // DAGGER
                 i = new Intent(MainActivity.this, DaggerActivity.class);
-                startActivity(i);
                 break;
             case 20:
                 i = new Intent(MainActivity.this, ServerSyncActivity.class);
-                startActivity(i);
                 break;
             case 21:
                 // CONCURRENCY
                 i = new Intent(MainActivity.this, ConcurrencyActivity.class);
-                startActivity(i);
                 break;
             case 22:
                 // PATTERNS
                 i = new Intent(MainActivity.this, PatternsActivity.class);
-                startActivity(i);
                 break;
             //...
             default:
                 break;
+        }
+
+        if (i != null) {
+            startActivity(i);
         }
     }
 }

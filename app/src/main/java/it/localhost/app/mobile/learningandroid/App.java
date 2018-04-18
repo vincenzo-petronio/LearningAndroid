@@ -4,7 +4,7 @@ import com.akaita.java.rxjava2debug.RxJava2Debug;
 import com.facebook.soloader.SoLoader;
 
 import android.app.Activity;
-import android.app.Application;
+import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
 import javax.inject.Inject;
@@ -22,7 +22,7 @@ import it.localhost.app.mobile.learningandroid.util.Constants;
 /**
  *
  */
-public class App extends Application implements HasActivityInjector {
+public class App extends MultiDexApplication implements HasActivityInjector {
 
     @Inject
     DispatchingAndroidInjector<Activity> dispatchingAndroidInjector;

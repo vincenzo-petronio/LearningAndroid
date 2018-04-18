@@ -107,7 +107,7 @@
         <item>Operators by category</item>
     </string-array>
     <string-array name="rx_operators_items">
-        <item></item>
+        <item />
         <item>Creating:\nOperators that originate new Observables</item>
         <item>Transforming:\nOperators that transform items that are emitted by an Observable</item>
         <item>Filtering:\nOperators that selectively emit items from a source Observable</item>
@@ -134,4 +134,7 @@
         <item>Decorator</item>
         <item>Factory Method</item>
     </string-array>
+
+    <!-- PROTO BUFFER - WIRE -->
+    <string name="protobuf_actionbar_title">Protocol Buffer</string>
 </resources>

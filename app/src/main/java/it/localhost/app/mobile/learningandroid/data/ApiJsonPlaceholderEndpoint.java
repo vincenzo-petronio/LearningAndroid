@@ -9,6 +9,7 @@ import it.localhost.app.mobile.learningandroid.data.model.User;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import tutorial.Sample;
 
 /**
  *
@@ -39,4 +40,13 @@ public interface ApiJsonPlaceholderEndpoint {
 
     @GET("/posts/{postId}/comments")
     Observable<List<Comment>> getRxPostIdComments(@Path("postId") String postId);
+
+
+    // **** RETROFIT + PROTOBUF ****
+    @GET("/todos")
+    Call<List<Sample.TodoProto>> getTodos();
+
+    @GET("/todos/{todoId}")
+    Call<Sample.TodoProto> getTodo(@Path("todoId") String todoId);
+
 }
