@@ -22,7 +22,7 @@ public class JsoupActivity extends AppCompatActivity implements JsoupTask.JsoupT
 
     private static final String TAG = JsoupActivity.class.getSimpleName();
     private Context mContex;
-    private StringBuffer sb;
+    private StringBuilder sb;
 
     @BindView(R.id.pb)
     ProgressBar mProgressBar;
@@ -58,9 +58,9 @@ public class JsoupActivity extends AppCompatActivity implements JsoupTask.JsoupT
         new JsoupTask(this).execute(Constants.URL_JSOUP);
     }
 
-    private StringBuffer parseData(@NonNull Document document) {
+    private StringBuilder parseData(@NonNull Document document) {
         if (sb == null) {
-            sb = new StringBuffer();
+            sb = new StringBuilder();
         }
 
         sb.append(document.baseUri());
@@ -81,15 +81,15 @@ public class JsoupActivity extends AppCompatActivity implements JsoupTask.JsoupT
             // Poi prendo tutti i figli con tag <a>
             Elements aElements = divElement.select("a");
             for (Element aElement : aElements) {
-                sb.append(aElement.text() + "\n");
+                sb.append(aElement.text()).append("\n");
             }
         }
 
         return sb;
     }
 
-    private void setData(@NonNull StringBuffer stringBuffer) {
-        tv.setText(stringBuffer.toString());
+    private void setData(@NonNull StringBuilder stringBuilder) {
+        tv.setText(stringBuilder.toString());
     }
 
     // CALLBACK
@@ -105,14 +105,11 @@ public class JsoupActivity extends AppCompatActivity implements JsoupTask.JsoupT
     public void onError(Exception exception) {
         Log.e(TAG, "onError: " + exception);
 
-        setData(new StringBuffer(exception.getMessage()));
+        setData(new StringBuilder(exception.getMessage()));
     }
 
     @Override
     public void showProgress(boolean isVisible) {
-        if (isVisible) {
-            mProgressBar.setVisibility(ProgressBar.VISIBLE);
-        }
-        mProgressBar.setVisibility(ProgressBar.INVISIBLE);
+        mProgressBar.setVisibility(isVisible ? ProgressBar.VISIBLE : ProgressBar.INVISIBLE);
     }
 }

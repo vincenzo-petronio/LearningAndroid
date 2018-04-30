@@ -48,7 +48,7 @@ public class LithoActivity extends AppCompatActivity {
     }
 
     private void initUI(ComponentContext componentContext) {
-        final Component<Text> componentTitle = Text.create(componentContext)
+        final Component componentTitle = Text.create(componentContext)
                 .text(mStringTitle)
                 .textSizeDip(50)
                 .build();
