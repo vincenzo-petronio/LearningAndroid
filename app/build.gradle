@@ -142,10 +142,10 @@ dependencies {
     implementation(name: 'StickyHeaders-release', ext: 'aar')
 
     // PLAY SERVICES - FIREBASE
-    implementation 'com.google.android.gms:play-services-base:' + rootProject.ext.playServicesVersion
-    implementation 'com.google.firebase:firebase-core:' + rootProject.ext.playServicesVersion
-    implementation 'com.google.firebase:firebase-messaging:' + rootProject.ext.playServicesVersion
-    implementation 'com.google.firebase:firebase-auth:' + rootProject.ext.playServicesVersion
+    implementation 'com.google.android.gms:play-services-base:15.0.1'
+    implementation 'com.google.firebase:firebase-core:15.0.2'
+    implementation 'com.google.firebase:firebase-messaging:15.0.2'
+    implementation 'com.google.firebase:firebase-auth:15.1.0'
 
     // BOLTS
     implementation 'com.parse.bolts:bolts-tasks:1.4.0'

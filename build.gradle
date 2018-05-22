@@ -4,7 +4,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.1'
         classpath "io.realm:realm-gradle-plugin:5.0.1"
-        classpath 'com.google.gms:google-services:3.2.0'
+        classpath 'com.google.gms:google-services:3.2.1'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -32,7 +32,7 @@ allprojects {
 //            url "https://maven.google.com"
 //
 //        }
-        google()
+        google()    // https://dl.google.com/dl/android/maven2/index.html
     }
 }
 
@@ -45,12 +45,13 @@ ext {
     // that the plugin specifies
 //    buildToolsVersion = "27.0.3"
 
+    // Dalla versione 15.0.0 il PlayServices e Firebase possono avere diversa versione!
+
     compileSdkVersion = 27
     minSdkVersion = 15
     targetSdkVersion = 27
-    supportVersion = "27.0.2"
+    supportVersion = "27.1.1"
     retrofitVersion = "2.3.0"
-    playServicesVersion = "12.0.0"
 }
 
 task clean(type: Delete) {
