@@ -67,3 +67,29 @@
 
 
 -dontwarn org.xmlpull.v1.**
+
+
+-dontwarn android.support.**
+-keep class android.support.design.** { *; }
+-keep interface android.support.design.** { *; }
+-keep public class android.support.design.R$* { *; }
+-keep public class android.support.v7.widget.** { *; }
+-keep public class android.support.v7.internal.widget.** { *; }
+-keep public class android.support.v7.internal.view.menu.** { *; }
+-keep public class * extends android.support.v4.view.ActionProvider {
+    public <init>(android.content.Context);
+}
+-keep class android.support.v7.widget.RoundRectDrawable { *; }
+
+
+-keeppackagenames org.jsoup.nodes
+
+
+-keep public class * implements com.bumptech.glide.module.GlideModule
+-keep public class * extends com.bumptech.glide.module.AppGlideModule
+-keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
+  **[] $VALUES;
+  public *;
+}
+# for DexGuard only
+# -keepresourcexmlelements manifest/application/meta-data@value=GlideModule
