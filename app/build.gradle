@@ -31,6 +31,10 @@ android {
         release {
             minifyEnabled true
             shrinkResources true
+
+            // The ProGuard-android.txt file was previously taken from the Sdk tools folder (sdk/tools/ProGuard/proguard-android.txt),
+            // but in newer versions of SDK Tools and Android Gradle plugin 2.2.0+, it is unzipped from the Android plugin jar during build.
+            // You can find the configuration file after building your project in ../build/intermediates/ProGuard-files/
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

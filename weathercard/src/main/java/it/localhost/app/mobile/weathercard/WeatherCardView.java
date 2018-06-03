@@ -95,9 +95,9 @@ public class WeatherCardView extends CardView {
         ((LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.layout_weathercard, this, true);
 
-        mTvDateTime = (TextView) findViewById(R.id.tv_datetime);
-        mTvTemperature = (TextView) findViewById(R.id.tv_temperature);
-        mIvIcon = (ImageView) findViewById(R.id.iv_icon);
+        mTvDateTime = findViewById(R.id.tv_datetime);
+        mTvTemperature = findViewById(R.id.tv_temperature);
+        mIvIcon = findViewById(R.id.iv_icon);
 
         TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.WeatherCardView, defStyleAttr, 0);
         try {
