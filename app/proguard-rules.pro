@@ -64,22 +64,42 @@
 -dontwarn android.view.RenderNode
 -dontwarn android.view.DisplayListCanvas
 -dontwarn android.view.HardwareCanvas
+-dontwarn com.facebook.litho.TransitionManager$*
+-dontwarn com.facebook.litho.widget.RecyclerBinder$*
+-keep class com.facebook.yoga.** {*;}
 
 
 -dontwarn org.xmlpull.v1.**
+-keep class org.xmlpull.v1.** { *; }
 
 
 -dontwarn android.support.**
+-dontwarn android.support.design.**
 -keep class android.support.design.** { *; }
 -keep interface android.support.design.** { *; }
 -keep public class android.support.design.R$* { *; }
+-keep class android.support.v7.widget.RoundRectDrawable { *; }
 -keep public class android.support.v7.widget.** { *; }
 -keep public class android.support.v7.internal.widget.** { *; }
 -keep public class android.support.v7.internal.view.menu.** { *; }
 -keep public class * extends android.support.v4.view.ActionProvider {
     public <init>(android.content.Context);
 }
--keep class android.support.v7.widget.RoundRectDrawable { *; }
+-keep public class * extends android.support.v4.view.ActionProvider {
+    public <init>(android.content.Context);
+}
+-keepclassmembers class android.support.v7.preference.PreferenceGroupAdapter {
+    private ** mPreferenceLayouts;
+}
+-keepclassmembers class android.support.v7.preference.PreferenceGroupAdapter$PreferenceLayout {
+    private int resId;
+    private int widgetResId;
+}
+-keepclassmembers class android.support.graphics.drawable.VectorDrawableCompat$* {
+   void set*(***);
+   *** get*();
+}
+-keep class android.support.v8.renderscript.** { *; }
 
 
 -keeppackagenames org.jsoup.nodes
@@ -93,3 +113,22 @@
 }
 # for DexGuard only
 # -keepresourcexmlelements manifest/application/meta-data@value=GlideModule
+
+
+-keep class it.localhost.app.mobile.learningandroid.data.model.** { *; }
+
+
+-keep class sun.misc.Unsafe { *; }
+-keep class com.google.gson.examples.android.model.** { *; }
+-keep class * implements com.google.gson.TypeAdapterFactory
+-keep class * implements com.google.gson.JsonSerializer
+-keep class * implements com.google.gson.JsonDeserializer
+
+
+-keepclassmembers class ** {
+    @org.greenrobot.eventbus.Subscribe <methods>;
+}
+-keep enum org.greenrobot.eventbus.ThreadMode { *; }
+-keepclassmembers class * extends org.greenrobot.eventbus.util.ThrowableFailureEvent {
+    <init>(java.lang.Throwable);
+}
