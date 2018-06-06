@@ -135,4 +135,8 @@
         <item>Decorator</item>
         <item>Factory Method</item>
     </string-array>
+
+    <!-- ASYNCTASK LOADER -->
+    <string name="asynctaskloader_actionbar_title">Patterns</string>
+
 </resources>

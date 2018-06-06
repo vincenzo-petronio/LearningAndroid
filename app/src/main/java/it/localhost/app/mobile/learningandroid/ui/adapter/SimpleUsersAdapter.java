@@ -1,6 +1,7 @@
 package it.localhost.app.mobile.learningandroid.ui.adapter;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -82,8 +83,9 @@ public class SimpleUsersAdapter extends RecyclerView.Adapter<SimpleUsersAdapter.
     /**
      * Inflate the view and its view holder
      */
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
@@ -99,7 +101,7 @@ public class SimpleUsersAdapter extends RecyclerView.Adapter<SimpleUsersAdapter.
      * Bind data to the view
      */
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         User user = users.get(position);
 

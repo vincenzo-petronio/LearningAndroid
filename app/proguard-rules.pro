@@ -27,6 +27,7 @@
 -keepattributes Signature
 -keepattributes EnclosingMethod, InnerClasses
 -keepattributes SourceFile,LineNumberTable
+-keepattributes Exceptions
 
 
 -dontwarn com.squareup.okhttp.**
@@ -34,6 +35,7 @@
 -dontwarn okio.**
 -dontwarn javax.annotation.**
 -dontwarn org.conscrypt.**
+-dontnote retrofit2.Platform
 -dontwarn retrofit2.Platform$Java8
 -keepnames class okhttp3.internal.publicsuffix.PublicSuffixDatabase
 

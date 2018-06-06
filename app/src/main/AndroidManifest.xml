@@ -126,6 +126,10 @@
             android:name=".ui.activity.PatternsActivity"
             android:label="@string/patterns_actionbar_title"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.activity.AsyncTaskLoaderActivity"
+            android:label="@string/asynctaskloader_actionbar_title"
+            android:theme="@style/AppTheme.NoActionBar" />
 
 
         <!-- FIREBASE -->

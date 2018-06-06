@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
                 activity = RxActivity.class;
                 break;
             case 2:
+                activity = AsyncTaskLoaderActivity.class;
                 break;
             case 3:
                 activity = NestedScrollActivity.class;
