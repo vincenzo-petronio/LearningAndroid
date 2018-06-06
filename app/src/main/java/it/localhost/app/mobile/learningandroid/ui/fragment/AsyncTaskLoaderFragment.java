@@ -106,6 +106,9 @@ public class AsyncTaskLoaderFragment extends BaseFragment implements LoaderManag
     void onBtnChangeClickListener() {
         Bundle bundle = new Bundle();
         bundle.putInt(EXTRA_KEY_USERID, new Random().nextInt(5) + 1);
+        // restartLoader segue lo stesso flusso dell'initLoader se l'ID non esiste, altrimenti
+        // se è un loader già istanziato riavvia quel loader eseguendo il replace dei dati, quindi aggira
+        // la "cache" del metodo initLoader.
         getLoaderManager().restartLoader(ID_LOADER_USERS, bundle, this);
     }
 

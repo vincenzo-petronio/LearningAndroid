@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.Locale;
-import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,6 +27,10 @@ import retrofit2.Call;
  * @author vincenzo.petronio on 05/06/2018.
  */
 public class AsyncTaskLoaderActivity extends BaseActivity implements LoaderManager.LoaderCallbacks<User> {
+
+    // ****** WARNING ******
+    // I Loader seguono il ciclo di vita dell'Activity/Fragment, quindi vengono distrutti con essi.
+    // NON utilizzare i Loader se è necessario completare un task a prescindere dall'Activity/Fragment!
 
     private static final String TAG = AsyncTaskLoaderActivity.class.getSimpleName();
     private static final int ID_LOADER_USER = 10;
