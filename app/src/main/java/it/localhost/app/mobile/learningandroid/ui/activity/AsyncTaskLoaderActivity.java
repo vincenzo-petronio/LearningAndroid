@@ -6,11 +6,14 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.AsyncTaskLoader;
+import android.support.v4.content.Loader;
+import android.support.v4.widget.ContentLoadingProgressBar;
 import android.util.Log;
 import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.Locale;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,6 +34,8 @@ public class AsyncTaskLoaderActivity extends BaseActivity implements LoaderManag
 
     @BindView(R.id.tv_top)
     TextView mTvUser;
+    @BindView(R.id.loading)
+    ContentLoadingProgressBar mLoading;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -71,28 +76,37 @@ public class AsyncTaskLoaderActivity extends BaseActivity implements LoaderManag
 
     @NonNull
     @Override
-    public android.support.v4.content.Loader<User> onCreateLoader(int id, @Nullable Bundle args) {
+    public Loader<User> onCreateLoader(int id, @Nullable Bundle args) {
         Log.v(TAG, "onCreateLoader");
+        mLoading.show();
         return new AsyncTaskLoaderTask(this);
     }
 
     @Override
-    public void onLoadFinished(@NonNull android.support.v4.content.Loader<User> loader, User data) {
+    public void onLoadFinished(@NonNull Loader<User> loader, User data) {
         Log.v(TAG, "onLoadFinished");
+        mLoading.hide();
 
-        mTvUser.setText(String.format(Locale.ITALY, "%1$s - %2$s - %3$s", data.getId(), data.getName(), data.getUsername()));
+        if (data != null) {
+            mTvUser.setText(String.format(Locale.ITALY,
+                    "%1$s - %2$s - %3$s",
+                    data.getId(),
+                    data.getName(),
+                    data.getUsername()));
+        }
     }
 
     @Override
-    public void onLoaderReset(@NonNull android.support.v4.content.Loader<User> loader) {
+    public void onLoaderReset(@NonNull Loader<User> loader) {
+        mLoading.hide();
         Log.v(TAG, "onLoaderReset");
     }
 
 
     /**
-     *
+     * Loader Task
      */
-    public static class AsyncTaskLoaderTask extends AsyncTaskLoader<User> {
+    private static class AsyncTaskLoaderTask extends AsyncTaskLoader<User> {
 
         static final String TAG = AsyncTaskLoaderTask.class.getSimpleName();
         private ApiJsonPlaceholderEndpoint mClient;

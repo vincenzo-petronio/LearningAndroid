@@ -9,6 +9,7 @@ import it.localhost.app.mobile.learningandroid.data.model.User;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  *
@@ -27,6 +28,9 @@ public interface ApiJsonPlaceholderEndpoint {
 
     @GET("/users/{userId}")
     Call<User> getUser(@Path("userId") String userId);
+
+    @GET("/posts")
+    Call<List<Post>> getPosts(@Query("userId") String userId);
 
 
     // **** RETROFIT + RXJava2 ****

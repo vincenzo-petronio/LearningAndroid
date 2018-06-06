@@ -4,6 +4,7 @@ import android.util.Log;
 
 import java.io.IOException;
 import java.util.Locale;
+import java.util.Objects;
 
 import it.localhost.app.mobile.learningandroid.BuildConfig;
 import okhttp3.Interceptor;
@@ -21,6 +22,7 @@ public class LoggerInterceptor implements Interceptor {
 
     @Override
     public Response intercept(Chain chain) throws IOException {
+        Log.v(TAG, "intercept");
         Request request = chain.request();
         Response response = chain.proceed(request);
 
@@ -51,7 +53,7 @@ public class LoggerInterceptor implements Interceptor {
                     response.message(),
                     response.isRedirect(),
                     responseBodyCached
-            ); // FIXME
+            );
             Log.v(TAG, sResponseFormatted);
         }
 
