@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+https://developer.android.com/training/articles/security-config
+-->
+
+<network-security-config>
+    <!-- Regola base: abilitato solo traffico HTTPS -->
+    <base-config cleartextTrafficPermitted="false" />
+
+    <!-- Regole di dominio: traffico HTTP permesso -->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">jsonplaceholder.typicode.com</domain>
+
+        <domain includeSubdomains="true">localhost</domain>
+        <trust-anchors>
+            <!-- Trust a debug certificate in addition to the system certificates -->
+            <certificates src="system" />
+        </trust-anchors>
+    </domain-config>
+
+</network-security-config>
