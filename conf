@@ -2,7 +2,7 @@ LOGCAT FILTER
 
 Log cat:
 
-^(?!(dalvikvm|gralloc*|libEGL|KeyChar*|InputMethodManager|Adreno200*|CustomViewBehind|ProgressBar|SlidingMenu|AbsListView|CustomFrequency*|memalloc|libc|qdmemalloc|Sensor*|HAL|OpenGLRenderer|webview|webcore|webkit|GATE|MotionRec*|Choreographer|Spannable*|IInputConnection*|GraphicBuffer|Dialog|ActivityThread|PhoneWindow|TextView|MALI|Surface|NSD|HwSecImmHelper|KeyEvent|AudioManager|HwCust|mali_winsys|CubicBezierInterpolator|HwuiUseBinaryProgram|ListPopupWindow|System|HwWidgetFactory*|HwSensorManager|art|getEventCount|ProcessManager|HwPolicyFactory|ViewRootImpl|InjectionManager*|Timeline|ResourceType|ResourceManager)).*$
+^(?!(dalvikvm|gralloc*|libEGL|KeyChar*|InputMethodManager|Adreno200*|CustomViewBehind|ProgressBar|SlidingMenu|AbsListView|CustomFrequency*|memalloc|libc|qdmemalloc|Sensor*|HAL|OpenGLRenderer|webview|webcore|webkit|GATE|MotionRec*|Choreographer|Spannable*|IInputConnection*|GraphicBuffer|Dialog|ActivityThread|PhoneWindow|TextView|MALI|Surface|NSD|HwSecImmHelper|KeyEvent|AudioManager|HwCust|mali_winsys|CubicBezierInterpolator|HwuiUseBinaryProgram|ListPopupWindow|System|HwWidgetFactory*|HwSensorManager|art|getEventCount|ProcessManager|HwPolicyFactory|ViewRootImpl|InjectionManager*|Timeline|ResourceType|ResourceManager|ApplicationPackageManager|DynamiteModule|zzai|EGL_emulation|sendReport|zygote)).*$
 
 
 ----------------------------------------------------------------------------------------------------
