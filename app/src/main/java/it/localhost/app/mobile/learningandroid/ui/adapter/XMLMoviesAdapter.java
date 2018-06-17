@@ -1,7 +1,5 @@
 package it.localhost.app.mobile.learningandroid.ui.adapter;
 
-import com.bumptech.glide.Glide;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +17,7 @@ import butterknife.ButterKnife;
 import it.localhost.app.mobile.learningandroid.R;
 import it.localhost.app.mobile.learningandroid.data.model.Movie;
 import it.localhost.app.mobile.learningandroid.ui.activity.XMLBindingActivity;
+import it.localhost.app.mobile.learningandroid.util.GlideApp;
 
 /**
  *
@@ -88,7 +87,9 @@ public class XMLMoviesAdapter extends BaseAdapter {
         viewHolderMovies.mTvPlot.setText(movie.getPlot());
         viewHolderMovies.mTvReleased.setText(movie.getReleased());
         viewHolderMovies.mTvRuntime.setText(movie.getRuntime());
-        Glide.with(mContext).load(movie.getPoster()).into(viewHolderMovies.mIvPoster);
+        GlideApp.with(mContext)
+                .load(movie.getPoster())
+                .into(viewHolderMovies.mIvPoster);
 
         return convertView;
     }

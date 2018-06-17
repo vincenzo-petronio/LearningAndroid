@@ -24,7 +24,6 @@
 
 -keepattributes Signature,RuntimeVisibleAnnotations,AnnotationDefault
 -keepattributes *Annotation*
--keepattributes Signature
 -keepattributes EnclosingMethod, InnerClasses
 -keepattributes SourceFile,LineNumberTable
 -keepattributes Exceptions

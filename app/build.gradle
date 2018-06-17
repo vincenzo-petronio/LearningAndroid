@@ -69,7 +69,7 @@ dependencies {
     implementation 'com.android.support:design:' + supportVersion
     implementation 'com.android.support:support-annotations:' + supportVersion
     implementation 'com.android.support:multidex:1.0.3'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
 
     // BUTTERKNIFE
     implementation 'com.jakewharton:butterknife:8.8.1'
@@ -101,11 +101,12 @@ dependencies {
 
     // IMAGE LOADING
     implementation 'com.squareup.picasso:picasso:2.5.2'
-    implementation 'com.github.bumptech.glide:glide:4.6.1'
+    implementation 'com.github.bumptech.glide:glide:4.7.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
 
     // ANNOTATION
-    annotationProcessor 'org.androidannotations:androidannotations:4.3.1'
-    implementation 'org.androidannotations:androidannotations-api:4.3.1'
+    annotationProcessor 'org.androidannotations:androidannotations:4.4.0'
+    implementation 'org.androidannotations:androidannotations-api:4.4.0'
 
     // PARCELER
     implementation 'org.parceler:parceler-api:1.1.9'
@@ -148,9 +149,9 @@ dependencies {
 
     // PLAY SERVICES - FIREBASE
     implementation 'com.google.android.gms:play-services-base:15.0.1'
-    implementation 'com.google.firebase:firebase-core:15.0.2'
-    implementation 'com.google.firebase:firebase-messaging:15.0.2'
-    implementation 'com.google.firebase:firebase-auth:15.1.0'
+    implementation 'com.google.firebase:firebase-core:16.0.1'
+    implementation 'com.google.firebase:firebase-messaging:17.0.0'
+    implementation 'com.google.firebase:firebase-auth:16.0.2'
 
     // BOLTS
     implementation 'com.parse.bolts:bolts-tasks:1.4.0'

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/LearningAndroid.iml" filepath="$PROJECT_DIR$/LearningAndroid.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/LearningAndroid.iml" filepath="$PROJECT_DIR$/.idea/LearningAndroid.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/weathercard/weathercard.iml" filepath="$PROJECT_DIR$/weathercard/weathercard.iml" />
     </modules>

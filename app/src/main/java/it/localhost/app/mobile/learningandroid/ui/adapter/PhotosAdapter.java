@@ -1,7 +1,5 @@
 package it.localhost.app.mobile.learningandroid.ui.adapter;
 
-import com.bumptech.glide.Glide;
-
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,6 +13,7 @@ import java.util.List;
 
 import it.localhost.app.mobile.learningandroid.R;
 import it.localhost.app.mobile.learningandroid.data.model.Photo;
+import it.localhost.app.mobile.learningandroid.util.GlideApp;
 
 
 public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.ViewHolder> {
@@ -47,7 +46,7 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.ViewHolder
     }
 
     /**
-     * @param photos List<Photo>
+     * @param photos  List<Photo>
      * @param context Context
      */
     public PhotosAdapter(List<Photo> photos, Context context) {
@@ -91,7 +90,9 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.ViewHolder
 //                //.resize(120, 60)
 //                .into(holder.ivPhoto);
 
-        Glide.with(mContext).load(photo.getThumbnailUrl()).into(holder.ivPhoto);
+        GlideApp.with(mContext)
+                .load(photo.getThumbnailUrl())
+                .into(holder.ivPhoto);
     }
 
     @Override
