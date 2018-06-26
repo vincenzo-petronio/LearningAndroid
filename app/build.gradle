@@ -11,6 +11,12 @@ repositories {
 }
 
 android {
+//    if (project.hasProperty('devBuild')) {
+//        splits.abi.enable = false
+//        splits.density.enable = false
+//        aaptOptions.cruncherEnabled = false
+//    }
+
     compileSdkVersion rootProject.ext.compileSdkVersion
 //    buildToolsVersion rootProject.ext.buildToolsVersion
     defaultConfig {
