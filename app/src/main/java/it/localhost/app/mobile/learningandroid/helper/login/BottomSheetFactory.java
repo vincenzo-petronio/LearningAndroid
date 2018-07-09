@@ -13,20 +13,21 @@ import java.lang.annotation.Target;
 
 public class BottomSheetFactory {
 
-    @IntDef({BottomSheetType.SHARE, BottomSheetType.EDIT})
+    public static final int SHARE = 1;
+    public static final int EDIT = 2;
+
+    @IntDef({SHARE, EDIT})
     @Retention(RetentionPolicy.SOURCE)
     @Target({ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER, ElementType.ANNOTATION_TYPE})
-    @interface BottomSheetType {
-        int SHARE = 1;
-        int EDIT = 2;
+    @interface BottomSheetTypeDef {
     }
 
     /**
      * @param bottomSheetType int
      * @return IBottomSheet
      */
-    public static IBottomSheet getBottomSheet(@BottomSheetType int bottomSheetType) {
-        if (bottomSheetType == BottomSheetType.SHARE) {
+    public static IBottomSheet getBottomSheet(@BottomSheetTypeDef int bottomSheetType) {
+        if (bottomSheetType == SHARE) {
             return new ShareBottomSheet();
         } else {
             return new EditBottomSheet();
