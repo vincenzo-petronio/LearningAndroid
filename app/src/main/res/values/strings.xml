@@ -134,6 +134,7 @@
         <item>Strategy</item>
         <item>Decorator</item>
         <item>Factory Method</item>
+        <item>Repository</item>
     </string-array>
 
     <!-- ASYNCTASK LOADER -->

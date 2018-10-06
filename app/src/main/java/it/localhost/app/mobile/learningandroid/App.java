@@ -2,6 +2,7 @@ package it.localhost.app.mobile.learningandroid;
 
 import com.akaita.java.rxjava2debug.RxJava2Debug;
 import com.facebook.soloader.SoLoader;
+import com.facebook.stetho.Stetho;
 
 import android.app.Activity;
 import android.content.Context;
@@ -52,6 +53,7 @@ public class App extends MultiDexApplication implements HasActivityInjector {
         initRealm();
         initLitho();
         initRxDebug();
+        initStetho();
     }
 
     private void initData() {
@@ -99,6 +101,10 @@ public class App extends MultiDexApplication implements HasActivityInjector {
 //        RxJava2Debug.enableRxJava2AssemblyTracking(
 //                new String[]{getApplicationContext().getPackageName()}
 //        );
+    }
+
+    private void initStetho() {
+        Stetho.initializeWithDefaults(this);
     }
 
     @Override
