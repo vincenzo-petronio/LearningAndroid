@@ -9,17 +9,23 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import bolts.Continuation;
+import bolts.Task;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import it.localhost.app.mobile.learningandroid.R;
 import it.localhost.app.mobile.learningandroid.data.model.CommentEntity;
 import it.localhost.app.mobile.learningandroid.repository.CommentRepository;
+import it.localhost.app.mobile.learningandroid.repository.specification.ListCommentSqlSpecification;
 
 /**
  * Repository pattern
@@ -95,7 +101,36 @@ public class RepositoryFragment extends BaseFragment {
         CommentEntity comment = new CommentEntity();
         comment.setBody(mEtText.getText().toString());
 
-        mCommentRepository.addAsync(comment);
+        // Aggiunge su DB un item, poi effettua il select * e restituisce una lista di entity
+        List<CommentEntity> result = new ArrayList<>();
+        result = mCommentRepository
+                .addAsync(comment)
+                .onSuccess(new Continuation<Boolean, List<CommentEntity>>() {
+                    @Override
+                    public List<CommentEntity> then(Task<Boolean> task) throws Exception {
+                        if (!task.getResult()) {
+                            // TODO è un errore
+                            return new ArrayList<>();
+                        }
+
+                        return (List<CommentEntity>) mCommentRepository
+                                .queryAsync(new ListCommentSqlSpecification())
+                                .getResult();
+                    }
+                }).getResult();
+
+        updateListView(result);
+    }
+
+    private void updateListView(List<CommentEntity> collection) {
+        if (getActivity() == null || !isAdded() || collection == null) {
+            return;
+        }
+        ArrayAdapter arrayAdapter = new ArrayAdapter<>(
+                getActivity(),
+                android.R.layout.simple_list_item_1,
+                collection);
+        mLvItems.setAdapter(arrayAdapter);
     }
 
 }

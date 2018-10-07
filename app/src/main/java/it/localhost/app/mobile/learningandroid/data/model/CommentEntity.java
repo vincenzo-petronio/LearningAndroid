@@ -18,4 +18,9 @@ public class CommentEntity extends EntityBase
     public void setBody(String body) {
         this.body = body;
     }
+
+    @Override
+    public String toString() {
+        return "body: " + getBody();
+    }
 }
