@@ -25,7 +25,7 @@ import butterknife.OnClick;
 import it.localhost.app.mobile.learningandroid.R;
 import it.localhost.app.mobile.learningandroid.data.model.CommentEntity;
 import it.localhost.app.mobile.learningandroid.repository.CommentRepository;
-import it.localhost.app.mobile.learningandroid.repository.specification.ListCommentSqlSpecification;
+import it.localhost.app.mobile.learningandroid.repository.specification.ListCommentSqlSpecificationBuilder;
 
 /**
  * Repository pattern
@@ -114,7 +114,7 @@ public class RepositoryFragment extends BaseFragment {
                         }
 
                         return (List<CommentEntity>) mCommentRepository
-                                .queryAsync(new ListCommentSqlSpecification())
+                                .queryAsync(ListCommentSqlSpecificationBuilder.newBuilder().orderBy("body").sort(false).build())
                                 .getResult();
                     }
                 }).getResult();
