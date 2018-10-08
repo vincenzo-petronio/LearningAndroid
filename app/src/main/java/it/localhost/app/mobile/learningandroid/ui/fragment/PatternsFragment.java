@@ -1,6 +1,8 @@
 package it.localhost.app.mobile.learningandroid.ui.fragment;
 
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -21,6 +23,7 @@ import it.localhost.app.mobile.learningandroid.R;
 import it.localhost.app.mobile.learningandroid.helper.login.BottomSheetFactory;
 import it.localhost.app.mobile.learningandroid.helper.login.IBottomSheet;
 import it.localhost.app.mobile.learningandroid.helper.login.IBundleCallback;
+import it.localhost.app.mobile.learningandroid.repository.CommentRepository;
 import it.localhost.app.mobile.learningandroid.ui.activity.PatternsActivity;
 import it.localhost.app.mobile.learningandroid.util.Constants;
 
@@ -93,23 +96,24 @@ public class PatternsFragment extends BaseFragment {
         return R.layout.fragment_patterns;
     }
 
+    @TargetApi(Build.VERSION_CODES.N)
     @OnItemClick(R.id.lvItems)
     void OnItemClick(int position) {
         Log.d(TAG, "OnItemSelected: " + lvItems.getItemAtPosition(position));
         Bundle bundle;
 
-        switch (lvItems.getItemAtPosition(position).toString()) {
-            case "Strategy":
+        switch (lvItems.getItemAtPosition(position).toString().toUpperCase()) {
+            case "STRATEGY":
                 mActivity.navigateTo(new LoginFragment());
                 break;
-            case "Decorator":
+            case "DECORATOR":
                 bundle = new Bundle();
                 bundle.putBoolean(Constants.EXTRA_USEDECORATOR, true);
                 BaseFragment fragment = new LoginFragment();
                 fragment.setArguments(bundle);
                 mActivity.navigateTo(fragment);
                 break;
-            case "Factory Method":
+            case "FACTORY METHOD":
                 IBottomSheet bottomSheet = BottomSheetFactory.getBottomSheet(new Random().nextInt(2 - 1 + 1) + 1);
                 bottomSheet.setCallback(new IBundleCallback() {
                     @Override
@@ -123,6 +127,12 @@ public class PatternsFragment extends BaseFragment {
                     }
                 });
                 bottomSheet.showDialog(getFragmentManager(), bottomSheet.getClass().getSimpleName());
+                break;
+            case "REPOSITORY":
+                if (getContext() == null || !isAdded()) {
+                    return;
+                }
+                mActivity.navigateTo(RepositoryFragment.newInstance(new CommentRepository(getContext())));
                 break;
             default:
                 break;
