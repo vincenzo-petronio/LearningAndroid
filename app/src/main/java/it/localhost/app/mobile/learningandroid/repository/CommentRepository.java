@@ -16,10 +16,6 @@ import it.localhost.app.mobile.learningandroid.repository.specification.SqlQuery
 @RequiresApi(Build.VERSION_CODES.N)
 public class CommentRepository extends SqlLiteBaseRepository {
 
-//    private static final String TABLE_COMMENT = "COMMENT";
-//    private static String SQL_CREATE_TABLE_COMMENT =
-//            ;
-
     public CommentRepository(@NonNull Context context) {
         super(LocalDbHelper.getHelper(context, SqlQuery.TABLE_COMMENT_CREATE),
                 SqlQuery.TABLE_COMMENT,
@@ -32,8 +28,6 @@ public class CommentRepository extends SqlLiteBaseRepository {
      * Mapper da entity a ContentValues
      */
     private static class CommentToContentValuesMapper implements Mapper<CommentEntity, ContentValues> {
-
-//        private final static String COLUMNNAME_BODY = "body";
 
         @Override
         public ContentValues map(CommentEntity comment) {

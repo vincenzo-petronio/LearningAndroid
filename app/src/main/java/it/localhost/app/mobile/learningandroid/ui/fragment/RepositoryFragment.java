@@ -98,12 +98,26 @@ public class RepositoryFragment extends BaseFragment {
     @TargetApi(Build.VERSION_CODES.N)
     @OnClick(R.id.bt_add)
     void onBtAddClickListener() {
+        // TODO non funziona!
+//        CommentDTO comment = new CommentDTO();
+//        comment.setText(mEtText.getText().toString());
+//
+//        ModelMapper modelMapper = new ModelMapper();
+////        modelMapper.addMappings(new CommentMap());
+//
+//        modelMapper
+//                .createTypeMap(CommentDTO.class, CommentEntity.class)
+//                .addMappings(mapper -> {
+//                    mapper.map(CommentDTO::getText, CommentEntity::setBody);
+//                });
+
         CommentEntity comment = new CommentEntity();
         comment.setBody(mEtText.getText().toString());
 
         // Aggiunge su DB un item, poi effettua il select * e restituisce una lista di entity
         List<CommentEntity> result = new ArrayList<>();
         result = mCommentRepository
+//                .addAsync(modelMapper.map(comment, CommentEntity.class))
                 .addAsync(comment)
                 .onSuccess(new Continuation<Boolean, List<CommentEntity>>() {
                     @Override

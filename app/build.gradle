@@ -164,6 +164,9 @@ dependencies {
 
     // STETHO
     compile 'com.facebook.stetho:stetho:1.5.0'
+
+    // MODELMAPPER
+    implementation 'org.modelmapper:modelmapper:2.3.0'
 }
 
 // LEAVE ME AT THE BOTTOM!
